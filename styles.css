@@ -543,6 +543,7 @@ nav .wrap {
 }
 .sc {
   position: relative;
+  z-index: 1;
   background: rgba(150, 150, 245, 0.45);
   backdrop-filter: blur(18px);
   border: 1px solid rgba(255, 255, 255, 0.7);
@@ -595,6 +596,16 @@ nav .wrap {
 .sl p {
   font-size: 13px;
   color: var(--mut);
+}
+@media (min-width: 992px) and (min-height: 650px) {
+  .steps {
+    padding: 40vh 0 30vh;
+  }
+  .sc {
+    position: sticky;
+    top: 22vh;
+    margin-bottom: 34vh;
+  }
 }
 /* testimonials */
 .tst {
