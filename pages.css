@@ -55,7 +55,7 @@
   padding: 12px 0 12px 30px;
   border-top: 1px solid var(--line);
   position: relative;
-  color: #2c2c55;
+  color: #3d3438;
 }
 .bl li:before {
   content: "";
@@ -112,7 +112,7 @@
 }
 .prose p,
 .prose li {
-  color: #33335c;
+  color: #3b3538;
   margin-bottom: 6px;
 }
 .prose ul {

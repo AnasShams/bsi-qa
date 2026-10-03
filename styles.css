@@ -2,12 +2,12 @@
 
 /* Black Sands Industries - shared base styles (nav, hero, cards, carousels, footer, animations) */
 :root {
-  --bg: #f4f4fd;
-  --ink: #0b0b2b;
-  --mut: #5b5b78;
-  --acc: #2a22d6;
-  --soft: #e6e6fb;
-  --line: #d4d4f2;
+  --bg: #ffffff;
+  --ink: #101010;
+  --mut: #555055;
+  --acc: #761b35;
+  --soft: #f5eaed;
+  --line: #ddcbd1;
   --img: url("horse.jpg");
 }
 * {
@@ -94,7 +94,7 @@ p.lead {
 }
 .btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 24px -8px rgba(42, 34, 214, 0.5);
+  box-shadow: 0 10px 24px -8px rgba(118, 27, 53, 0.42);
 }
 /* cursor */
 #cur {
@@ -115,7 +115,7 @@ p.lead {
 #cur.big {
   width: 46px;
   height: 46px;
-  background: rgba(42, 34, 214, 0.18);
+  background: rgba(118, 27, 53, 0.18);
 }
 @media (hover: none) {
   #cur {
@@ -205,7 +205,7 @@ nav .wrap {
   padding: 0 0 70px;
   position: relative;
   overflow: hidden;
-  background: #dcdcf7;
+  background: #eee7e9;
 }
 .hero .bg {
   position: absolute;
@@ -221,7 +221,7 @@ nav .wrap {
   background: linear-gradient(
     to top,
     var(--bg) 0,
-    rgba(244, 244, 253, 0.55) 38%,
+    rgba(255, 255, 255, 0.58) 38%,
     transparent 70%
   );
 }
@@ -305,7 +305,7 @@ nav .wrap {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(244, 244, 253, 0.82);
+  background: rgba(255, 255, 255, 0.82);
 }
 .cap .wrap {
   position: relative;
@@ -333,7 +333,7 @@ nav .wrap {
   transform: translateY(-10px);
   background: #fff;
   border-color: var(--acc);
-  box-shadow: 0 22px 40px -20px rgba(42, 34, 214, 0.45);
+  box-shadow: 0 22px 40px -20px rgba(118, 27, 53, 0.36);
 }
 .card h3 {
   font-size: 17px;
@@ -523,7 +523,7 @@ nav .wrap {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(220, 220, 247, 0.78);
+  background: rgba(245, 234, 237, 0.84);
 }
 .app .wrap {
   position: relative;
@@ -544,7 +544,7 @@ nav .wrap {
 .sc {
   position: relative;
   z-index: 1;
-  background: rgba(150, 150, 245, 0.45);
+  background: rgba(118, 27, 53, 0.16);
   backdrop-filter: blur(18px);
   border: 1px solid rgba(255, 255, 255, 0.7);
   border-radius: 18px;
@@ -563,7 +563,7 @@ nav .wrap {
     600 60px "Space Grotesk",
     sans-serif;
   font-style: normal;
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.76);
 }
 .sc h3 {
   font-size: 20px;
@@ -571,7 +571,7 @@ nav .wrap {
   color: var(--ink);
 }
 .sc p {
-  color: #25254d;
+  color: #30252a;
   font-size: 14px;
   max-width: 360px;
 }
@@ -605,6 +605,20 @@ nav .wrap {
     position: sticky;
     top: 22vh;
     margin-bottom: 34vh;
+  }
+}
+@media (max-width: 991.98px) and (min-height: 480px) {
+  .steps {
+    padding: 14vh 0 24vh;
+  }
+  .sc {
+    position: sticky;
+    top: 14vh;
+    margin-bottom: 18vh;
+    padding: 24px;
+  }
+  .sc em {
+    font-size: 42px;
   }
 }
 /* testimonials */
@@ -703,7 +717,7 @@ nav .wrap {
 }
 .loc:hover {
   transform: translateY(-6px);
-  background: #d9d9fb;
+  background: #ead9de;
 }
 .loc b {
   font:
@@ -771,16 +785,16 @@ nav .wrap {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(11, 11, 43, 0.7);
+  background: rgba(16, 16, 16, 0.78);
 }
 .cta .wrap {
   position: relative;
 }
 .cta .mono {
-  color: #b8b8ff;
+  color: #e7bdc8;
 }
 .cta p {
-  color: #c9c9e6;
+  color: #eadde0;
   margin: 0 auto;
 }
 .cta h2 {
@@ -796,7 +810,7 @@ nav .wrap {
 }
 footer {
   background: var(--ink);
-  color: #9d9dc4;
+  color: #c2b6ba;
   font-size: 13px;
   padding: 36px 0;
 }
@@ -871,7 +885,7 @@ footer a:hover {
   grid-template-columns: minmax(0, 2fr) repeat(3, minmax(0, 1fr));
   gap: 30px;
   padding-bottom: 30px;
-  border-bottom: 1px solid #2a2a55;
+  border-bottom: 1px solid #3d242c;
   margin-bottom: 24px;
 }
 .cols h3 {
@@ -990,7 +1004,7 @@ footer a:hover {
   visibility: hidden;
   transform: translateY(-10px);
   transition: 0.3s;
-  box-shadow: 0 24px 40px -20px rgba(11, 11, 43, 0.35);
+  box-shadow: 0 24px 40px -20px rgba(16, 16, 16, 0.35);
 }
 #mm.open {
   opacity: 1;
