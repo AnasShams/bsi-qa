@@ -28,7 +28,7 @@
   $("#caps").innerHTML = caps
     .map(
       (c, i) =>
-        `<a href="/capabilities.html" class="card rv" style="--d:${i * 0.07}s"><i>↗</i><div class="img" style="height:90px;background-position:${i * 22}% 50%"></div><h3>${c[0]}</h3><p>${c[1]}</p></a>`,
+        `<a href="/capabilities.html" class="card rv" style="--d:${i * 0.07}s"><div class="img" style="height:90px;background-position:${i * 22}% 50%"></div><h3>${c[0]}</h3><p>${c[1]}</p></a>`,
     )
     .join("");
   $("#logos").innerHTML = "WE ADVANCE THE INDUSTRIES THAT ADVANCE THE WORLD"

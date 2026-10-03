@@ -344,17 +344,6 @@ nav .wrap {
   font-size: 13px;
   color: var(--mut);
 }
-.card i {
-  position: absolute;
-  right: 20px;
-  top: 18px;
-  font-style: normal;
-  color: var(--acc);
-  transition: transform 0.3s;
-}
-.card:hover i {
-  transform: translate(3px, -3px);
-}
 /* marquee */
 .mq {
   overflow: hidden;
