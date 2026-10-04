@@ -45,6 +45,36 @@ a {
   text-transform: uppercase;
   color: var(--acc);
 }
+.section-title {
+  position: relative;
+  display: block;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  font-size: 36px;
+  line-height: 1.15;
+}
+.typewriter-reserve {
+  display: block;
+  visibility: hidden;
+}
+.typewriter-output {
+  position: absolute;
+  inset: 0;
+}
+.typewriter-cursor {
+  display: inline-block;
+  width: 0.65em;
+  color: var(--acc);
+  animation: typewriter-cursor-blink 0.9s steps(2, end) infinite;
+}
+.typewriter-cursor::before {
+  content: "_";
+}
+@keyframes typewriter-cursor-blink {
+  50% {
+    visibility: hidden;
+  }
+}
 .wrap {
   width: 100%;
   margin: 0 auto;
@@ -361,13 +391,15 @@ nav .wrap {
   overflow: hidden;
   width: 100%;
   padding-block: 14px;
-  /* -webkit-mask: linear-gradient(90deg, transparent, #000 0, #000 0, transparent); */
-  /* mask: linear-gradient(90deg, transparent, #000 0, #000 0, transparent); */
 }
 .mq.proj {
   width: calc(100% - 48px);
   max-width: 1132px;
   margin-inline: auto;
+}
+
+.mq.proj:hover > div {
+  animation-play-state: paused;
 }
 
 .mq > div {
@@ -376,7 +408,7 @@ nav .wrap {
   width: max-content;
   animation: mq var(--t, 30s) linear infinite;
 }
-/* .mq:hover>div{animation-play-state:paused} */
+
 @keyframes mq {
   to {
     transform: translateX(-50%);
@@ -825,6 +857,9 @@ footer a:hover {
   color: #fff;
 }
 @media (max-width: 991.98px) {
+  .section-title {
+    font-size: 27px;
+  }
   .sc {
     padding-bottom: 76px;
   }
@@ -870,6 +905,9 @@ footer a:hover {
     filter: none;
     transform: none;
   }
+  .typewriter-cursor {
+    animation: none;
+  }
 }
 
 .logos span {
@@ -913,6 +951,9 @@ footer a:hover {
   }
 }
 @media (max-width: 575.98px) {
+  .section-title {
+    font-size: 21px;
+  }
   .wrap {
     padding-inline: 18px;
   }

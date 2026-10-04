@@ -57,6 +57,50 @@
     appRow.querySelector(".steps").classList.add("col-12", "col-lg-7");
   }
 
+  const typewriterObserver = new IntersectionObserver(
+    (entries, observer) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const title = entry.target;
+        const text = title.textContent.trim();
+        const reserve = document.createElement("span");
+        const output = document.createElement("span");
+        const typedText = document.createTextNode("");
+        const cursor = document.createElement("span");
+        reserve.className = "typewriter-reserve";
+        reserve.setAttribute("aria-hidden", "true");
+        reserve.textContent = text;
+        output.className = "typewriter-output";
+        output.setAttribute("aria-hidden", "true");
+        cursor.className = "typewriter-cursor";
+        cursor.setAttribute("aria-hidden", "true");
+        output.append(typedText, cursor);
+        title.setAttribute("aria-label", text);
+        title.replaceChildren(reserve, output);
+        observer.unobserve(title);
+
+        if (matchMedia("(prefers-reduced-motion: reduce)").matches) {
+          typedText.data = text;
+          return;
+        }
+
+        let character = 0;
+        const typeNextCharacter = () => {
+          character += 1;
+          typedText.data = text.slice(0, character);
+          if (character < text.length) {
+            window.setTimeout(typeNextCharacter, 35);
+          }
+        };
+        typeNextCharacter();
+      });
+    },
+    { threshold: 0.35 },
+  );
+  $$(".typewriter-title").forEach((title) =>
+    typewriterObserver.observe(title),
+  );
+
   /* mobile menu */
   const bg = $("#bg"),
     mm = $("#mm");
