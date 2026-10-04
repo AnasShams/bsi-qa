@@ -28,7 +28,7 @@
   $("#caps").innerHTML = caps
     .map(
       (c, i) =>
-        `<a href="/capabilities.html" class="card rv" style="--d:${i * 0.07}s"><div class="img" style="height:90px;background-position:${i * 22}% 50%"></div><h3>${c[0]}</h3><p>${c[1]}</p></a>`,
+        `<a href="/capabilities.html" class="card" style="--d:${i * 0.07}s"><div class="img" style="height:90px;background-position:${i * 22}% 50%"></div><h3>${c[0]}</h3><p>${c[1]}</p></a>`,
     )
     .join("");
   $("#logos").innerHTML = "WE ADVANCE THE INDUSTRIES THAT ADVANCE THE WORLD."
@@ -94,6 +94,39 @@
     )
     .join("");
   observeReveal();
+  const capSection = $("#cap");
+  const capViewport = $(".cap-viewport");
+  const capTrack = $("#caps");
+  let capTravel = 0;
+
+  function updateCapabilityRail() {
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      capSection.style.height = "auto";
+      capTrack.style.transform = "none";
+      return;
+    }
+    const offset = Math.min(
+      capTravel,
+      Math.max(0, -capSection.getBoundingClientRect().top),
+    );
+    capTrack.style.transform = `translate3d(${-offset}px, 0, 0)`;
+  }
+
+  function measureCapabilityRail() {
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      capSection.style.height = "auto";
+      capTrack.style.transform = "none";
+      return;
+    }
+    capTravel = Math.max(0, capTrack.scrollWidth - capViewport.clientWidth);
+    capSection.style.height = `${capSection.querySelector(".cap-pin").offsetHeight + capTravel}px`;
+    updateCapabilityRail();
+  }
+
+  addEventListener("scroll", updateCapabilityRail, { passive: true });
+  addEventListener("resize", measureCapabilityRail);
+  measureCapabilityRail();
+
   const cards = $$(".sc"),
     items = $$("#sl div");
   function onScroll() {
