@@ -17,18 +17,21 @@
     ["/services.html", "Services"],
     ["/products.html", "Products"],
   ];
+  const isActiveGroup = (items) => items.some(([href]) => path === href);
+  const whoIsActive = isActiveGroup(who);
+  const whatIsActive = isActiveGroup(what);
   const dd = (a) =>
     `<div class="dd">${a.map((x) => L(x[0], x[1])).join("")}</div>`;
   const navHTML = `<nav><div class="wrap">
 <a class="logo" href="/" aria-label="Black Saber Industries home"><img src="/assets/bsi-logo.png" alt="Black Saber Industries"></a>
 <div class="pill">
  <div>${L("/", "Home")}</div>
- <div><a href="#" onclick="return false">Who We Are</a>${dd(who)}</div>
- <div><a href="#" onclick="return false">What We Do</a>${dd(what)}</div>
+ <div><a class="${whoIsActive ? "act" : ""}" href="#" onclick="return false">Who We Are</a>${dd(who)}</div>
+ <div><a class="${whatIsActive ? "act" : ""}" href="#" onclick="return false">What We Do</a>${dd(what)}</div>
  <div>${L("/technologies.html", "Technologies")}</div><div>${L("/our-facility.html", "Our Facility")}</div><div>${L("/our-people.html", "Our People")}</div><div>${L("/careers.html", "Careers")}</div>
 </div>
 <div class="nr"><a class="btn d" href="/connect.html">Connect</a><button class="burger" id="bg" aria-label="Menu" aria-expanded="false"><i></i><i></i><i></i></button></div>
-<div id="mm">${L("/", "Home")}<div class="g">Who We Are</div>${who.map((x) => `<a class="s" href="${x[0]}">${x[1]}</a>`).join("")}<div class="g">What We Do</div>${what.map((x) => `<a class="s" href="${x[0]}">${x[1]}</a>`).join("")}${L("/technologies.html", "Technologies")}${L("/our-facility.html", "Our Facility")}${L("/our-people.html", "Our People")}${L("/careers.html", "Careers")}</div>
+<div id="mm">${L("/", "Home")}<div class="g${whoIsActive ? " act" : ""}">Who We Are</div>${who.map((x) => `<a class="s${path === x[0] ? " act" : ""}" href="${x[0]}">${x[1]}</a>`).join("")}<div class="g${whatIsActive ? " act" : ""}">What We Do</div>${what.map((x) => `<a class="s${path === x[0] ? " act" : ""}" href="${x[0]}">${x[1]}</a>`).join("")}${L("/technologies.html", "Technologies")}${L("/our-facility.html", "Our Facility")}${L("/our-people.html", "Our People")}${L("/careers.html", "Careers")}</div>
 </div></nav>
 `;
   const footHTML = `<section class="cta" id="cta"><div class="wrap"><div class="mono">Connect</div><h2 data-split-view>Building a Sustainable Future Through Engineering Excellence</h2><p class="lead">BSI leads the transformation of industries by integrating renewable energy, automation, and innovation into every engineered solution.</p><div class="actions"><a class="btn p" href="/connect.html">CONTACT US</a></div></div></section>
@@ -56,6 +59,50 @@
     appRow.querySelector(".l").classList.add("col-12", "col-lg-5");
     appRow.querySelector(".steps").classList.add("col-12", "col-lg-7");
   }
+
+  const typewriterObserver = new IntersectionObserver(
+    (entries, observer) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const title = entry.target;
+        const text = title.textContent.trim();
+        const reserve = document.createElement("span");
+        const output = document.createElement("span");
+        const typedText = document.createTextNode("");
+        const cursor = document.createElement("span");
+        reserve.className = "typewriter-reserve";
+        reserve.setAttribute("aria-hidden", "true");
+        reserve.textContent = text;
+        output.className = "typewriter-output";
+        output.setAttribute("aria-hidden", "true");
+        cursor.className = "typewriter-cursor";
+        cursor.setAttribute("aria-hidden", "true");
+        output.append(typedText, cursor);
+        title.setAttribute("aria-label", text);
+        title.replaceChildren(reserve, output);
+        observer.unobserve(title);
+
+        if (matchMedia("(prefers-reduced-motion: reduce)").matches) {
+          typedText.data = text;
+          return;
+        }
+
+        let character = 0;
+        const typeNextCharacter = () => {
+          character += 1;
+          typedText.data = text.slice(0, character);
+          if (character < text.length) {
+            window.setTimeout(typeNextCharacter, 35);
+          }
+        };
+        typeNextCharacter();
+      });
+    },
+    { threshold: 0.35 },
+  );
+  $$(".typewriter-title").forEach((title) =>
+    typewriterObserver.observe(title),
+  );
 
   /* mobile menu */
   const bg = $("#bg"),

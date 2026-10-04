@@ -45,6 +45,36 @@ a {
   text-transform: uppercase;
   color: var(--acc);
 }
+.section-title {
+  position: relative;
+  display: block;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  font-size: 36px;
+  line-height: 1.15;
+}
+.typewriter-reserve {
+  display: block;
+  visibility: hidden;
+}
+.typewriter-output {
+  position: absolute;
+  inset: 0;
+}
+.typewriter-cursor {
+  display: inline-block;
+  width: 0.65em;
+  color: var(--acc);
+  animation: typewriter-cursor-blink 0.9s steps(2, end) infinite;
+}
+.typewriter-cursor::before {
+  content: "_";
+}
+@keyframes typewriter-cursor-blink {
+  50% {
+    visibility: hidden;
+  }
+}
 .wrap {
   width: 100%;
   margin: 0 auto;
@@ -177,6 +207,35 @@ nav .wrap {
 .pill > div:hover > a {
   background: var(--soft);
 }
+.pill > div > a,
+.dd a,
+#mm a,
+#mm .g {
+  position: relative;
+}
+.pill > div > a::after,
+.dd a::after,
+#mm a::after,
+#mm .g::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 4px;
+  left: 0;
+  height: 2px;
+  background: var(--acc);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+}
+.pill > div > a.act::after,
+.pill > div:hover > a::after,
+.dd a.act::after,
+.dd a:hover::after,
+#mm a.act::after,
+#mm .g.act::after {
+  transform: scaleX(1);
+}
 .dd {
   position: absolute;
   top: 100%;
@@ -206,6 +265,9 @@ nav .wrap {
   transform: translateX(3px);
 }
 .dd a {
+  display: block;
+  width: fit-content;
+  position: relative;
   transition: 0.2s;
   white-space: nowrap;
 }
@@ -361,13 +423,15 @@ nav .wrap {
   overflow: hidden;
   width: 100%;
   padding-block: 14px;
-  /* -webkit-mask: linear-gradient(90deg, transparent, #000 0, #000 0, transparent); */
-  /* mask: linear-gradient(90deg, transparent, #000 0, #000 0, transparent); */
 }
 .mq.proj {
   width: calc(100% - 48px);
   max-width: 1132px;
   margin-inline: auto;
+}
+
+.mq.proj:hover > div {
+  animation-play-state: paused;
 }
 
 .mq > div {
@@ -376,7 +440,7 @@ nav .wrap {
   width: max-content;
   animation: mq var(--t, 30s) linear infinite;
 }
-/* .mq:hover>div{animation-play-state:paused} */
+
 @keyframes mq {
   to {
     transform: translateX(-50%);
@@ -545,8 +609,9 @@ nav .wrap {
 .sc {
   position: relative;
   z-index: 1;
-  background: rgba(118, 27, 53, 0.16);
-  backdrop-filter: blur(18px);
+  isolation: isolate;
+  overflow: hidden;
+  background: #531326;
   border: 1px solid rgba(255, 255, 255, 0.7);
   border-radius: 18px;
   padding: 30px;
@@ -556,28 +621,63 @@ nav .wrap {
     transform 0.4s,
     filter 0.4s;
 }
+@media (min-width: 576px) and (max-width: 991.98px) {
+  .sc {
+    min-height: 250px;
+  }
+}
+@media (min-width: 992px) {
+  .sc {
+    min-height: 225px;
+  }
+}
+.sc::before,
+.sc::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+.sc::before {
+  background: var(--img) center/cover;
+  transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.sc::after {
+  background: rgba(118, 27, 53, 0.56);
+}
+.sc h3,
+.sc p {
+  position: relative;
+  z-index: 1;
+}
+@media (hover: hover) {
+  .sc:hover::before {
+    transform: scale(1.06);
+  }
+}
 .sc em {
   position: absolute;
+  z-index: 1;
   right: 24px;
   bottom: 10px;
   font:
-    600 60px "Space Grotesk",
-    sans-serif;
+    500 60px "JetBrains Mono",
+    monospace;
   font-style: normal;
-  color: rgba(255, 255, 255, 0.76);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #fff;
 }
 .sc h3 {
   font-size: 20px;
   margin: 10px 0 8px;
-  color: var(--ink);
+  color: #fff;
 }
 .sc p {
-  color: #30252a;
+  color: rgba(255, 255, 255, 0.92);
   font-size: 14px;
   max-width: 360px;
-}
-.sc .mono {
-  color: #fff;
 }
 .sl {
   margin-top: 26px;
@@ -825,6 +925,9 @@ footer a:hover {
   color: #fff;
 }
 @media (max-width: 991.98px) {
+  .section-title {
+    font-size: 27px;
+  }
   .sc {
     padding-bottom: 76px;
   }
@@ -870,6 +973,9 @@ footer a:hover {
     filter: none;
     transform: none;
   }
+  .typewriter-cursor {
+    animation: none;
+  }
 }
 
 .logos span {
@@ -913,6 +1019,9 @@ footer a:hover {
   }
 }
 @media (max-width: 575.98px) {
+  .section-title {
+    font-size: 21px;
+  }
   .wrap {
     padding-inline: 18px;
   }
@@ -1032,6 +1141,7 @@ footer a:hover {
   color: var(--mut);
 }
 #mm .g {
+  width: fit-content;
   font:
     600 12px "JetBrains Mono",
     monospace;
