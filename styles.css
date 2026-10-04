@@ -577,8 +577,9 @@ nav .wrap {
 .sc {
   position: relative;
   z-index: 1;
-  background: rgba(118, 27, 53, 0.16);
-  backdrop-filter: blur(18px);
+  isolation: isolate;
+  overflow: hidden;
+  background: #531326;
   border: 1px solid rgba(255, 255, 255, 0.7);
   border-radius: 18px;
   padding: 30px;
@@ -588,28 +589,53 @@ nav .wrap {
     transform 0.4s,
     filter 0.4s;
 }
+.sc::before,
+.sc::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+.sc::before {
+  background: var(--img) center/cover;
+  transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.sc::after {
+  background: rgba(118, 27, 53, 0.56);
+}
+.sc h3,
+.sc p {
+  position: relative;
+  z-index: 1;
+}
+@media (hover: hover) {
+  .sc:hover::before {
+    transform: scale(1.06);
+  }
+}
 .sc em {
   position: absolute;
+  z-index: 1;
   right: 24px;
   bottom: 10px;
   font:
-    600 60px "Space Grotesk",
-    sans-serif;
+    500 60px "JetBrains Mono",
+    monospace;
   font-style: normal;
-  color: rgba(255, 255, 255, 0.76);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #fff;
 }
 .sc h3 {
   font-size: 20px;
   margin: 10px 0 8px;
-  color: var(--ink);
+  color: #fff;
 }
 .sc p {
-  color: #30252a;
+  color: rgba(255, 255, 255, 0.92);
   font-size: 14px;
   max-width: 360px;
-}
-.sc .mono {
-  color: #fff;
 }
 .sl {
   margin-top: 26px;

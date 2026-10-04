@@ -74,7 +74,7 @@
   $("#steps").innerHTML = st
     .map(
       (s, i) =>
-        `<div class="sc"><span class="mono">0${i + 1}</span><h3>${s[0]}</h3><p>${s[1]}</p><em>0${i + 1}</em></div>`,
+        `<div class="sc"><h3>${s[0]}</h3><p>${s[1]}</p><em>0${i + 1}</em></div>`,
     )
     .join("");
   $("#sl").innerHTML = st
