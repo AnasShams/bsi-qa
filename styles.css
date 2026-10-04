@@ -131,9 +131,17 @@ nav {
   z-index: 50;
 }
 nav .wrap {
+  width: calc(100% - 40px);
+  max-width: 1180px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: clamp(10px, 1.4vw, 20px);
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.97);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  box-shadow: 0 12px 30px -18px rgba(16, 16, 16, 0.22);
 }
 .logo {
   display: block;
@@ -141,24 +149,28 @@ nav .wrap {
 }
 .logo img {
   display: block;
-  width: 128px;
-  max-width: 36vw;
+  width: 104px;
+  max-width: 22vw;
   height: auto;
 }
 .pill {
   display: flex;
-  gap: 4px;
-  background: rgba(255, 255, 255, 0.65);
-  backdrop-filter: blur(14px);
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  padding: 5px;
+  flex: 1;
+  min-width: 0;
+  justify-content: center;
+  gap: 0;
+  background: transparent;
+  backdrop-filter: none;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
   position: relative;
 }
 .pill > div > a {
   display: block;
-  padding: 8px 14px;
+  padding: 8px clamp(6px, 0.9vw, 12px);
   font-size: 14px;
+  white-space: nowrap;
   border-radius: 8px;
   transition: background 0.25s;
 }
@@ -813,6 +825,12 @@ footer a:hover {
   color: #fff;
 }
 @media (max-width: 991.98px) {
+  .sc {
+    padding-bottom: 76px;
+  }
+  .sc em {
+    font-size: 42px;
+  }
   .grid5 {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -916,13 +934,10 @@ footer a:hover {
     overflow-wrap: anywhere;
   }
   .sc {
-    padding: 22px;
+    padding: 22px 22px 76px;
   }
   .grid5 {
     grid-template-columns: minmax(0, 1fr);
-  }
-  .sc em {
-    font-size: 42px;
   }
   .nr {
     gap: 6px;
