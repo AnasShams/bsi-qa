@@ -207,6 +207,35 @@ nav .wrap {
 .pill > div:hover > a {
   background: var(--soft);
 }
+.pill > div > a,
+.dd a,
+#mm a,
+#mm .g {
+  position: relative;
+}
+.pill > div > a::after,
+.dd a::after,
+#mm a::after,
+#mm .g::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 4px;
+  left: 0;
+  height: 2px;
+  background: var(--acc);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+}
+.pill > div > a.act::after,
+.pill > div:hover > a::after,
+.dd a.act::after,
+.dd a:hover::after,
+#mm a.act::after,
+#mm .g.act::after {
+  transform: scaleX(1);
+}
 .dd {
   position: absolute;
   top: 100%;
@@ -236,6 +265,9 @@ nav .wrap {
   transform: translateX(3px);
 }
 .dd a {
+  display: block;
+  width: fit-content;
+  position: relative;
   transition: 0.2s;
   white-space: nowrap;
 }
@@ -588,6 +620,16 @@ nav .wrap {
   transition:
     transform 0.4s,
     filter 0.4s;
+}
+@media (min-width: 576px) and (max-width: 991.98px) {
+  .sc {
+    min-height: 250px;
+  }
+}
+@media (min-width: 992px) {
+  .sc {
+    min-height: 225px;
+  }
 }
 .sc::before,
 .sc::after {
@@ -1099,6 +1141,7 @@ footer a:hover {
   color: var(--mut);
 }
 #mm .g {
+  width: fit-content;
   font:
     600 12px "JetBrains Mono",
     monospace;
