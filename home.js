@@ -80,13 +80,6 @@
   $("#sl").innerHTML = st
     .map((s, i) => `<div><h3>0${i + 1} ${s[0]}</h3></div>`)
     .join("");
-  $("#certs").innerHTML = Array(16)
-    .fill(0)
-    .map(
-      (_, i) =>
-        `<div class="img pt" style="background-position:${(i * 9) % 100}% 50%"></div>`,
-    )
-    .join("");
   $("#loc").innerHTML = ["Qatar", "KSA", "UAE", "China", "Oman", "India"]
     .map(
       (c, i) =>

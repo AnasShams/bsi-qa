@@ -475,6 +475,9 @@ nav .wrap {
   width: max-content;
   animation: mq var(--t, 30s) linear infinite;
 }
+.mq.logos > div {
+  --t: 50s;
+}
 
 @keyframes mq {
   to {
@@ -1040,12 +1043,119 @@ footer a:hover {
 .logos span:nth-child(even) {
   color: var(--acc);
 }
-.pt {
-  width: 180px;
-  height: 70px;
-  border-radius: 10px;
-  flex: none;
+.partners-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  width: min(100%, 760px);
+  margin: 36px 0;
+}
+.partner-mark {
+  display: flex;
+  min-width: 0;
+  min-height: 144px;
+  align-items: center;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: 24px;
+  background: #fff;
   border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--ink);
+  box-shadow: 0 12px 30px -24px rgba(16, 16, 16, 0.36);
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+.partner-image {
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  z-index: 0;
+  width: 68px;
+  height: 68px;
+  border-radius: 10px;
+  background: var(--img) center/cover;
+  transform: translateY(-50%);
+  pointer-events: none;
+  transition:
+    inset 0.45s cubic-bezier(0.2, 0.7, 0.2, 1),
+    top 0.45s cubic-bezier(0.2, 0.7, 0.2, 1),
+    left 0.45s cubic-bezier(0.2, 0.7, 0.2, 1),
+    width 0.45s cubic-bezier(0.2, 0.7, 0.2, 1),
+    height 0.45s cubic-bezier(0.2, 0.7, 0.2, 1),
+    transform 0.45s cubic-bezier(0.2, 0.7, 0.2, 1),
+    border-radius 0.3s ease;
+}
+.partner-image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: rgba(118, 27, 53, 0.56);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.partner-wordmark {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  position: relative;
+  z-index: 1;
+  margin-left: 68px;
+  transition:
+    margin-left 0.45s cubic-bezier(0.2, 0.7, 0.2, 1),
+    color 0.3s ease;
+}
+@media (hover: hover) {
+  .partner-mark:hover {
+    transform: translateY(-3px);
+    border-color: var(--acc);
+    box-shadow: 0 18px 34px -24px rgba(118, 27, 53, 0.5);
+  }
+  .partner-mark:hover .partner-image {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: scale(1.02);
+    border-radius: inherit;
+  }
+  .partner-mark:hover .partner-image::after {
+    opacity: 1;
+  }
+  .partner-mark:hover .partner-wordmark {
+    margin-left: 0;
+    color: #fff;
+  }
+}
+.partner-gtt,
+.partner-fouren {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: clamp(26px, 4vw, 42px);
+  font-weight: 700;
+  line-height: 1;
+}
+.partner-suffix {
+  align-self: center;
+  color: var(--acc);
+  font:
+    600 12px "JetBrains Mono",
+    monospace;
+}
+@media (max-width: 575.98px) {
+  .partners-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 14px;
+  }
+  .partner-mark {
+    min-height: 120px;
+  }
 }
 .cols {
   display: grid;
