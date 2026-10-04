@@ -70,6 +70,35 @@
 .values-grid .card h3 {
   margin: 0 0 8px;
 }
+.reach-map {
+  max-width: 1160px;
+  margin: 32px auto 0;
+}
+.reach-map img {
+  display: block;
+  width: 90%;
+  max-width: 1010px;
+  height: auto;
+  margin: 0 auto;
+  transition: filter 0.35s ease;
+}
+.reach-map:hover img {
+  filter: drop-shadow(0 0 10px rgba(118, 27, 53, 0.32));
+}
+.reach-countries {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 18px;
+  margin: 18px 0 0;
+  padding: 0;
+  list-style: none;
+  text-align: center;
+}
+.reach-country {
+  color: var(--ink);
+  font: 700 22px/1.2 "Space Grotesk", sans-serif;
+  text-transform: uppercase;
+}
 .bl {
   list-style: none;
   margin-top: 18px;
@@ -214,6 +243,9 @@
   .cg {
     grid-template-columns: 1fr;
   }
+  .reach-countries {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }
 
 .stats.s4 {
@@ -222,6 +254,16 @@
 @media (max-width: 575.98px) {
   .ph {
     padding-top: clamp(160px, 26vh, 220px);
+  }
+  .reach-map {
+    margin-top: 24px;
+  }
+  .reach-map img {
+    width: 98%;
+  }
+  .reach-countries {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
   }
 }
 @media (max-width: 991.98px) {
