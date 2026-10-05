@@ -2,6 +2,105 @@
 (function () {
   const $ = (s) => document.querySelector(s),
     $$ = (s) => [...document.querySelectorAll(s)];
+  const navigationEntry = performance.getEntriesByType("navigation")[0];
+  const navigationType = navigationEntry?.type || "navigate";
+  const loaderSkipKey = "bsi-skip-next-preloader";
+  history.scrollRestoration = navigationType === "reload" ? "manual" : "auto";
+  let skipPreloader = navigationType === "back_forward";
+  try {
+    skipPreloader ||= sessionStorage.getItem(loaderSkipKey) === "1";
+    sessionStorage.removeItem(loaderSkipKey);
+  } catch {}
+
+  const scrollToTop = () => {
+    const previousBehavior = document.documentElement.style.scrollBehavior;
+    document.documentElement.style.scrollBehavior = "auto";
+    window.scrollTo(0, 0);
+    requestAnimationFrame(() => {
+      document.documentElement.style.scrollBehavior = previousBehavior;
+    });
+  };
+
+  if (navigationType !== "back_forward") {
+    scrollToTop();
+    addEventListener("pageshow", scrollToTop, { once: true });
+  }
+
+  document.addEventListener(
+    "click",
+    (event) => {
+      const link =
+        event.target instanceof Element ? event.target.closest("a[href]") : null;
+      if (
+        !link ||
+        event.button !== 0 ||
+        event.metaKey ||
+        event.ctrlKey ||
+        event.shiftKey ||
+        event.altKey ||
+        link.hasAttribute("download") ||
+        (link.target && link.target !== "_self")
+      ) {
+        return;
+      }
+
+      try {
+        const destination = new URL(link.href, location.href);
+        const sameDocument =
+          destination.pathname === location.pathname &&
+          destination.search === location.search &&
+          destination.hash;
+        if (destination.origin === location.origin && !sameDocument) {
+          sessionStorage.setItem(loaderSkipKey, "1");
+        }
+      } catch {}
+    },
+    true,
+  );
+
+  if (skipPreloader) {
+    document.body.classList.add("site-ready");
+  } else {
+    document.body.classList.add("site-loading");
+    const loader = document.createElement("div");
+    const frame = document.createElement("iframe");
+    let finished = false;
+    let fallbackTimer;
+
+    loader.id = "site-loader";
+    loader.setAttribute("role", "status");
+    loader.setAttribute("aria-label", "Loading Black Saber Industries");
+    frame.src = "pre-loader-animation.html?embed=1";
+    frame.title = "Black Saber Industries logo animation";
+    frame.setAttribute("aria-hidden", "true");
+    loader.append(frame);
+
+    const finishPreloader = () => {
+      if (finished) return;
+      finished = true;
+      clearTimeout(fallbackTimer);
+      loader.classList.add("is-exiting");
+      window.setTimeout(() => {
+        loader.remove();
+        document.body.classList.remove("site-loading");
+        document.body.classList.add("site-ready");
+        scrollToTop();
+      }, 450);
+    };
+
+    addEventListener("message", (event) => {
+      if (
+        event.source === frame.contentWindow &&
+        event.data === "bsi-preloader-complete"
+      ) {
+        finishPreloader();
+      }
+    });
+
+    fallbackTimer = window.setTimeout(finishPreloader, 7000);
+    document.body.prepend(loader);
+  }
+
   const path =
     location.pathname.replace(/\/index\.html$/, "").replace(/\/$/, "") || "/";
   const L = (h, t, c) =>
