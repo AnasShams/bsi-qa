@@ -80,21 +80,7 @@
   $("#sl").innerHTML = st
     .map((s, i) => `<div><h3>0${i + 1} ${s[0]}</h3></div>`)
     .join("");
-  $("#loc").innerHTML = `
-    <div class="reach-map rv">
-      <img
-        src="assets/bsi-map.png"
-        alt="Map highlighting Qatar, Saudi Arabia, the UAE, Oman, India, and China"
-      />
-    </div>
-    <ul class="reach-countries">
-      ${["QATAR", "KSA", "UAE", "CHINA", "OMAN", "INDIA"]
-        .map(
-          (country, index) =>
-            `<li class="reach-country rv" style="--d:${index * 0.1}s">${country}</li>`,
-        )
-        .join("")}
-    </ul>`;
+  $("#loc").innerHTML = `<iframe class="reach-map-frame rv" src="reach-map.html" title="Interactive map of BSI headquarters and locations across seven countries" loading="lazy" scrolling="no"></iframe>`;
   observeReveal();
   const capSection = $("#cap");
   const capViewport = $(".cap-viewport");
