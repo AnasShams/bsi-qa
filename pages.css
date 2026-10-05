@@ -48,6 +48,29 @@
   margin-bottom: 14px;
   border-radius: 10px;
 }
+.hse-cards > .hse-card {
+  min-height: 240px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  text-align: center;
+}
+.hse-card .hse-icon {
+  width: 52px;
+  height: 52px;
+  flex: none;
+  fill: none;
+  stroke: var(--acc);
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.hse-card h3,
+.hse-card p {
+  margin: 0;
+}
 .values-grid {
   display: flex;
   flex-wrap: wrap;
@@ -80,10 +103,6 @@
   max-width: 1010px;
   height: auto;
   margin: 0 auto;
-  transition: filter 0.35s ease;
-}
-.reach-map:hover img {
-  filter: drop-shadow(0 0 10px rgba(118, 27, 53, 0.32));
 }
 .reach-countries {
   display: grid;

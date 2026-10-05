@@ -80,12 +80,21 @@
   $("#sl").innerHTML = st
     .map((s, i) => `<div><h3>0${i + 1} ${s[0]}</h3></div>`)
     .join("");
-  $("#loc").innerHTML = ["Qatar", "KSA", "UAE", "China", "Oman", "India"]
-    .map(
-      (c, i) =>
-        `<div class="tm rv" style="--d:${(i % 3) * 0.12}s"><div class="img" style="height:200px;background-position:${i * 18}% 50%"></div><div class="t"><h3>${c.toUpperCase()}</h3></div></div>`,
-    )
-    .join("");
+  $("#loc").innerHTML = `
+    <div class="reach-map rv">
+      <img
+        src="assets/bsi-map.png"
+        alt="Map highlighting Qatar, Saudi Arabia, the UAE, Oman, India, and China"
+      />
+    </div>
+    <ul class="reach-countries">
+      ${["QATAR", "KSA", "UAE", "CHINA", "OMAN", "INDIA"]
+        .map(
+          (country, index) =>
+            `<li class="reach-country rv" style="--d:${index * 0.1}s">${country}</li>`,
+        )
+        .join("")}
+    </ul>`;
   observeReveal();
   const capSection = $("#cap");
   const capViewport = $(".cap-viewport");
