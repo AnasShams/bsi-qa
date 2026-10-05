@@ -17,6 +17,16 @@
 .pg h2 {
   margin-top: 10px;
 }
+.tech-hero {
+  min-height: 58vh;
+  padding-bottom: 35px;
+}
+.tech-section {
+  padding: 35px 0;
+}
+.tech-section .split {
+  margin-top: 17px;
+}
 .split {
   align-items: center;
   margin-top: 34px;
