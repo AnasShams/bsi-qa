@@ -325,6 +325,13 @@ nav .wrap {
   opacity: 0.55;
   will-change: transform;
 }
+.hero video.bg {
+  inset: -4%;
+  width: 108%;
+  height: 108%;
+  object-fit: cover;
+  object-position: 25% 50%;
+}
 .hero:after {
   content: "";
   position: absolute;
