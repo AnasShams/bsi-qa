@@ -67,6 +67,9 @@
     let finished = false;
     let fallbackTimer;
 
+    const MIN_LOADER_MS = 5000;
+    const MAX_LOADER_MS = 8000;
+
     loader.id = "site-loader";
     loader.setAttribute("role", "status");
     loader.setAttribute("aria-label", "Loading Black Saber Industries");
@@ -88,16 +91,13 @@
       }, 450);
     };
 
-    addEventListener("message", (event) => {
-      if (
-        event.source === frame.contentWindow &&
-        event.data === "bsi-preloader-complete"
-      ) {
-        finishPreloader();
-      }
-    });
+    const minimumLoaderTimer = window.setTimeout(finishPreloader, MIN_LOADER_MS);
+    fallbackTimer = window.setTimeout(() => {
+      clearTimeout(minimumLoaderTimer);
+      finishPreloader();
+    }, MAX_LOADER_MS
+    );
 
-    fallbackTimer = window.setTimeout(finishPreloader, 7000);
     document.body.prepend(loader);
   }
 
