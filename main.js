@@ -34,13 +34,14 @@
 <div id="mm">${L("/", "Home")}<div class="g${whoIsActive ? " act" : ""}">Who We Are</div>${who.map((x) => `<a class="s${path === x[0] ? " act" : ""}" href="${x[0]}">${x[1]}</a>`).join("")}<div class="g${whatIsActive ? " act" : ""}">What We Do</div>${what.map((x) => `<a class="s${path === x[0] ? " act" : ""}" href="${x[0]}">${x[1]}</a>`).join("")}${L("/technologies.html", "Technologies")}${L("/our-facility.html", "Our Facility")}${L("/our-people.html", "Our People")}${L("/careers.html", "Careers")}</div>
 </div></nav>
 `;
-  const footHTML = `<section class="cta" id="cta"><div class="wrap"><div class="mono">Connect</div><h2 data-split-view>Building a Sustainable Future Through Engineering Excellence</h2><p class="lead">BSI leads the transformation of industries by integrating renewable energy, automation, and innovation into every engineered solution.</p><div class="actions"><a class="btn p" href="/connect.html">CONTACT US</a></div></div></section>
-<footer><div class="wrap" style="display:block"><div class="cols">
+  const footHTML = `<footer><div class="wrap">
+<div class="footer-top"><div class="footer-links"><div class="cols">
 <div><h3>Helpful Links</h3>Black Sands Industries<br>Advanced Industrial Solutions</div>
 <div><h3>Who We Are</h3>${who.map((x) => `<a href="${x[0]}">${x[1]}</a>`).join("")}</div>
 <div><h3>What We Do</h3>${what.map((x) => `<a href="${x[0]}">${x[1]}</a>`).join("")}</div>
-<div><h3>More</h3><a href="/technologies.html">Technologies</a><a href="/our-facility.html">Our Facility</a><a href="/our-people.html">Our People</a><a href="/careers.html">Careers</a><a href="/connect.html">Contact Us</a></div></div>
-<div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px"><span>© 2026 Black Sands Industries All Rights Reserved</span><span><a href="/cookies.html">Cookies</a> · <a href="/terms.html">Terms of Use</a> · <a href="/privacy.html">Privacy</a></span></div></div></footer>`;
+<div><h3>More</h3><a href="/technologies.html">Technologies</a><a href="/our-facility.html">Our Facility</a><a href="/our-people.html">Our People</a><a href="/careers.html">Careers</a><a href="/connect.html">Contact Us</a></div></div></div>
+<section class="footer-cta" id="cta"><div class="mono">Connect</div><h2 data-split-view>Building a Sustainable Future Through Engineering Excellence</h2><p>BSI leads the transformation of industries by integrating renewable energy, automation, and innovation into every engineered solution.</p><div class="actions"><a class="btn p" href="/connect.html">CONTACT US</a></div></section></div>
+<div class="footer-bottom"><span>© 2026 Black Sands Industries All Rights Reserved</span><span><a href="/cookies.html">Cookies</a> · <a href="/terms.html">Terms of Use</a> · <a href="/privacy.html">Privacy</a></span></div></div></footer>`;
   $("#site-nav").innerHTML = navHTML;
   $("#site-footer").innerHTML = footHTML;
 
