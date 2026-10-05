@@ -434,6 +434,21 @@ nav .wrap {
   filter: none;
   transform: none;
 }
+.reach-map-frame {
+  display: block;
+  width: 100%;
+  min-height: 360px;
+  border-radius: 18px;
+  border: 1px solid var(--line);
+  background: linear-gradient(135deg, #fff, #f5eaed);
+  transition: opacity 0.6s ease;
+}
+.reach-map-frame:not(.in) {
+  opacity: 0;
+}
+.reach-map-frame.in {
+  opacity: 1;
+}
 /* capabilities */
 .cap {
   position: relative;

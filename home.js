@@ -80,7 +80,7 @@
   $("#sl").innerHTML = st
     .map((s, i) => `<div><h3>0${i + 1} ${s[0]}</h3></div>`)
     .join("");
-  $("#loc").innerHTML = `<iframe class="reach-map-frame rv" src="reach-map.html" title="Interactive map of BSI headquarters and locations across seven countries" loading="lazy" scrolling="no"></iframe>`;
+  $("#loc").innerHTML = `<iframe class="reach-map-frame rv" src="reach-map.html" title="Interactive map of BSI headquarters and locations across seven countries" scrolling="no"></iframe>`;
   observeReveal();
   const capSection = $("#cap");
   const capViewport = $(".cap-viewport");

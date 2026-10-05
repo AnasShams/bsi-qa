@@ -241,9 +241,26 @@
     { threshold: 0.5 },
   ).observe($("[data-split-view]"));
 
-  /* scroll reveal: cards replay, everything else plays once */
+  const revealIfVisible = (el) => {
+    const rect = el.getBoundingClientRect();
+    const alreadyVisible = rect.top < window.innerHeight * 1.15 && rect.bottom > -80;
+    if (alreadyVisible) el.classList.add("in");
+  };
+
+  /* scroll reveal: restore the original fade-ins while loading the globe eagerly */
   window.observeReveal = function (root) {
-    (root || document).querySelectorAll(".rv").forEach((el) => io.observe(el));
+    (root || document).querySelectorAll(".rv").forEach((el) => {
+      if (el.matches(".reach-map-frame")) {
+        const src = el.dataset.src || el.getAttribute("src") || "reach-map.html";
+        el.dataset.src = src;
+        if (!el.getAttribute("src")) el.src = src;
+        const isInView = el.getBoundingClientRect().top < window.innerHeight + 220;
+        if (isInView) el.classList.add("in");
+      } else {
+        revealIfVisible(el);
+      }
+      if (!el.classList.contains("in")) io.observe(el);
+    });
   };
   const io = new IntersectionObserver(
     (es) =>
@@ -256,6 +273,19 @@
       }),
     { threshold: 0.15 },
   );
+  document.querySelectorAll(".reach-map-frame").forEach((frame) => {
+    const src = frame.getAttribute("src") || "reach-map.html";
+    frame.dataset.src = src;
+    frame.src = src;
+    frame.addEventListener(
+      "load",
+      () => {
+        const rect = frame.getBoundingClientRect();
+        if (rect.top < window.innerHeight + 200) frame.classList.add("in");
+      },
+      { once: true },
+    );
+  });
   observeReveal();
 
   /* counters: <b data-n="40" data-s="+" data-p="" data-f="0"> */
