@@ -312,7 +312,7 @@
       e.preventDefault();
       const d = new FormData(f),
         body = [...d.entries()].map(([k, v]) => `${k}: ${v}`).join("\n");
-      location.href = `mailto:${f.dataset.mailto}?subject=${encodeURIComponent("Website enquiry")}&body=${encodeURIComponent(body)}`;
+      location.href = `mailto:${f.dataset.mailto}?subject=${encodeURIComponent("Enquiry")}&body=${encodeURIComponent(body)}`;
     }),
   );
 })();
