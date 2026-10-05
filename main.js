@@ -282,12 +282,17 @@
 
   /* cursor */
   const cur = $("#cur");
+  const nativeCursorTargets =
+    'a[href],button:not(:disabled),[role="button"],input:not(:disabled),select:not(:disabled),textarea:not(:disabled),summary,iframe.reach-map-frame';
   addEventListener("pointermove", (e) => {
     cur.style.left = e.clientX + "px";
     cur.style.top = e.clientY + "px";
   });
   document.addEventListener("pointerover", (e) => {
-    cur.classList.toggle("big", !!e.target.closest("a,button,.card,.tm"));
+    const target = e.target instanceof Element ? e.target : null;
+    const useNativeCursor = !!target?.closest(nativeCursorTargets);
+    document.body.classList.toggle("native-cursor", useNativeCursor);
+    cur.classList.toggle("big", useNativeCursor);
   });
 
   /* hero parallax */

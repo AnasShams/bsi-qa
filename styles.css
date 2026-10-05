@@ -26,6 +26,21 @@ body {
   color: var(--ink);
   overflow-x: hidden;
   overflow-x: clip;
+  cursor: none;
+}
+a,
+button,
+[role="button"],
+select,
+summary {
+  cursor: pointer;
+}
+input,
+textarea {
+  cursor: text;
+}
+body.native-cursor #cur {
+  visibility: hidden;
 }
 body:not(.site-ready) > :not(#site-loader) {
   visibility: hidden;
@@ -241,6 +256,9 @@ nav .wrap {
   border-radius: 8px;
   transition: background 0.25s;
 }
+.pill > div {
+  position: relative;
+}
 .pill > div:hover > a {
   background: var(--soft);
 }
@@ -275,9 +293,12 @@ nav .wrap {
 }
 .dd {
   position: absolute;
-  top: 100%;
+  top: calc(100% + 8px);
   left: 0;
-  margin-top: 10px;
+  z-index: 51;
+  margin-top: 0;
+  min-width: max-content;
+  max-width: min(80vw, 540px);
   background: #fff;
   border: 1px solid var(--line);
   border-radius: 12px;
