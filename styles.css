@@ -8,7 +8,7 @@
   --acc: #761b35;
   --soft: #f5eaed;
   --line: #ddcbd1;
-  --img: url("horse-background.jpg");
+  --img: url("assets/horse-background.jpg");
 }
 * {
   box-sizing: border-box;
@@ -576,21 +576,7 @@ html[dir="rtl"] .mq > div {
   padding: 0 26px;
   white-space: nowrap;
 }
-.cert {
-  background: #fff;
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  padding: 16px 20px;
-  min-width: 250px;
-  font-size: 12px;
-}
-.cert b {
-  display: block;
-  font:
-    600 14px "Space Grotesk",
-    sans-serif;
-  margin-bottom: 4px;
-}
+
 /* industries */
 .feat {
   display: grid;

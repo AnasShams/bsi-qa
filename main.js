@@ -2,6 +2,13 @@
 (function () {
   const $ = (s) => document.querySelector(s),
     $$ = (s) => [...document.querySelectorAll(s)];
+  if (!document.querySelector('link[rel~="icon"]')) {
+    const favicon = document.createElement("link");
+    favicon.rel = "icon";
+    favicon.type = "image/png";
+    favicon.href = "/assets/bsi-logo.png";
+    document.head.append(favicon);
+  }
   const navigationEntry = performance.getEntriesByType("navigation")[0];
   const navigationType = navigationEntry?.type || "navigate";
   const loaderSkipKey = "bsi-skip-next-preloader";

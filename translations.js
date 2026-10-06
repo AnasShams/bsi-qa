@@ -292,6 +292,7 @@ window.BSI_AR_TRANSLATIONS = {
   "The Force Behind Every Project": "القوة وراء كل مشروع",
   "Engineering Intelligence That Powers Industrial Execution": "ذكاء هندسي يدعم التنفيذ الصناعي",
   "BSI Global Reach": "انتشار BSI العالمي",
+  "WE": "نحن",
   "Qatar": "قطر",
   "KSA": "السعودية",
   "Bahrain": "البحرين",
