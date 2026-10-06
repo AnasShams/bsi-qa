@@ -171,6 +171,20 @@
   stroke-linecap: round;
   stroke-linejoin: round;
 }
+.culture-cards > .culture-card {
+  min-height: 280px;
+}
+.culture-card-icon {
+  display: block;
+  width: 48px;
+  height: 48px;
+  margin-bottom: 14px;
+  fill: none;
+  stroke: var(--acc);
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
 .hse-cards > .hse-card {
   min-height: 240px;
   display: flex;
