@@ -103,18 +103,29 @@
 
   function measureCapabilityRail() {
     if (matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      capSection.style.height = "auto";
-      capTrack.style.transform = "none";
-      return;
+    capSection.style.height = "auto";
+    capTrack.style.transform = "none";
+    return;
     }
-    capTravel = Math.max(0, capTrack.scrollWidth - capViewport.clientWidth);
+    const items = [...capTrack.children];
+    if (!items.length) return;
+    let left = Infinity, right = -Infinity;
+    items.forEach((el) => {
+    left = Math.min(left, el.offsetLeft);
+    right = Math.max(right, el.offsetLeft + el.offsetWidth);
+    });
+    capTravel = Math.max(0, Math.ceil(right - left - capViewport.clientWidth));
     capSection.style.height = `${capSection.querySelector(".cap-pin").offsetHeight + capTravel}px`;
     updateCapabilityRail();
-  }
-
-  addEventListener("scroll", updateCapabilityRail, { passive: true });
-  addEventListener("resize", measureCapabilityRail);
-  measureCapabilityRail();
+    }
+    addEventListener("scroll", updateCapabilityRail, { passive: true });
+    let lastCapWidth = innerWidth;
+    addEventListener("resize", () => {
+    if (innerWidth === lastCapWidth) return;
+    lastCapWidth = innerWidth;
+    measureCapabilityRail();
+    });
+    measureCapabilityRail();
 
   const cards = $$(".sc"),
     items = $$("#sl div");

@@ -496,13 +496,14 @@ nav .wrap {
 #cap .cap-viewport .grid5 {
   display: flex;
   flex-wrap: nowrap;
-  width: max-content;
+  width: auto;
   gap: 16px;
   margin-top: 0;
   will-change: transform;
 }
 #cap .cap-viewport .card {
-  flex: 0 0 clamp(260px, 28vw, 320px);
+  flex: 0 0 auto;
+  width: clamp(260px, 28vw, 320px);
 }
 .card {
   background: rgba(255, 255, 255, 0.55);
@@ -1121,6 +1122,7 @@ footer a:hover {
   }
   #cap .cap-viewport .card {
     flex: 1 1 min(100%, 220px);
+    width: auto;
   }
 }
 
