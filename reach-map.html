@@ -212,7 +212,7 @@
       </p>
     </main>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
+    <script src="globe-dots.js"></script>
     <script>
       const accent = "#a93b55";
       const hub = {
@@ -230,7 +230,8 @@
         { country: "China", city: "Shanghai", point: [121.474, 31.23] },
         { country: "India", city: "Bangalore", point: [77.594, 12.972] },
       ];
-      const countryIds = new Set(["48", "156", "356", "512", "634", "682", "784"]);
+
+      /* location list */
       const list = document.getElementById("location-list");
       [hub, ...locations].forEach((location) => {
         const item = document.createElement("div");
@@ -250,68 +251,66 @@
         list.appendChild(item);
       });
 
+      /* globe setup */
       const canvas = document.getElementById("globe");
       const context = canvas.getContext("2d");
       const size = 460;
+      const scale = 215;
+      const D2R = Math.PI / 180;
       const projection = d3
         .geoOrthographic()
-        .scale(215)
+        .scale(scale)
         .translate([size / 2, size / 2])
         .clipAngle(90);
       const path = d3.geoPath(projection, context);
       const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
-      let land = [];
-      let highlightedLand = [];
       let rotation = [-hub.point[0], -hub.point[1]];
       let drag = null;
-      let startTime = performance.now();
+      const startTime = performance.now();
 
-      fetch("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json")
-        .then((response) => {
-          if (!response.ok) throw new Error("Unable to load map data");
-          return response.json();
-        })
-        .then((world) => {
-          const landFeature = topojson.feature(world, world.objects.land);
-          const countryFeatures = topojson.feature(world, world.objects.countries).features;
-          const highlighted = countryFeatures.filter((feature) =>
-            countryIds.has(String(feature.id)),
-          );
-          const step = 1.7;
-          for (let latitude = -80; latitude <= 82; latitude += step) {
-            const longitudeStep = step / Math.max(0.25, Math.cos((latitude * Math.PI) / 180));
-            for (let longitude = -180; longitude < 180; longitude += longitudeStep) {
-              const point = [longitude, latitude];
-              if (!d3.geoContains(landFeature, point)) continue;
-              (highlighted.some((country) => d3.geoContains(country, point))
-                ? highlightedLand
-                : land
-              ).push(point);
-            }
-          }
-          draw(performance.now());
-        })
-        .catch(() => {
-          document.getElementById("map-error").style.display = "block";
-        });
+      /* land dots are pre-computed (globe-dots.js) and stored as 3D unit vectors */
+      function toVectors(flat) {
+        const count = flat.length / 2;
+        const vectors = new Float32Array(count * 3);
+        for (let i = 0; i < count; i++) {
+          const lon = flat[i * 2] * D2R;
+          const lat = flat[i * 2 + 1] * D2R;
+          const cosLat = Math.cos(lat);
+          vectors[i * 3] = cosLat * Math.cos(lon);
+          vectors[i * 3 + 1] = cosLat * Math.sin(lon);
+          vectors[i * 3 + 2] = Math.sin(lat);
+        }
+        return vectors;
+      }
 
-      canvas.addEventListener("pointerdown", (event) => {
-        drag = { x: event.clientX, y: event.clientY, rotation: [...rotation] };
-        canvas.setPointerCapture(event.pointerId);
-      });
-      canvas.addEventListener("pointermove", (event) => {
-        if (!drag) return;
-        rotation = [
-          drag.rotation[0] + (event.clientX - drag.x) * 0.35,
-          Math.max(-60, Math.min(60, drag.rotation[1] - (event.clientY - drag.y) * 0.35)),
-        ];
-      });
-      canvas.addEventListener("pointerup", () => {
-        drag = null;
-      });
-      canvas.addEventListener("pointercancel", () => {
-        drag = null;
-      });
+      const dots = window.GLOBE_DOTS || null;
+      const landVectors = dots ? toVectors(dots.land) : new Float32Array(0);
+      const highlightVectors = dots ? toVectors(dots.hi) : new Float32Array(0);
+      if (!dots) document.getElementById("map-error").style.display = "block";
+
+      /* draw every dot of one colour in a single path, using a cheap manual orthographic projection */
+      function drawDots(vectors, radius, color) {
+        const lambda = rotation[0] * D2R;
+        const phi = rotation[1] * D2R;
+        const cosL = Math.cos(lambda), sinL = Math.sin(lambda);
+        const cosP = Math.cos(phi), sinP = Math.sin(phi);
+        const centre = size / 2;
+        context.fillStyle = color;
+        context.beginPath();
+        for (let i = 0; i < vectors.length; i += 3) {
+          const x0 = vectors[i], y0 = vectors[i + 1], z0 = vectors[i + 2];
+          const x1 = x0 * cosL - y0 * sinL;
+          const y1 = x0 * sinL + y0 * cosL;
+          const x2 = x1 * cosP - z0 * sinP;
+          if (x2 <= 0) continue; // back of the globe
+          const z2 = z0 * cosP + x1 * sinP;
+          const px = centre + scale * y1;
+          const py = centre - scale * z2;
+          context.moveTo(px + radius, py);
+          context.arc(px, py, radius, 0, Math.PI * 2);
+        }
+        context.fill();
+      }
 
       function drawDot(point, radius, color) {
         const center = [-projection.rotate()[0], -projection.rotate()[1]];
@@ -323,38 +322,49 @@
         context.fill();
       }
 
-      function draw(time) {
+      const routes = locations.map((location) => {
+        const interpolate = d3.geoInterpolate(hub.point, location.point);
+        return {
+          interpolate,
+          line: { type: "LineString", coordinates: d3.range(0, 1.001, 0.02).map(interpolate) },
+        };
+      });
+      const sphere = { type: "Sphere" };
+      const graticule = d3.geoGraticule10();
+
+      function render(time) {
         const elapsed = (time - startTime) / 1000;
         if (!drag && !reduceMotion) {
           rotation[0] = -hub.point[0] + Math.sin(elapsed * 0.25) * 5;
         }
         projection.rotate(rotation);
         context.clearRect(0, 0, size, size);
+
         context.beginPath();
-        path({ type: "Sphere" });
+        path(sphere);
         context.fillStyle = "#121216";
         context.fill();
         context.strokeStyle = "#333034";
         context.lineWidth = 1;
         context.stroke();
+
         context.beginPath();
-        path(d3.geoGraticule10());
+        path(graticule);
         context.strokeStyle = "#252327";
         context.lineWidth = 0.6;
         context.stroke();
-        land.forEach((point) => drawDot(point, 1.15, "#777176"));
-        highlightedLand.forEach((point) => drawDot(point, 1.55, accent));
 
-        locations.forEach((location, index) => {
-          const interpolate = d3.geoInterpolate(hub.point, location.point);
-          const route = d3.range(0, 1.001, 0.02).map(interpolate);
+        drawDots(landVectors, 1.15, "#777176");
+        drawDots(highlightVectors, 1.55, accent);
+
+        routes.forEach((route, index) => {
           context.beginPath();
-          path({ type: "LineString", coordinates: route });
+          path(route.line);
           context.strokeStyle = "rgba(169, 59, 85, 0.62)";
           context.lineWidth = 1.2;
           context.stroke();
-          const pulsePosition = reduceMotion ? 1 : (elapsed * 0.35 + index * 0.14) % 1;
-          drawDot(interpolate(pulsePosition), 2.4, "#ffffff");
+          const pulse = reduceMotion ? 1 : (elapsed * 0.35 + index * 0.14) % 1;
+          drawDot(route.interpolate(pulse), 2.4, "#ffffff");
         });
 
         const headquarters = projection(hub.point);
@@ -365,8 +375,54 @@
         context.strokeStyle = "#ffffff";
         context.lineWidth = 1.5;
         context.stroke();
-        if (!reduceMotion) requestAnimationFrame(draw);
       }
+
+      /* animation loop: only runs while the globe is actually on screen */
+      let frameId = 0;
+      let running = false;
+      function frame(time) {
+        frameId = 0;
+        render(time);
+        if (running && !reduceMotion) frameId = requestAnimationFrame(frame);
+      }
+      function start() {
+        running = true;
+        if (!frameId) frameId = requestAnimationFrame(frame);
+      }
+      function stop() {
+        running = false;
+        if (frameId) cancelAnimationFrame(frameId);
+        frameId = 0;
+      }
+
+      if ("IntersectionObserver" in window) {
+        new IntersectionObserver(
+          (entries) => (entries[entries.length - 1].isIntersecting ? start() : stop()),
+          { threshold: 0 },
+        ).observe(canvas);
+      } else {
+        start();
+      }
+      render(performance.now()); // first paint straight away
+
+      /* drag to rotate */
+      canvas.addEventListener("pointerdown", (event) => {
+        drag = { x: event.clientX, y: event.clientY, rotation: [...rotation] };
+        canvas.setPointerCapture(event.pointerId);
+      });
+      canvas.addEventListener("pointermove", (event) => {
+        if (!drag) return;
+        rotation = [
+          drag.rotation[0] + (event.clientX - drag.x) * 0.35,
+          Math.max(-60, Math.min(60, drag.rotation[1] - (event.clientY - drag.y) * 0.35)),
+        ];
+        if (reduceMotion) requestAnimationFrame(render);
+      });
+      const endDrag = () => {
+        drag = null;
+      };
+      canvas.addEventListener("pointerup", endDrag);
+      canvas.addEventListener("pointercancel", endDrag);
     </script>
   </body>
 </html>
