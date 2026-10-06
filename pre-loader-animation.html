@@ -208,16 +208,16 @@
                 fill="url(#sheen-grad)" transform="rotate(22 1475 395)"/>
         </g>
 
-        <!-- Slashes: metallic fill + neon streak, both revealed by the cut masks -->
-        <g id="slashes">
-          <use class="slash" href="#slash-1-path" fill="url(#metal)" mask="url(#cut-1)"/>
-          <use class="slash" href="#slash-2-path" fill="url(#metal)" mask="url(#cut-2)"/>
-          <use class="slash" href="#slash-3-path" fill="url(#metal)" mask="url(#cut-3)"/>
+        <!-- Slashes: flat brand maroon + neon streak (no masks, so Safari can't lose them) -->
+        <g id="slashes" fill="#8A1538">
+          <use class="slash" href="#slash-1-path"/>
+          <use class="slash" href="#slash-2-path"/>
+          <use class="slash" href="#slash-3-path"/>
         </g>
         <g id="slash-glow" fill="#ff2d6f" filter="url(#neon)" opacity="0">
-          <use class="glow" href="#slash-1-path" mask="url(#cut-1)"/>
-          <use class="glow" href="#slash-2-path" mask="url(#cut-2)"/>
-          <use class="glow" href="#slash-3-path" mask="url(#cut-3)"/>
+          <use class="glow" href="#slash-1-path"/>
+          <use class="glow" href="#slash-2-path"/>
+          <use class="glow" href="#slash-3-path"/>
         </g>
       </svg>
     </div>
@@ -373,17 +373,17 @@
   // ---- 5. Lighting sheen rakes across the body ----
   tl.fromTo(sheen, { attr: { x: 1000 } }, { attr: { x: 1900 }, duration: 1.0, ease: 'power2.inOut' }, 1.3);
 
-  // ---- 6. Mane slashes: sharp cut + neon flare + metallic glint ----
-  cuts.forEach((rect, i) => {
-    const t = 1.5 + i * 0.09;
-    tl.fromTo(rect, { attr: { width: 0 } }, { attr: { width: cutWidths[i] }, duration: 0.32, ease: 'expo.out' }, t);
+  // ---- 6. Mane slashes: stretch out from their left tip + neon flare ----
+  const slashEls   = $$('.slash');
+  const glowEls    = $$('.glow');
+  const slashPivot = ['1276 0', '1270 66', '1364 178'];   // left edge of each slash
+  slashEls.forEach((slash, i) => {
+    const pair = [slash, glowEls[i]];
+    gsap.set(pair, { svgOrigin: slashPivot[i] });
+    tl.fromTo(pair, { scaleX: 0 }, { scaleX: 1, duration: 0.32, ease: 'expo.out' }, 1.5 + i * 0.09);
   });
   tl.fromTo(glowGroup, { opacity: 0 }, { opacity: 1, duration: 0.08, ease: 'none' }, 1.5)
     .to(glowGroup, { opacity: 0, duration: 0.6, ease: 'power2.out' }, 1.78);
-  tl.fromTo(metal,
-    { attr: { gradientTransform: 'translate(-280 0)' } },
-    { attr: { gradientTransform: 'translate(280 0)' }, duration: 0.75, ease: 'power2.inOut' },
-    1.55);
 
   // ---- 7. BLACK SABER rises from its baseline ----
   tl.fromTo(letters,
