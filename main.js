@@ -65,23 +65,34 @@
     const loader = document.createElement("div");
     const frame = document.createElement("iframe");
     let finished = false;
-    let fallbackTimer;
+    let animationFinished = false;
+    let minimumElapsed = false;
 
     const MIN_LOADER_MS = 5000;
-    const MAX_LOADER_MS = 8000;
 
     loader.id = "site-loader";
     loader.setAttribute("role", "status");
     loader.setAttribute("aria-label", "Loading Black Saber Industries");
-    frame.src = "pre-loader-animation.html?embed=1";
     frame.title = "Black Saber Industries logo animation";
     frame.setAttribute("aria-hidden", "true");
     loader.append(frame);
 
+    const handleAnimationMessage = (event) => {
+      if (
+        event.source !== frame.contentWindow ||
+        event.origin !== location.origin ||
+        event.data !== "bsi-preloader-complete"
+      ) {
+        return;
+      }
+      animationFinished = true;
+      finishPreloader();
+    };
+
     const finishPreloader = () => {
-      if (finished) return;
+      if (finished || !animationFinished || !minimumElapsed) return;
       finished = true;
-      clearTimeout(fallbackTimer);
+      window.removeEventListener("message", handleAnimationMessage);
       loader.classList.add("is-exiting");
       window.setTimeout(() => {
         loader.remove();
@@ -91,14 +102,14 @@
       }, 450);
     };
 
-    const minimumLoaderTimer = window.setTimeout(finishPreloader, MIN_LOADER_MS);
-    fallbackTimer = window.setTimeout(() => {
-      clearTimeout(minimumLoaderTimer);
+    window.addEventListener("message", handleAnimationMessage);
+    window.setTimeout(() => {
+      minimumElapsed = true;
       finishPreloader();
-    }, MAX_LOADER_MS
-    );
+    }, MIN_LOADER_MS);
 
     document.body.prepend(loader);
+    frame.src = "pre-loader-animation.html?embed=1";
   }
 
   const path =
