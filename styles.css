@@ -102,7 +102,7 @@ a {
   display: block;
   max-width: 100%;
   overflow-wrap: anywhere;
-  font-size: 30px;
+  font-size: 18px;
   line-height: 1.15;
 }
 .typewriter-reserve {
@@ -1040,7 +1040,7 @@ footer a:hover {
 }
 @media (max-width: 991.98px) {
   .section-title {
-    font-size: 27px;
+    font-size: 18px;
   }
   .sc {
     padding-bottom: 76px;
@@ -1267,7 +1267,7 @@ footer a:hover {
 }
 @media (max-width: 575.98px) {
   .section-title {
-    font-size: 21px;
+    font-size: 16px;
   }
   .wrap {
     padding-inline: 18px;
