@@ -213,12 +213,45 @@
       if (frame.dataset.languageBridge !== "ready") {
         frame.addEventListener("load", () => syncEmbeddedLanguage(frame));
         frame.dataset.languageBridge = "ready";
+        if (mapFrameResizeObserver) mapFrameResizeObserver.observe(frame);
       }
       frame.contentWindow?.postMessage(
         { type: "bsi-language", language: document.documentElement.lang },
         location.origin,
       );
     };
+
+    const mapFrameResizeObserver = "ResizeObserver" in window
+      ? new ResizeObserver((entries) => {
+          entries.forEach(({ target }) => {
+            target.contentWindow?.postMessage(
+              { type: "bsi-map-size-request" },
+              location.origin,
+            );
+          });
+        })
+      : null;
+
+    window.addEventListener("message", (event) => {
+      if (
+        event.origin !== location.origin ||
+        event.data?.type !== "bsi-map-size" ||
+        !Number.isFinite(event.data.height)
+      ) return;
+      const frame = [...document.querySelectorAll("iframe.reach-map-frame")].find(
+        (candidate) => candidate.contentWindow === event.source,
+      );
+      if (!frame) return;
+      frame.style.height = `${Math.max(360, Math.min(2400, Math.ceil(event.data.height)))}px`;
+    });
+
+    const requestEmbeddedMapSizes = () => {
+      document.querySelectorAll("iframe.reach-map-frame").forEach((frame) => {
+        frame.contentWindow?.postMessage({ type: "bsi-map-size-request" }, location.origin);
+      });
+    };
+    window.addEventListener("resize", requestEmbeddedMapSizes, { passive: true });
+    window.visualViewport?.addEventListener("resize", requestEmbeddedMapSizes, { passive: true });
 
     const applyLanguage = (language) => {
       const previousScrollY = window.scrollY;

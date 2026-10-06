@@ -83,7 +83,20 @@
       }
       .location-list {
         display: grid;
+        grid-column: 1 / -1;
+        grid-template-columns: minmax(0, 1fr);
         gap: 7px;
+      }
+      .office-locations {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        gap: 7px;
+      }
+      #hq-location {
+        width: 100%;
+      }
+      .office-locations .location-list {
+        grid-column: 1 / -1;
       }
       .location {
         display: flex;
@@ -153,6 +166,14 @@
           grid-template-columns: repeat(2, minmax(0, 1fr));
           gap: 6px;
         }
+        .office-locations {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        #hq-location {
+          grid-column: 1 / -1;
+          width: calc((100% - 6px) / 2);
+          justify-self: center;
+        }
         .location {
           padding: 7px 8px;
           gap: 6px;
@@ -164,9 +185,6 @@
         }
         .reach-panel {
           padding: 16px 12px;
-        }
-        .location-list {
-          grid-template-columns: minmax(0, 1fr);
         }
         .metrics {
           grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -184,9 +202,9 @@
     <main class="reach-panel" aria-labelledby="reach-title">
       <header class="reach-heading">
         <p class="reach-eyebrow">Regional Network</p>
-        <h1 id="reach-title">Qatar HQ. Connected across seven countries.</h1>
+        <h1 id="reach-title">Connected across seven countries.</h1>
         <p class="reach-intro">
-          Our network spans the Gulf and Asia, with Doha as our headquarters.
+          Our network spans across the Gulf and Asia.
         </p>
       </header>
       <div class="reach-layout">
@@ -199,7 +217,10 @@
             aria-label="Interactive dotted globe showing BSI's headquarters and regional locations"
           ></canvas>
         </div>
-        <div id="location-list" class="location-list" aria-label="Office locations"></div>
+        <div class="office-locations">
+          <div id="hq-location" aria-label="Headquarters"></div>
+          <div id="location-list" class="location-list" aria-label="Regional offices"></div>
+        </div>
       </div>
       <div class="metrics" aria-label="Network metrics">
         <div><div class="metric-value">7</div><div class="metric-label">countries</div></div>
@@ -224,7 +245,6 @@
       };
       const locations = [
         { country: "KSA", city: "Dammam", point: [50.089, 26.421] },
-        { country: "KSA", city: "Riyadh", point: [46.675, 24.714] },
         { country: "Bahrain", city: "Manama", point: [50.586, 26.223] },
         { country: "UAE", city: "Dubai", point: [55.271, 25.205] },
         { country: "Oman", city: "Muscat", point: [58.406, 23.588] },
@@ -236,7 +256,7 @@
       const list = document.getElementById("location-list");
       [hub, ...locations].forEach((location) => {
         const item = document.createElement("div");
-        item.className = "location";
+        item.className = location.detail ? "location headquarters" : "location";
         const country = document.createElement("span");
         country.className = "location-country";
         country.textContent = location.country;
@@ -249,7 +269,10 @@
           country,
           city,
         );
-        list.appendChild(item);
+        const destination = location.detail
+          ? document.getElementById("hq-location")
+          : list;
+        destination.appendChild(item);
       });
 
       /* globe setup */
@@ -428,6 +451,17 @@
     <script>
       (() => {
         const originals = new WeakMap();
+        const panel = document.querySelector(".reach-panel");
+        const postMapSize = () => {
+          if (window.parent === window) return;
+          const bodyStyle = getComputedStyle(document.body);
+          const height = Math.ceil(
+            panel.getBoundingClientRect().height +
+            parseFloat(bodyStyle.paddingTop) +
+            parseFloat(bodyStyle.paddingBottom),
+          );
+          window.parent.postMessage({ type: "bsi-map-size", height }, location.origin);
+        };
         const translate = (language) => {
           document.documentElement.lang = language;
           document.documentElement.dir = language === "ar" ? "rtl" : "ltr";
@@ -450,16 +484,27 @@
           document.title = language === "ar"
             ? window.BSI_AR_TRANSLATIONS["BSI Global Reach"] || "BSI Global Reach"
             : "BSI Global Reach";
+          postMapSize();
         };
         addEventListener("message", (event) => {
           if (
             event.source !== parent ||
             event.origin !== location.origin ||
-            event.data?.type !== "bsi-language" ||
-            !["en", "ar"].includes(event.data.language)
+            !["bsi-language", "bsi-map-size-request"].includes(event.data?.type)
           ) return;
+          if (event.data.type === "bsi-map-size-request") {
+            postMapSize();
+            return;
+          }
+          if (!["en", "ar"].includes(event.data.language)) return;
           translate(event.data.language);
         });
+        window.addEventListener("resize", postMapSize, { passive: true });
+        if ("ResizeObserver" in window) {
+          const panelResizeObserver = new ResizeObserver(postMapSize);
+          panelResizeObserver.observe(panel);
+        }
+        postMapSize();
       })();
     </script>
   </body>
