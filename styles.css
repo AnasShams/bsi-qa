@@ -1456,6 +1456,18 @@ html[dir="rtl"] .dd {
   right: 0;
   left: auto;
 }
+html[dir="rtl"] .footer-cta {
+  border-left: 0;
+  border-right: 2px solid var(--line);
+  padding-left: 0;
+  padding-right: clamp(24px, 3vw, 42px);
+}
+@media (max-width: 991.98px) {
+  html[dir="rtl"] .footer-cta {
+    border-right: 0;
+    padding-right: 0;
+  }
+}
 @media (max-width: 575.98px) {
   .nr {
     gap: 6px;
