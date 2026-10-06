@@ -97,7 +97,8 @@
       capTravel,
       Math.max(0, -capSection.getBoundingClientRect().top),
     );
-    capTrack.style.transform = `translate3d(${-offset}px, 0, 0)`;
+    const direction = document.documentElement.dir === "rtl" ? 1 : -1;
+    capTrack.style.transform = `translate3d(${direction * offset}px, 0, 0)`;
   }
 
   function measureCapabilityRail() {
@@ -137,4 +138,13 @@
   }
   addEventListener("scroll", onScroll, { passive: true });
   onScroll();
+
+  const refreshLocalizedLayout = () => {
+    requestAnimationFrame(() => {
+      measureCapabilityRail();
+      onScroll();
+    });
+  };
+  addEventListener("bsi:languagechange", refreshLocalizedLayout);
+  document.fonts?.ready.then(refreshLocalizedLayout);
 })();

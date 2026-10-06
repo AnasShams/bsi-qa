@@ -140,7 +140,7 @@
  <div><a class="${whatIsActive ? "act" : ""}" href="#" onclick="return false">What We Do</a>${dd(what)}</div>
  <div>${L("/technologies.html", "Technologies")}</div><div>${L("/our-facility.html", "Our Facility")}</div><div>${L("/our-people.html", "Our People")}</div><div>${L("/careers.html", "Careers")}</div>
 </div>
-<div class="nr"><a class="btn d" href="/connect.html">Connect</a><button class="burger" id="bg" aria-label="Menu" aria-expanded="false"><i></i><i></i><i></i></button></div>
+<div class="nr"><button class="language-toggle" id="language-toggle" type="button" aria-label="Switch to Arabic">العربية</button><a class="btn d" href="/connect.html">Connect</a><button class="burger" id="bg" aria-label="Menu" aria-expanded="false"><i></i><i></i><i></i></button></div>
 <div id="mm">${L("/", "Home")}<div class="g${whoIsActive ? " act" : ""}">Who We Are</div>${who.map((x) => `<a class="s${path === x[0] ? " act" : ""}" href="${x[0]}">${x[1]}</a>`).join("")}<div class="g${whatIsActive ? " act" : ""}">What We Do</div>${what.map((x) => `<a class="s${path === x[0] ? " act" : ""}" href="${x[0]}">${x[1]}</a>`).join("")}${L("/technologies.html", "Technologies")}${L("/our-facility.html", "Our Facility")}${L("/our-people.html", "Our People")}${L("/careers.html", "Careers")}</div>
 </div></nav>
 `;
@@ -154,6 +154,131 @@
 <div class="footer-bottom"><span>© 2026 Black Sands Industries All Rights Reserved</span><span><a href="/cookies.html">Cookies</a> · <a href="/terms.html">Terms of Use</a> · <a href="/privacy.html">Privacy</a></span></div></div></footer>`;
   $("#site-nav").innerHTML = navHTML;
   $("#site-footer").innerHTML = footHTML;
+
+  const languageToggle = $("#language-toggle");
+  const translationsScript = document.createElement("script");
+  translationsScript.src = "/translations.js";
+  translationsScript.onload = () => {
+    const translations = window.BSI_AR_TRANSLATIONS || {};
+    const originalText = new WeakMap();
+    const originalAttributes = new WeakMap();
+    const languageKey = "bsi-language";
+    const normalizeText = (text) => text.replace(/\s+/g, " ").trim();
+    const formatNumerals = (text, language) => language === "ar"
+      ? text.replace(/[0-9]/g, (digit) => "٠١٢٣٤٥٦٧٨٩"[Number(digit)])
+      : text;
+
+    const translateTextNode = (node, language) => {
+      const element = node.parentElement;
+        if (!element || element.closest("script, style, textarea, input, select, option, iframe, .language-toggle, .typewriter-title")) return;
+      if (!originalText.has(node)) originalText.set(node, node.data);
+      const original = originalText.get(node);
+      const leading = original.match(/^\s*/)?.[0] || "";
+      const trailing = original.length === leading.length ? "" : original.match(/\s*$/)?.[0] || "";
+      const key = normalizeText(original);
+      const translated = language === "ar" && translations[key]
+        ? translations[key]
+        : normalizeText(original);
+      const nextText = `${leading}${formatNumerals(translated, language)}${trailing}`;
+      if (node.data !== nextText) node.data = nextText;
+    };
+
+    const translateAttributes = (root, language) => {
+      const elements = [];
+      if (root.nodeType === Node.ELEMENT_NODE) elements.push(root);
+      if (root.querySelectorAll) elements.push(...root.querySelectorAll("[aria-label], [title], [placeholder]"));
+      elements.forEach((element) => {
+        if (element.matches(".language-toggle")) return;
+        const originals = originalAttributes.get(element) || {};
+        ["aria-label", "title", "placeholder"].forEach((attribute) => {
+          if (!element.hasAttribute(attribute)) return;
+          if (!(attribute in originals)) originals[attribute] = element.getAttribute(attribute);
+          const original = originals[attribute];
+          const key = normalizeText(original);
+          const value = language === "ar" ? translations[key] || original : original;
+          element.setAttribute(attribute, formatNumerals(value, language));
+        });
+        originalAttributes.set(element, originals);
+      });
+    };
+
+    const syncEmbeddedLanguage = (frame) => {
+      if (frame.dataset.languageBridge !== "ready") {
+        frame.addEventListener("load", () => syncEmbeddedLanguage(frame));
+        frame.dataset.languageBridge = "ready";
+      }
+      frame.contentWindow?.postMessage(
+        { type: "bsi-language", language: document.documentElement.lang },
+        location.origin,
+      );
+    };
+
+    const applyLanguage = (language) => {
+      const previousScrollY = window.scrollY;
+      const languageChanged = document.documentElement.lang !== language;
+      document.documentElement.lang = language;
+      document.documentElement.dir = language === "ar" ? "rtl" : "ltr";
+      document.querySelectorAll(".typewriter-title").forEach((title) => {
+        if (!title.dataset.i18nOriginal) title.dataset.i18nOriginal = normalizeText(title.textContent);
+      });
+      document.querySelectorAll("[data-split], [data-split-view], #h1").forEach((element) => {
+        if (window.splitWords) window.splitWords(element, 0.1, 0.15);
+      });
+      const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+      let node;
+      while ((node = walker.nextNode())) translateTextNode(node, language);
+      translateAttributes(document.body, language);
+      document.querySelectorAll("iframe.reach-map-frame").forEach(syncEmbeddedLanguage);
+      const titleNode = document.querySelector("title")?.firstChild;
+      if (titleNode) translateTextNode(titleNode, language);
+      languageToggle.textContent = language === "ar" ? "EN" : "AR";
+      languageToggle.setAttribute("aria-label", language === "ar" ? "Switch to English" : "Switch to Arabic");
+      languageToggle.setAttribute("aria-pressed", String(language === "ar"));
+      try {
+        localStorage.setItem(languageKey, language);
+      } catch {}
+      window.dispatchEvent(new CustomEvent("bsi:languagechange", { detail: { language, languageChanged } }));
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        const previousBehavior = document.documentElement.style.scrollBehavior;
+        document.documentElement.style.scrollBehavior = "auto";
+        window.scrollTo(0, previousScrollY);
+        document.documentElement.style.scrollBehavior = previousBehavior;
+      }));
+    };
+
+    const observer = new MutationObserver((records) => {
+      const language = document.documentElement.lang;
+      records.forEach((record) => {
+        if (record.type === "characterData") {
+          translateTextNode(record.target, language);
+          return;
+        }
+        record.addedNodes.forEach((node) => {
+        if (node.nodeType === Node.TEXT_NODE) translateTextNode(node, language);
+        else if (node.nodeType === Node.ELEMENT_NODE) {
+          if (node.matches("iframe.reach-map-frame")) syncEmbeddedLanguage(node);
+          node.querySelectorAll("iframe.reach-map-frame").forEach(syncEmbeddedLanguage);
+          const walker = document.createTreeWalker(node, NodeFilter.SHOW_TEXT);
+          let textNode;
+          while ((textNode = walker.nextNode())) translateTextNode(textNode, language);
+          translateAttributes(node, language);
+        }
+        });
+      });
+    });
+    const observeTranslations = { childList: true, subtree: true, characterData: true };
+    observer.observe(document.body, observeTranslations);
+    observer.observe(document.head, observeTranslations);
+    languageToggle.addEventListener("click", () => {
+      applyLanguage(document.documentElement.lang === "ar" ? "en" : "ar");
+    });
+    let initialLanguage = "en";
+    try {
+      initialLanguage = localStorage.getItem(languageKey) === "ar" ? "ar" : "en";
+    } catch {}
+    applyLanguage(initialLanguage);
+  };
+  document.head.append(translationsScript);
 
   document.querySelectorAll(".wrap").forEach((container) => {
     container.classList.add("container");
@@ -171,43 +296,72 @@
     appRow.querySelector(".steps").classList.add("col-12", "col-lg-7");
   }
 
+  const typewriterTimers = new WeakMap();
+  const startedTypewriterTitles = new WeakSet();
+  const renderTypewriterTitle = (title, animate = true) => {
+    const previousTimer = typewriterTimers.get(title);
+    if (previousTimer) clearTimeout(previousTimer);
+    const original = title.dataset.i18nOriginal || title.textContent.trim();
+    title.dataset.i18nOriginal = original;
+    const translated = document.documentElement.lang === "ar"
+      ? window.BSI_AR_TRANSLATIONS?.[original] || original
+      : original;
+    const text = document.documentElement.lang === "ar"
+      ? translated.replace(/[0-9]/g, (digit) => "٠١٢٣٤٥٦٧٨٩"[Number(digit)])
+      : translated;
+    const reserve = document.createElement("span");
+    const output = document.createElement("span");
+    const typedText = document.createTextNode("");
+    const cursor = document.createElement("span");
+    reserve.className = "typewriter-reserve";
+    reserve.setAttribute("aria-hidden", "true");
+    reserve.textContent = text;
+    output.className = "typewriter-output";
+    output.setAttribute("aria-hidden", "true");
+    cursor.className = "typewriter-cursor";
+    cursor.setAttribute("aria-hidden", "true");
+    output.append(typedText, cursor);
+    title.setAttribute("aria-label", text);
+    title.replaceChildren(reserve, output);
+    startedTypewriterTitles.add(title);
+
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      typedText.data = text;
+      return;
+    }
+    if (!animate) {
+      typedText.data = text;
+      return;
+    }
+
+    let character = 0;
+    const typeNextCharacter = () => {
+      character += 1;
+      typedText.data = text.slice(0, character);
+      if (character < text.length) {
+        typewriterTimers.set(title, window.setTimeout(typeNextCharacter, 35));
+      }
+    };
+    typeNextCharacter();
+  };
+  window.addEventListener("bsi:languagechange", (event) => {
+    if (!event.detail?.languageChanged) return;
+    document.querySelectorAll(".typewriter-title").forEach((title) => {
+      renderTypewriterTitle(title, false);
+      typewriterObserver.unobserve(title);
+    });
+  });
+
   const typewriterObserver = new IntersectionObserver(
     (entries, observer) => {
       entries.forEach((entry) => {
         if (!entry.isIntersecting) return;
         const title = entry.target;
-        const text = title.textContent.trim();
-        const reserve = document.createElement("span");
-        const output = document.createElement("span");
-        const typedText = document.createTextNode("");
-        const cursor = document.createElement("span");
-        reserve.className = "typewriter-reserve";
-        reserve.setAttribute("aria-hidden", "true");
-        reserve.textContent = text;
-        output.className = "typewriter-output";
-        output.setAttribute("aria-hidden", "true");
-        cursor.className = "typewriter-cursor";
-        cursor.setAttribute("aria-hidden", "true");
-        output.append(typedText, cursor);
-        title.setAttribute("aria-label", text);
-        title.replaceChildren(reserve, output);
+        if (!title.dataset.i18nOriginal) title.dataset.i18nOriginal = title.textContent.trim();
+        renderTypewriterTitle(title);
         observer.unobserve(title);
-
-        if (matchMedia("(prefers-reduced-motion: reduce)").matches) {
-          typedText.data = text;
-          return;
-        }
-
-        let character = 0;
-        const typeNextCharacter = () => {
-          character += 1;
-          typedText.data = text.slice(0, character);
-          if (character < text.length) {
-            window.setTimeout(typeNextCharacter, 35);
-          }
-        };
-        typeNextCharacter();
       });
+      const observeTranslations = { childList: true, subtree: true };
     },
     { threshold: 0.35 },
   );
@@ -231,7 +385,15 @@
 
   /* word-by-word reveal */
   window.splitWords = function (el, step, start) {
-    el.innerHTML = el.textContent
+    const original = el.dataset.i18nOriginal || el.textContent.trim();
+    el.dataset.i18nOriginal = original;
+    const text = document.documentElement.lang === "ar"
+      ? window.BSI_AR_TRANSLATIONS?.[original] || original
+      : original;
+    const localizedText = document.documentElement.lang === "ar"
+      ? text.replace(/[0-9]/g, (digit) => "٠١٢٣٤٥٦٧٨٩"[Number(digit)])
+      : text;
+    el.innerHTML = localizedText
       .trim()
       .split(/\s+/)
       .map(
@@ -312,8 +474,11 @@
         (function tick(t) {
           const k = Math.min((t - t0) / 1600, 1),
             v = n * (1 - Math.pow(1 - k, 3));
-          b.textContent =
+          const countText =
             (b.dataset.p || "") + v.toFixed(f) + (b.dataset.s || "");
+          b.textContent = document.documentElement.lang === "ar"
+            ? countText.replace(/[0-9]/g, (digit) => "٠١٢٣٤٥٦٧٨٩"[Number(digit)])
+            : countText;
           k < 1 && requestAnimationFrame(tick);
         })(t0);
       }),

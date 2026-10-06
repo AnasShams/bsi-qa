@@ -211,6 +211,7 @@
         The globe is unavailable, but the location list and network metrics remain available.
       </p>
     </main>
+    <script src="/translations.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
     <script src="globe-dots.js"></script>
     <script>
@@ -423,6 +424,43 @@
       };
       canvas.addEventListener("pointerup", endDrag);
       canvas.addEventListener("pointercancel", endDrag);
+    </script>
+    <script>
+      (() => {
+        const originals = new WeakMap();
+        const translate = (language) => {
+          document.documentElement.lang = language;
+          document.documentElement.dir = language === "ar" ? "rtl" : "ltr";
+          const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+          let node;
+          while ((node = walker.nextNode())) {
+            if (!originals.has(node)) originals.set(node, node.data);
+            const original = originals.get(node);
+            const key = original.replace(/\s+/g, " ").trim();
+            const leading = original.match(/^\s*/)?.[0] || "";
+            const trailing = original.length === leading.length ? "" : original.match(/\s*$/)?.[0] || "";
+            const translated = language === "ar" && window.BSI_AR_TRANSLATIONS[key]
+              ? `${leading}${window.BSI_AR_TRANSLATIONS[key]}${trailing}`
+              : original;
+            const localized = language === "ar"
+              ? translated.replace(/[0-9]/g, (digit) => "٠١٢٣٤٥٦٧٨٩"[Number(digit)])
+              : translated;
+            if (node.data !== localized) node.data = localized;
+          }
+          document.title = language === "ar"
+            ? window.BSI_AR_TRANSLATIONS["BSI Global Reach"] || "BSI Global Reach"
+            : "BSI Global Reach";
+        };
+        addEventListener("message", (event) => {
+          if (
+            event.source !== parent ||
+            event.origin !== location.origin ||
+            event.data?.type !== "bsi-language" ||
+            !["en", "ar"].includes(event.data.language)
+          ) return;
+          translate(event.data.language);
+        });
+      })();
     </script>
   </body>
 </html>

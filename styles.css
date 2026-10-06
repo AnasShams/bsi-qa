@@ -181,10 +181,10 @@ p.lead {
 /* cursor */
 #cur {
   position: fixed;
-  width: 10px;
-  height: 10px;
+  width: 15px;
+  height: 15px;
   border-radius: 50%;
-  background: var(--ink);
+  background: #761b35;
   pointer-events: none;
   z-index: 99;
   transform: translate(-50%, -50%);
@@ -552,7 +552,11 @@ nav .wrap {
   display: flex;
   gap: 18px;
   width: max-content;
+  --mq-end: -50%;
   animation: mq var(--t, 30s) linear infinite;
+}
+html[dir="rtl"] .mq > div {
+  --mq-end: 50%;
 }
 .mq.logos > div {
   --t: 50s;
@@ -560,7 +564,7 @@ nav .wrap {
 
 @keyframes mq {
   to {
-    transform: translateX(-50%);
+    transform: translateX(var(--mq-end));
   }
 }
 .logos span {
@@ -1314,6 +1318,11 @@ footer a:hover {
     padding: 10px 12px;
     font-size: 12px;
   }
+  .language-toggle {
+    min-height: 38px;
+    padding-inline: 9px;
+    font-size: 12px;
+  }
   .burger {
     width: 38px;
     height: 38px;
@@ -1324,6 +1333,22 @@ footer a:hover {
   display: flex;
   align-items: center;
   gap: 10px;
+}
+.language-toggle {
+  display: inline-flex;
+  min-height: 42px;
+  align-items: center;
+  justify-content: center;
+  padding: 0 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--ink);
+  font: 600 13px/1 Inter, sans-serif;
+  white-space: nowrap;
+}
+.language-toggle:hover {
+  background: var(--soft);
 }
 .burger {
   display: none;
@@ -1427,6 +1452,35 @@ footer a:hover {
   }
   .burger {
     display: flex;
+  }
+}
+
+html[dir="rtl"] body {
+  font-family: "Noto Sans Arabic", Tahoma, Arial, sans-serif;
+}
+html[dir="rtl"] nav .wrap {
+  direction: rtl;
+}
+html[dir="rtl"] .nr {
+  direction: ltr;
+}
+html[dir="rtl"] .dd {
+  right: 0;
+  left: auto;
+}
+@media (max-width: 575.98px) {
+  .nr {
+    gap: 6px;
+  }
+  .language-toggle {
+    min-height: 38px;
+    padding-inline: 8px;
+    font-size: 12px;
+  }
+}
+@media (max-width: 340px) {
+  .nr > .btn {
+    padding-inline: 8px;
   }
 }
 
