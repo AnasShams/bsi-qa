@@ -1,7 +1,36 @@
-/* Black Sands Industries - shared behaviour: nav + footer injection, mobile menu, cursor, scroll animations, counters, forms */
+/* Black Saber Industries - shared behaviour: nav + footer injection, mobile menu, cursor, scroll animations, counters, forms */
 (function () {
   const $ = (s) => document.querySelector(s),
     $$ = (s) => [...document.querySelectorAll(s)];
+  const placeholderPhotoPath = "/assets/horse-background.jpg";
+  const photoSurfaceSelector = ".bg:not(video), .img, .partner-image, .leader-profile-photo, .cap, .app, .sc, .ind a";
+  const addPhotoPlaceholders = (root = document) => {
+    const surfaces = [];
+    if (root instanceof Element && root.matches(photoSurfaceSelector)) surfaces.push(root);
+    if (root.querySelectorAll) surfaces.push(...root.querySelectorAll(photoSurfaceSelector));
+    surfaces.forEach((surface) => {
+      if ([...surface.children].some((child) => child.classList.contains("photo-placeholder"))) return;
+      const image = document.createElement("img");
+      image.className = "photo-placeholder";
+      image.src = surface.dataset.photo || placeholderPhotoPath;
+      image.alt = "";
+      image.setAttribute("aria-hidden", "true");
+      image.draggable = false;
+      image.loading = surface.matches(".bg") ? "eager" : "lazy";
+      if (!surface.matches(".leader-profile-photo")) {
+        image.style.objectPosition = surface.dataset.photoPosition ||
+          (surface.dataset.photo ? "center center" : surface.style.backgroundPosition || "center center");
+      }
+      surface.prepend(image);
+    });
+  };
+  addPhotoPlaceholders();
+  const photoSurfaceObserver = new MutationObserver((records) => {
+    records.forEach((record) => record.addedNodes.forEach((node) => {
+      if (node.nodeType === Node.ELEMENT_NODE) addPhotoPlaceholders(node);
+    }));
+  });
+  photoSurfaceObserver.observe(document.body, { childList: true, subtree: true });
   if (!document.querySelector('link[rel~="icon"]')) {
     const favicon = document.createElement("link");
     favicon.rel = "icon";
@@ -153,12 +182,12 @@
 `;
   const footHTML = `<footer><div class="wrap">
 <div class="footer-top"><div class="footer-links"><div class="cols">
-<div><h3>Helpful Links</h3>Black Sands Industries<br>Advanced Industrial Solutions</div>
+<div><h3>Helpful Links</h3>Black Saber Industries<br>Advanced Industrial Solutions</div>
 <div><h3>Who We Are</h3>${who.map((x) => `<a href="${x[0]}">${x[1]}</a>`).join("")}</div>
 <div><h3>What We Do</h3>${what.map((x) => `<a href="${x[0]}">${x[1]}</a>`).join("")}</div>
 <div><h3>More</h3><a href="/technologies.html">Technologies</a><a href="/our-facility.html">Our Facility</a><a href="/our-people.html">Our People</a><a href="/careers.html">Careers</a><a href="/connect.html">Contact Us</a></div></div></div>
 <section class="footer-cta" id="cta"><div class="mono">Connect</div><h2 data-split-view>Building a Sustainable Future Through Engineering Excellence</h2><p>BSI leads the transformation of industries by integrating renewable energy, automation, and innovation into every engineered solution.</p><div class="actions"><a class="btn p" href="/connect.html">CONTACT US</a></div></section></div>
-<div class="footer-bottom"><span>© 2026 Black Sands Industries All Rights Reserved</span><span><a href="/cookies.html">Cookies</a> · <a href="/terms.html">Terms of Use</a> · <a href="/privacy.html">Privacy</a></span></div></div></footer>`;
+<div class="footer-bottom"><span>© 2026 Black Saber Industries All Rights Reserved</span><span><a href="/cookies.html">Cookies</a> · <a href="/terms.html">Terms of Use</a> · <a href="/privacy.html">Privacy</a></span></div></div></footer>`;
   $("#site-nav").innerHTML = navHTML;
   $("#site-footer").innerHTML = footHTML;
 

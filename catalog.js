@@ -192,7 +192,7 @@
     kicker.textContent = catalogLabel;
     heading.textContent = item.title;
     summary.textContent = item.summary;
-    document.title = `${item.title} | ${catalogLabel} | Black Sands Industries`;
+    document.title = `${item.title} | ${catalogLabel} | Black Saber Industries`;
 
     sections.replaceChildren(...subcategoryTitles.map((title, index) => {
       const section = document.createElement("section");

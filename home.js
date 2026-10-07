@@ -1,4 +1,4 @@
-/* Black Sands Industries - homepage-only behaviour (data builders, sticky technology cards) */
+/* Black Saber Industries - homepage-only behaviour (data builders, sticky technology cards) */
 (function () {
   const $ = (s) => document.querySelector(s),
     $$ = (s) => [...document.querySelectorAll(s)];

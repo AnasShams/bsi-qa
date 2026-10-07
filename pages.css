@@ -1,4 +1,4 @@
-/* Black Sands Industries - inner page components (loaded after styles.css) */
+/* Black Saber Industries - inner page components (loaded after styles.css) */
 .ph {
   min-height: 70vh;
   align-items: flex-start;
@@ -88,9 +88,14 @@
   background: #fff;
 }
 .leader-profile-photo {
+  position: relative;
+  overflow: hidden;
   width: 100%;
   aspect-ratio: 4 / 3;
-  background: var(--img) center 32% / cover;
+  background: none;
+}
+.leader-profile-photo .photo-placeholder {
+  object-position: center 32%;
 }
 .leader-profile-identity {
   padding: 20px 22px 22px;
