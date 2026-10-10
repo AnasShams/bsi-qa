@@ -775,7 +775,7 @@ html[dir="rtl"] .mq > div {
   transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 .sc::after {
-  background: rgba(118, 27, 53, 0.56);
+  background: transparent;
 }
 .sc h3,
 .sc p {

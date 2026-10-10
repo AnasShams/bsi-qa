@@ -17,14 +17,17 @@
     [
       "Our Approach",
       "From initial concept through commissioning and beyond complete lifecycle solutions backed by decades of excellence and commitment to safety and sustainability.",
+      "/assets/our-approach.jpg",
     ],
     [
       "Our Difference",
       "Advanced engineering expertise enhanced by AI, digital transformation and strong commitment to technology advancements.",
+      "/assets/our-difference.jpg",
     ],
     [
       "Our Global Reach",
       "Strategic presence across Qatar, Saudi Arabia, UAE, Oman, China and India, delivering world class solutions.",
+      "/assets/our-reach.jpg",
     ],
   ];
   $("#caps").innerHTML = caps
@@ -39,19 +42,19 @@
     .join("")
     .repeat(6);
   const pj = [
-    "Oil & Gas",
-    "EPC & Infra",
-    "AI & Tech",
-    "Renewable Energy",
-    "Power & Utilities",
-    "Mining & Metal",
-    "Facilities Management",
-    "Logistics & Industry Support",
+    ["Oil & Gas", "/assets/oil-gas.jpg"],
+    ["EPC", "/assets/epc.jpg"],
+    ["AI & Tech", "/assets/ai-tech.jpg"],
+    ["Renewable Energy", "/assets/renewable-energy.jpg"],
+    ["Power & Utilities", "/assets/power-utilities.jpg"],
+    ["Mining & Metal", "/assets/mining-metal.jpg"],
+    ["Facilities Management", "/assets/facilities-management.jpg"],
+    ["Logistics & Industry Support", "/assets/logistic-industry-support.jpg"],
   ];
   const pcs = pj
     .map(
       (p, i) =>
-        `<a href="/capabilities.html" class="pc"><div class="img" style="background-position:${i * 13}% 50%"></div><div class="t"><h3>${p}</h3></div></a>`,
+        `<a href="/capabilities.html" class="pc"><div class="img" data-photo="${p[1]}" style="background-position:${i * 13}% 50%"></div><div class="t"><h3>${p[0]}</h3></div></a>`,
     )
     .join("");
   $("#pj").innerHTML = pcs + pcs;
@@ -59,24 +62,28 @@
     [
       "Oil & Gas Technology",
       "Specialized equipment and digital solutions for drilling, production, and well lifecycle management across onshore and offshore operations.",
+      "/assets/oil-gas-technology.png",
     ],
     [
       "Manufacturing Technology",
       "Modern manufacturing capabilities combining precision machining, robotic automation, and rigorous quality systems for critical industrial equipment.",
+      "/assets/manufacturing-technology.png",
     ],
     [
       "Digital Project Delivery",
       "Integrated digital platforms for engineering, procurement, construction management, and real-time project tracking across complex industrial projects.",
+      "/assets/digital-project-delivery.jpg",
     ],
     [
       "AI & Machine learning",
       "Predictive maintenance systems, digital twins, and AI-powered analytics that optimize performance and prevent failures across industrial operations.",
+      "/assets/ai-machine-learning.png",
     ],
   ];
   $("#steps").innerHTML = st
     .map(
       (s, i) =>
-        `<div class="sc"><h3>${s[0]}</h3><p>${s[1]}</p><em>0${i + 1}</em></div>`,
+        `<div class="sc" data-photo="${s[2]}"><h3>${s[0]}</h3><p>${s[1]}</p><em>0${i + 1}</em></div>`,
     )
     .join("");
   $("#sl").innerHTML = st
