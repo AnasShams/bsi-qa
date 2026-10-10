@@ -7,10 +7,12 @@
     [
       "Our Engineering",
       "Integrated engineering solutions across O&G, EPC, Infrastructure, technology and industrial support operations - delivering complex projects on time and to specification.",
+      "/assets/our-engineering.jpg",
     ],
     [
-      "Our Engineering",
+      "Our Precision",
       "Advanced manufacturing & maintenance workshop facilities delivering world class products and services with precision.",
+      "/assets/our-precision.jpg",
     ],
     [
       "Our Approach",
@@ -28,7 +30,7 @@
   $("#caps").innerHTML = caps
     .map(
       (c, i) =>
-        `<a href="/capabilities.html" class="card" style="--d:${i * 0.07}s"><div class="img" style="height:90px;background-position:${i * 22}% 50%"></div><h3>${c[0]}</h3><p>${c[1]}</p></a>`,
+        `<a href="/capabilities.html" class="card" style="--d:${i * 0.07}s"><div class="img" ${c[2] ? `data-photo="${c[2]}"` : ""} style="height:90px;background-position:${i * 22}% 50%"></div><h3>${c[0]}</h3><p>${c[1]}</p></a>`,
     )
     .join("");
   $("#logos").innerHTML = "WE ADVANCE THE INDUSTRIES THAT ADVANCE THE WORLD."
