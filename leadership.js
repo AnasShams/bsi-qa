@@ -27,19 +27,6 @@
         "Ahamed's immense influence is underpinned by an exceptional, high-profile network of relationships at the highest echelons of leadership. He is deeply connected with the Government of India at the central ministry level, as well as with royal, governmental, and state energy entities across the GCC. This rare combination of profound operational excellence, macro-level diplomatic bridges, and an uncompromising commitment to innovation positions him as the foundational driving force behind Black Saber Industries' regional dominance and global growth strategy.",
       ],
     },
-    mustafa: {
-      name: "Mustafa Al Salman",
-      role: "Executive Director - Strategy",
-      photo: "/assets/executive-director-mustafa.jpg",
-      photoPosition: "center 28%",
-      paragraphs: [
-        "Mustafa Ebrahim Al Salman is Director at Black Saber Industries (BSI), bringing over four decades of distinguished expertise in architectural design, infrastructure development, and large-scale EPC project execution across the Middle East.",
-        "With a career spanning public and private sectors, Al Salman has established himself as a leading authority in airport expansion, civil aviation facilities, government complexes, and industrial infrastructure throughout the GCC region. His architectural vision and execution capabilities have shaped critical infrastructure developments, earning him recognition as one of the region's foremost experts in complex project delivery.",
-        "Since 2006, he has successfully delivered diverse public and private sector developments from concept through completion. His tenure as Head of Projects & Design at Bahrain's Civil Aviation Affairs saw him direct architectural proposals for new terminal facilities, control multimillion-dinar budgets, and lead multidisciplinary teams in collaboration with leading international consultants on the landmark Bahrain International Airport expansion.",
-        "Beyond architectural practice, Al Salman serves as a certified arbitrator with the Court of the Kingdom of Bahrain since 2011, where his unique combination of technical expertise and legal impartiality has made him a trusted authority in dispute resolution and specialized arbitration for complex infrastructure matters. This dual competency provides valuable strategic insight for navigating complex project environments.",
-        "Al Salman holds a Master's degree in Industrial Building Design from York University (UK) and a BSc in Architectural Engineering from Azhar University (Egypt), complemented by specialized executive education from MIT (USA) focusing on airport systems and aviation management. His extensive network across government ministries, international consultancies, and private sector stakeholders throughout the MENA region continues to drive Black Saber Industries' strategic infrastructure initiatives.",
-      ],
-    },
   };
 
   const profile = profiles[new URLSearchParams(location.search).get("leader")];

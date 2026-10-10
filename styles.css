@@ -468,14 +468,11 @@ nav .wrap {
 .cap {
   position: relative;
   isolation: isolate;
+  background: #fff;
   color: var(--ink);
 }
 .cap:before {
-  content: "";
-  position: absolute;
-  z-index: 1;
-  inset: 0;
-  background: rgba(255, 255, 255, 0.82);
+  display: none;
 }
 .cap .wrap {
   position: relative;
@@ -495,8 +492,8 @@ nav .wrap {
   top: 0;
   z-index: 1;
   display: flex;
-  min-height: 100vh;
-  min-height: 100dvh;
+  min-height: max(560px, 78vh);
+  min-height: max(560px, 78dvh);
   align-items: center;
   overflow: hidden;
 }

@@ -3,7 +3,7 @@
   const $ = (s) => document.querySelector(s),
     $$ = (s) => [...document.querySelectorAll(s)];
   const placeholderPhotoPath = "/assets/horse-background.jpg";
-  const photoSurfaceSelector = ".bg:not(video), .img, .partner-image, .leader-profile-photo, .cap, .app, .sc, .ind a";
+  const photoSurfaceSelector = ".bg:not(video), .img, .partner-image, .leader-profile-photo, .app, .sc, .ind a";
   const addPhotoPlaceholders = (root = document) => {
     const surfaces = [];
     if (root instanceof Element && root.matches(photoSurfaceSelector)) surfaces.push(root);
