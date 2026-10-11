@@ -17,7 +17,7 @@
     salman: {
       name: "Salman HR. Ahamed",
       role: "Vice Chairman",
-      photo: "/assets/vice-chairman-salman.jpg",
+      photo: "/assets/vice-chairman-salman.png",
       photoPosition: "center center",
       paragraphs: [
         "Salman HR. Ahamed is the Vice Chairman and Principal of Black Saber Industries, driving the group's grand strategic initiatives, joint ventures, and market expansion across the MENA region and Asian markets. Over a distinguished 26-year career, Ahamed has built an unparalleled reputation as a visionary industrialist and global energy executive, with deep operational expertise spanning heavy industrial energy, advanced technology, aerospace, artificial intelligence, and cutting-edge medical technologies.",

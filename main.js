@@ -300,7 +300,7 @@
       document.querySelectorAll("iframe.reach-map-frame").forEach(syncEmbeddedLanguage);
       const titleNode = document.querySelector("title")?.firstChild;
       if (titleNode) translateTextNode(titleNode, language);
-      languageToggle.textContent = language === "ar" ? "EN" : "AR";
+      languageToggle.textContent = language === "ar" ? "EN" : "ع";
       languageToggle.setAttribute("aria-label", language === "ar" ? "Switch to English" : "Switch to Arabic");
       languageToggle.setAttribute("aria-pressed", String(language === "ar"));
       try {
