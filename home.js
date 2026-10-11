@@ -1,4 +1,4 @@
-/* Black Sands Industries - homepage-only behaviour (data builders, sticky technology cards) */
+/* Black Saber Industries - homepage-only behaviour (data builders, sticky technology cards) */
 (function () {
   const $ = (s) => document.querySelector(s),
     $$ = (s) => [...document.querySelectorAll(s)];
@@ -7,10 +7,12 @@
     [
       "Our Engineering",
       "Integrated engineering solutions across O&G, EPC, Infrastructure, technology and industrial support operations - delivering complex projects on time and to specification.",
+      "/assets/our-engineering.jpg",
     ],
     [
-      "Our Engineering",
+      "Our Precision",
       "Advanced manufacturing & maintenance workshop facilities delivering world class products and services with precision.",
+      "/assets/our-precision.jpg",
     ],
     [
       "Our Approach",
@@ -28,7 +30,7 @@
   $("#caps").innerHTML = caps
     .map(
       (c, i) =>
-        `<a href="/capabilities.html" class="card" style="--d:${i * 0.07}s"><div class="img" style="height:90px;background-position:${i * 22}% 50%"></div><h3>${c[0]}</h3><p>${c[1]}</p></a>`,
+        `<a href="/capabilities.html" class="card" style="--d:${i * 0.07}s"><div class="img" ${c[2] ? `data-photo="${c[2]}"` : ""} style="height:90px;background-position:${i * 22}% 50%"></div><h3>${c[0]}</h3><p>${c[1]}</p></a>`,
     )
     .join("");
   $("#logos").innerHTML = "WE ADVANCE THE INDUSTRIES THAT ADVANCE THE WORLD."
@@ -80,7 +82,7 @@
   $("#sl").innerHTML = st
     .map((s, i) => `<div><h3>0${i + 1} ${s[0]}</h3></div>`)
     .join("");
-  $("#loc").innerHTML = `<iframe class="reach-map-frame rv" src="reach-map.html" title="Interactive map of BSI headquarters and locations across seven countries" loading="lazy" scrolling="no"></iframe>`;
+  $("#loc").innerHTML = `<iframe class="reach-map-frame rv" src="reach-map.html" title="Interactive map of BSI headquarters and locations across seven countries" scrolling="no"></iframe>`;
   observeReveal();
   const capSection = $("#cap");
   const capViewport = $(".cap-viewport");
@@ -97,23 +99,35 @@
       capTravel,
       Math.max(0, -capSection.getBoundingClientRect().top),
     );
-    capTrack.style.transform = `translate3d(${-offset}px, 0, 0)`;
+    const direction = document.documentElement.dir === "rtl" ? 1 : -1;
+    capTrack.style.transform = `translate3d(${direction * offset}px, 0, 0)`;
   }
 
   function measureCapabilityRail() {
     if (matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      capSection.style.height = "auto";
-      capTrack.style.transform = "none";
-      return;
+    capSection.style.height = "auto";
+    capTrack.style.transform = "none";
+    return;
     }
-    capTravel = Math.max(0, capTrack.scrollWidth - capViewport.clientWidth);
+    const items = [...capTrack.children];
+    if (!items.length) return;
+    let left = Infinity, right = -Infinity;
+    items.forEach((el) => {
+    left = Math.min(left, el.offsetLeft);
+    right = Math.max(right, el.offsetLeft + el.offsetWidth);
+    });
+    capTravel = Math.max(0, Math.ceil(right - left - capViewport.clientWidth));
     capSection.style.height = `${capSection.querySelector(".cap-pin").offsetHeight + capTravel}px`;
     updateCapabilityRail();
-  }
-
-  addEventListener("scroll", updateCapabilityRail, { passive: true });
-  addEventListener("resize", measureCapabilityRail);
-  measureCapabilityRail();
+    }
+    addEventListener("scroll", updateCapabilityRail, { passive: true });
+    let lastCapWidth = innerWidth;
+    addEventListener("resize", () => {
+    if (innerWidth === lastCapWidth) return;
+    lastCapWidth = innerWidth;
+    measureCapabilityRail();
+    });
+    measureCapabilityRail();
 
   const cards = $$(".sc"),
     items = $$("#sl div");
@@ -137,4 +151,13 @@
   }
   addEventListener("scroll", onScroll, { passive: true });
   onScroll();
+
+  const refreshLocalizedLayout = () => {
+    requestAnimationFrame(() => {
+      measureCapabilityRail();
+      onScroll();
+    });
+  };
+  addEventListener("bsi:languagechange", refreshLocalizedLayout);
+  document.fonts?.ready.then(refreshLocalizedLayout);
 })();
