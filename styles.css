@@ -782,6 +782,15 @@ html[dir="rtl"] .mq > div {
 .sc::after {
   background: transparent;
 }
+#tech .sc::before {
+  z-index: 1;
+  background: rgba(16, 16, 16, 0.48);
+}
+#tech .sc h3,
+#tech .sc p,
+#tech .sc em {
+  z-index: 2;
+}
 .sc h3,
 .sc p {
   position: relative;
