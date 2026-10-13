@@ -669,3 +669,15 @@
     min-height: 220px;
   }
 }
+
+/* Leadership page only: keep the man in the suit visible on phones/tablets */
+@media (max-width: 991.98px) {
+  .leadership-hero .bg .photo-placeholder {
+    object-position: 28% 50% !important;
+  }
+}
+@media (max-width: 575.98px) {
+  .leadership-hero .bg .photo-placeholder {
+    object-position: 45% 50% !important;
+  }
+}
