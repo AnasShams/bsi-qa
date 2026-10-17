@@ -3,6 +3,7 @@
     badr: {
       name: "Dr. Badr Al-Hajri",
       role: "Chairman",
+      portfolio: "https://drbadralhajri.com/en",
       photo: "/assets/chairman-badr.jpg",
       photoPosition: "center center",
       paragraphs: [
@@ -17,6 +18,7 @@
     salman: {
       name: "Salman HR. Ahamed",
       role: "Vice Chairman",
+      portfolio: "https://www.salmanhr.com",
       photo: "/assets/vice-chairman-salman.png",
       photoPosition: "center center",
       paragraphs: [
@@ -36,6 +38,7 @@
   const role = document.querySelector("#leader-profile-role");
   const bio = document.querySelector("#leader-profile-bio");
   const portrait = document.querySelector("#leader-profile-photo");
+  const portfolioButton = document.querySelector("#leader-profile-portfolio");
   if (!profile) {
     name.textContent = "Leader profile not found";
     role.textContent = "Leadership";
@@ -46,6 +49,8 @@
   document.title = `${profile.name} | Leadership | Black Saber Industries`;
   name.textContent = profile.name;
   role.textContent = profile.role;
+  portfolioButton.href = profile.portfolio;
+  portfolioButton.textContent = "View Portfolio"; 
   portrait.dataset.photo = profile.photo;
   portrait.setAttribute("aria-label", `${profile.name} portrait`);
   const portraitImage = portrait.querySelector(".photo-placeholder");
