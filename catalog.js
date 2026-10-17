@@ -174,6 +174,11 @@
     const summary = document.querySelector("[data-detail-summary]");
     const backLink = document.querySelector("[data-detail-back]");
     const sections = detailSections;
+    const heroBg = document.querySelector(".catalog-detail-hero .bg");
+    if (heroBg) {
+      heroBg.dataset.photo = isService ? "/assets/services-hero.png" : "/assets/products-hero.png";
+      heroBg.dataset.photoMobile = isService ? "/assets/services-hero-mobile.jpg" : "/assets/products-hero-mobile.jpg";
+    }
     const subcategoryTitles = isService
       ? ["Planning & Design", "Execution & Integration", "Quality & Lifecycle Support"]
       : ["Configuration & Specification", "Manufacturing & Supply", "Quality & Delivery"];

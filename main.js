@@ -9,7 +9,7 @@
     if (root instanceof Element && root.matches(photoSurfaceSelector)) surfaces.push(root);
     if (root.querySelectorAll) surfaces.push(...root.querySelectorAll(photoSurfaceSelector));
     surfaces.forEach((surface) => {
-      if ([...surface.children].some((child) => child.classList.contains("photo-placeholder"))) return;
+      if (surface.querySelector(":scope > .photo-placeholder, :scope > picture > .photo-placeholder")) return;
       const image = document.createElement("img");
       image.className = "photo-placeholder";
       image.src = surface.dataset.photo || placeholderPhotoPath;
@@ -21,7 +21,16 @@
         image.style.objectPosition = surface.dataset.photoPosition ||
           (surface.dataset.photo ? "center center" : surface.style.backgroundPosition || "center center");
       }
-      surface.prepend(image);
+      if (surface.dataset.photoMobile) {
+        const picture = document.createElement("picture");
+        const source = document.createElement("source");
+        source.media = "(max-width: 575.98px)";
+        source.srcset = surface.dataset.photoMobile;
+        picture.append(source, image);
+        surface.prepend(picture);
+      } else {
+        surface.prepend(image);
+      }
     });
   };
   addPhotoPlaceholders();

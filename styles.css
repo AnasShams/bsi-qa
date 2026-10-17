@@ -368,7 +368,13 @@ nav .wrap {
 .hero .bg .photo-placeholder {
   z-index: -1;
 }
+.hero .bg picture {
+  display: contents;
+}
 @media (max-width: 575.98px) {
+  .hero .bg picture .photo-placeholder {
+    object-position: center center !important;
+  }
   #hbg .photo-placeholder {
     object-position: 60% 50% !important;
   }

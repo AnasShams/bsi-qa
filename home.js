@@ -33,7 +33,7 @@
   $("#caps").innerHTML = caps
     .map(
       (c, i) =>
-        `<a href="/capabilities.html" class="card" style="--d:${i * 0.07}s"><div class="img" ${c[2] ? `data-photo="${c[2]}"` : ""} style="height:90px;background-position:${i * 22}% 50%"></div><h3>${c[0]}</h3><p>${c[1]}</p></a>`,
+        `<div class="card" style="--d:${i * 0.07}s"><div class="img" ${c[2] ? `data-photo="${c[2]}"` : ""} style="height:90px;background-position:${i * 22}% 50%"></div><h3>${c[0]}</h3><p>${c[1]}</p></div>`,
     )
     .join("");
   $("#logos").innerHTML = "WE ADVANCE THE INDUSTRIES THAT ADVANCE THE WORLD."
@@ -54,7 +54,7 @@
   const pcs = pj
     .map(
       (p, i) =>
-        `<a href="/capabilities.html" class="pc"><div class="img" data-photo="${p[1]}" style="background-position:${i * 13}% 50%"></div><div class="t"><h3>${p[0]}</h3></div></a>`,
+        `<div class="pc"><div class="img" data-photo="${p[1]}" style="background-position:${i * 13}% 50%"></div><div class="t"><h3>${p[0]}</h3></div></div>`,
     )
     .join("");
   $("#pj").innerHTML = pcs + pcs;
