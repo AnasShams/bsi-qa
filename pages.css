@@ -720,3 +720,35 @@
   }
 }
 
+
+/* Capabilities hero: endlessly scroll the wide collage so the last panel flows into the first */
+.capabilities-hero .bg {
+  container-type: size;
+}
+.capabilities-hero .bg picture {
+  display: none;
+}
+.capabilities-hero .bg::before {
+  --tile: calc(100cqh * 2048 / 646);
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("/assets/capabilities-hero.png") 0 0 / auto 100% repeat-x;
+  animation: capabilities-hero-scroll 20s linear infinite;
+}
+@keyframes capabilities-hero-scroll {
+  to {
+    background-position-x: calc(var(--tile) * -1);
+  }
+}
+@media (max-width: 575.98px) {
+  .capabilities-hero .bg::before {
+    --tile: calc(100cqh * 1080 / 341);
+    background-image: url("/assets/capabilities-hero-mobile.jpg");
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .capabilities-hero .bg::before {
+    animation: none;
+  }
+}

@@ -143,7 +143,7 @@
     catalog.forEach((item, index) => {
       const card = document.createElement("a");
       card.className = "catalog-card";
-      card.href = `catalog-detail.html?type=${catalogType}&item=${slugify(item.title)}`;
+      card.href = `/${catalogType}/${slugify(item.title)}`;
       card.setAttribute("aria-label", item.title);
 
       const indexLabel = document.createElement("span");
@@ -164,8 +164,9 @@
 
   if (detailSections) {
     const params = new URLSearchParams(location.search);
-    const catalogType = params.get("type");
-    const itemSlug = params.get("item");
+    const pathMatch = location.pathname.match(/^\/(services|products)\/([^/]+)\/?$/);
+    const catalogType = pathMatch ? pathMatch[1] : params.get("type");
+    const itemSlug = pathMatch ? decodeURIComponent(pathMatch[2]) : params.get("item");
     const catalog = catalogs[catalogType];
     const item = catalog?.find((entry) => slugify(entry.title) === itemSlug);
     const isService = catalogType === "services";
@@ -192,7 +193,7 @@
     }
 
     const catalogLabel = isService ? "Services" : "Products";
-    backLink.href = `${catalogType}.html`;
+    backLink.href = `/${catalogType}`;
     backLink.textContent = isService ? "Back to Services" : "Back to Products";
     kicker.textContent = catalogLabel;
     heading.textContent = item.title;

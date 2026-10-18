@@ -154,23 +154,23 @@
     }, MIN_LOADER_MS);
 
     document.body.prepend(loader);
-    frame.src = "pre-loader-animation.html?embed=1";
+    frame.src = "/pre-loader-animation.html?embed=1";
   }
 
   const path =
-    location.pathname.replace(/\/index\.html$/, "").replace(/\/$/, "") || "/";
+    location.pathname.replace(/\/index(\.html)?$/, "").replace(/\.html$/, "").replace(/\/$/, "") || "/";
   const L = (h, t, c) =>
     `<a href="${h}"${path === h ? ' class="act"' : ""}${c ? ` class="${c}"` : ""}>${t}</a>`;
   const who = [
-    ["/about-us.html", "About Us"],
-    ["/leadership.html", "Leadership"],
-    ["/our-commitment.html", "Our Commitment"],
-    ["/our-partners.html", "Our Partners"],
+    ["/about-us", "About Us"],
+    ["/leadership", "Leadership"],
+    ["/our-commitment", "Our Commitment"],
+    ["/our-partners", "Our Partners"],
   ];
   const what = [
-    ["/capabilities.html", "Capabilities by Domain"],
-    ["/services.html", "Services"],
-    ["/products.html", "Products"],
+    ["/capabilities", "Capabilities by Domain"],
+    ["/services", "Services"],
+    ["/products", "Products"],
   ];
   const isActiveGroup = (items) => items.some(([href]) => path === href);
   const whoIsActive = isActiveGroup(who);
@@ -183,10 +183,10 @@
  <div>${L("/", "Home")}</div>
  <div><a class="${whoIsActive ? "act" : ""}" href="#" onclick="return false">Who We Are</a>${dd(who)}</div>
  <div><a class="${whatIsActive ? "act" : ""}" href="#" onclick="return false">What We Do</a>${dd(what)}</div>
- <div>${L("/technologies.html", "Technologies")}</div><div>${L("/our-facility.html", "Our Facility")}</div><div>${L("/our-people.html", "Our People")}</div><div>${L("/careers.html", "Careers")}</div>
+ <div>${L("/technologies", "Technologies")}</div><div>${L("/our-facility", "Our Facility")}</div><div>${L("/our-people", "Our People")}</div><div>${L("/careers", "Careers")}</div>
 </div>
-<div class="nr"><button class="language-toggle" id="language-toggle" type="button" aria-label="Switch to Arabic">العربية</button><a class="btn d" href="/connect.html">Connect</a><button class="burger" id="bg" aria-label="Menu" aria-expanded="false"><i></i><i></i><i></i></button></div>
-<div id="mm">${L("/", "Home")}<div class="g${whoIsActive ? " act" : ""}">Who We Are</div>${who.map((x) => `<a class="s${path === x[0] ? " act" : ""}" href="${x[0]}">${x[1]}</a>`).join("")}<div class="g${whatIsActive ? " act" : ""}">What We Do</div>${what.map((x) => `<a class="s${path === x[0] ? " act" : ""}" href="${x[0]}">${x[1]}</a>`).join("")}${L("/technologies.html", "Technologies")}${L("/our-facility.html", "Our Facility")}${L("/our-people.html", "Our People")}${L("/careers.html", "Careers")}</div>
+<div class="nr"><button class="language-toggle" id="language-toggle" type="button" aria-label="Switch to Arabic">العربية</button><a class="btn d" href="/connect">Connect</a><button class="burger" id="bg" aria-label="Menu" aria-expanded="false"><i></i><i></i><i></i></button></div>
+<div id="mm">${L("/", "Home")}<div class="g${whoIsActive ? " act" : ""}">Who We Are</div>${who.map((x) => `<a class="s${path === x[0] ? " act" : ""}" href="${x[0]}">${x[1]}</a>`).join("")}<div class="g${whatIsActive ? " act" : ""}">What We Do</div>${what.map((x) => `<a class="s${path === x[0] ? " act" : ""}" href="${x[0]}">${x[1]}</a>`).join("")}${L("/technologies", "Technologies")}${L("/our-facility", "Our Facility")}${L("/our-people", "Our People")}${L("/careers", "Careers")}</div>
 </div></nav>
 `;
   const footHTML = `<footer><div class="wrap">
@@ -194,9 +194,9 @@
 <div><h3>Helpful Links</h3>Black Saber Industries<br>Advanced Industrial Solutions</div>
 <div><h3>Who We Are</h3>${who.map((x) => `<a href="${x[0]}">${x[1]}</a>`).join("")}</div>
 <div><h3>What We Do</h3>${what.map((x) => `<a href="${x[0]}">${x[1]}</a>`).join("")}</div>
-<div><h3>More</h3><a href="/technologies.html">Technologies</a><a href="/our-facility.html">Our Facility</a><a href="/our-people.html">Our People</a><a href="/careers.html">Careers</a><a href="/connect.html">Contact Us</a></div></div></div>
-<section class="footer-cta" id="cta"><div class="mono">Connect</div><h2 data-split-view>Building a Sustainable Future Through Engineering Excellence</h2><p>BSI leads the transformation of industries by integrating renewable energy, automation, and innovation into every engineered solution.</p><div class="actions"><a class="btn p" href="/connect.html">CONTACT US</a></div></section></div>
-<div class="footer-bottom"><span>© 2026 Black Saber Industries All Rights Reserved</span><span><a href="/cookies.html">Cookies</a> · <a href="/terms.html">Terms of Use</a> · <a href="/privacy.html">Privacy</a></span></div></div></footer>`;
+<div><h3>More</h3><a href="/technologies">Technologies</a><a href="/our-facility">Our Facility</a><a href="/our-people">Our People</a><a href="/careers">Careers</a><a href="/connect">Contact Us</a></div></div></div>
+<section class="footer-cta" id="cta"><div class="mono">Connect</div><h2 data-split-view>Building a Sustainable Future Through Engineering Excellence</h2><p>BSI leads the transformation of industries by integrating renewable energy, automation, and innovation into every engineered solution.</p><div class="actions"><a class="btn p" href="/connect">CONTACT US</a></div></section></div>
+<div class="footer-bottom"><span>© 2026 Black Saber Industries All Rights Reserved</span><span><a href="/cookies">Cookies</a> · <a href="/terms">Terms of Use</a> · <a href="/privacy">Privacy</a></span></div></div></footer>`;
   $("#site-nav").innerHTML = navHTML;
   $("#site-footer").innerHTML = footHTML;
 
