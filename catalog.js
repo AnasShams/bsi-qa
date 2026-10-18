@@ -885,7 +885,7 @@
         "subcategories": [
           {
             "name": "Cables & Wires",
-            "image": "/assets/electrical--product.png",
+            "image": "/assets/electrical-cables-product.png",
             "points": [
               "LV power cables — XLPE/PVC, Cu/Al, MV power cables — up to 33 kV, HV cables and accessories (on request).",
               "Control and instrumentation cables, fire-resistant and LSZH cables, building wires and flexible cords, armoured cables (SWA/AWA).",
@@ -1220,7 +1220,7 @@
           },
           {
             "name": "Fasteners & Fixings",
-            "image": "/assets/tools--fastenersproduct.png",
+            "image": "/assets/tools-fasteners-product.png",
             "points": [
               "Bolts, nuts and washers — general hardware.",
               "Anchors — mechanical and chemical, threaded rods.",
