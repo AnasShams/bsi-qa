@@ -1514,12 +1514,6 @@
     kicker.textContent = catalogLabel;
     heading.textContent = item.title;
     summary.textContent = item.description;
-    summary.parentNode.querySelector("[data-detail-count]")?.remove();
-    const detailCount = document.createElement("p");
-    detailCount.dataset.detailCount = "";
-    detailCount.className = "catalog-detail-count";
-    detailCount.textContent = `${countLabel(item)} under ${item.title}.`;
-    summary.after(detailCount);
     document.title = `${item.title} | ${catalogLabel} | Black Saber Industries`;
 
     const placeholderText = [
