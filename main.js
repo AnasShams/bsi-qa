@@ -33,6 +33,20 @@
       }
     });
   };
+  // Low Power Mode / data saver can block autoplay; retry on the first user gesture.
+  const keepVideosPlaying = () => {
+    const videos = [...document.querySelectorAll("video[autoplay]")];
+    const tryPlay = () => videos.forEach((video) => {
+      video.muted = true;
+      if (video.paused) video.play().catch(() => {});
+    });
+    tryPlay();
+    ["touchstart", "pointerdown", "click", "scroll", "keydown"].forEach((type) =>
+      window.addEventListener(type, tryPlay, { once: true, passive: true }));
+    document.addEventListener("visibilitychange", () => !document.hidden && tryPlay());
+    videos.forEach((video) => video.addEventListener("pause", () => !document.hidden && setTimeout(tryPlay, 300)));
+  };
+  keepVideosPlaying();
   addPhotoPlaceholders();
   const photoSurfaceObserver = new MutationObserver((records) => {
     records.forEach((record) => record.addedNodes.forEach((node) => {

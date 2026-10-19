@@ -21,7 +21,18 @@
     <div id="cur"></div>
     <div id="site-nav"></div>
     <header class="hero ph">
-      <div class="bg" style="background-position: 70% 50%" data-photo="/assets/our-commitment-hero.mp4" data-photo-mobile="/assets/our-commitment-hero.mp4" aria-hidden="true"></div>
+      <video
+        class="bg hero-video"
+        style="object-position: 70% 50%"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="auto"
+        aria-hidden="true"
+      >
+        <source src="/assets/our-commitment-hero.mp4" type="video/mp4" />
+      </video>
       <div class="wrap">
         <div class="mono fade">Our Commitment</div>
         <h1 data-split>Engineering with Responsibility</h1>
