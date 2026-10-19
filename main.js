@@ -9,7 +9,7 @@
     if (root instanceof Element && root.matches(photoSurfaceSelector)) surfaces.push(root);
     if (root.querySelectorAll) surfaces.push(...root.querySelectorAll(photoSurfaceSelector));
     surfaces.forEach((surface) => {
-      if (surface.querySelector(":scope > .photo-placeholder, :scope > picture > .photo-placeholder")) return;
+      if (surface.querySelector(":scope > .photo-placeholder, :scope > picture > .photo-placeholder, :scope > video")) return;
       const image = document.createElement("img");
       image.className = "photo-placeholder";
       image.src = surface.dataset.photo || placeholderPhotoPath;
