@@ -1537,7 +1537,14 @@
       copy.className = "catalog-detail-copy";
       const number = document.createElement("div");
       number.className = "mono rv";
-      number.textContent = `${String(index + 1).padStart(2, "0")} / ${catalogLabel}`;
+      // Separate text nodes so the translator can match "Services" / "Products" on their own.
+      const numberIndex = document.createElement("span");
+      numberIndex.textContent = String(index + 1).padStart(2, "0");
+      const numberSeparator = document.createElement("span");
+      numberSeparator.textContent = " / ";
+      const numberType = document.createElement("span");
+      numberType.textContent = catalogLabel;
+      number.append(numberIndex, numberSeparator, numberType);
       const subheading = document.createElement("h3");
       subheading.className = "rv";
       subheading.textContent = title;
