@@ -2,6 +2,91 @@
 (function () {
   const $ = (s) => document.querySelector(s),
     $$ = (s) => [...document.querySelectorAll(s)];
+
+  const trustedCards = $$(".trusted-card");
+  const mobileDetailTitle = $("#trusted-mobile-title");
+  const mobileDetailDescription = $("#trusted-mobile-description");
+  const trustedGrid = $(".trusted-grid");
+  const mobileQuery = matchMedia("(max-width: 575.98px)");
+
+  trustedCards.forEach((item) => {
+    const letter = item.querySelector(".trusted-letter");
+    letter.dataset.letter = letter.textContent.trim();
+    letter.dataset.outlineClass = letter.classList.contains("trusted-letter-outline-maroon")
+      ? "trusted-letter-outline-maroon"
+      : "trusted-letter-outline-black";
+  });
+
+  const selectTrustedCard = (card, scrollToCard = false) => {
+    trustedCards.forEach((item) => {
+      item.classList.remove("is-active");
+      const itemLetter = item.querySelector(".trusted-letter");
+      itemLetter.classList.remove("trusted-letter-mobile-active");
+      itemLetter.classList.remove("trusted-letter-outline-black", "trusted-letter-outline-maroon");
+      itemLetter.classList.add(itemLetter.dataset.outlineClass);
+    });
+    card.classList.add("is-active");
+    if (mobileQuery.matches) {
+      const cardLetter = card.querySelector(".trusted-letter");
+      cardLetter.classList.remove("trusted-letter-outline-black", "trusted-letter-outline-maroon");
+      cardLetter.classList.add("trusted-letter-mobile-active");
+      mobileDetailTitle.textContent = card.querySelector("h3").textContent;
+      mobileDetailDescription.textContent = card.querySelector("p").textContent;
+      if (scrollToCard) card.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
+    }
+  };
+
+  trustedCards.forEach((card) => {
+    card.addEventListener("click", () => {
+      if (mobileQuery.matches) selectTrustedCard(card, true);
+    });
+  });
+
+  const resetDesktopTrustedCards = () => {
+    if (mobileQuery.matches) return;
+    trustedCards.forEach((card) => {
+      card.classList.remove("is-active");
+      const letter = card.querySelector(".trusted-letter");
+      letter.classList.remove("trusted-letter-mobile-active");
+      letter.classList.remove("trusted-letter-outline-black", "trusted-letter-outline-maroon");
+      letter.classList.add(letter.dataset.outlineClass);
+    });
+  };
+  resetDesktopTrustedCards();
+  mobileQuery.addEventListener("change", resetDesktopTrustedCards);
+
+  if (trustedGrid && trustedCards.length) {
+    if (mobileQuery.matches) selectTrustedCard(trustedCards[0]);
+    let mobileScrollFrame;
+    trustedGrid.addEventListener("scroll", () => {
+      cancelAnimationFrame(mobileScrollFrame);
+      mobileScrollFrame = requestAnimationFrame(() => {
+        if (!mobileQuery.matches) return;
+        const gridRect = trustedGrid.getBoundingClientRect();
+        const gridCenter = gridRect.left + gridRect.width / 2;
+        let closestCard = trustedCards[0];
+        let closestDistance = Infinity;
+        trustedCards.forEach((card) => {
+          const cardRect = card.getBoundingClientRect();
+          const distance = Math.abs(cardRect.left + cardRect.width / 2 - gridCenter);
+          if (distance < closestDistance) {
+            closestDistance = distance;
+            closestCard = card;
+          }
+        });
+        selectTrustedCard(closestCard);
+      });
+    }, { passive: true });
+  }
+  document.addEventListener("click", (event) => {
+    if (!event.target.closest(".trusted-card")) {
+      trustedCards.forEach((card) => {
+        card.classList.remove("is-active");
+        card.blur();
+      });
+    }
+  });
+
   splitWords($("#h1"), 0.12, 0.15);
   const caps = [
     [
