@@ -210,8 +210,11 @@
 <div><h3>What We Do</h3>${what.map((x) => `<a href="${x[0]}">${x[1]}</a>`).join("")}</div>
 <div><h3>More</h3><a href="/technologies">Technologies</a><a href="/our-facility">Our Facility</a><a href="/our-people">Our People</a><a href="/careers">Careers</a><a href="/connect">Contact Us</a></div></div></div>
 <section class="footer-cta" id="cta"><div class="mono">Connect</div><h2 data-split-view>Building a Sustainable Future Through Engineering Excellence</h2><p>BSI leads the transformation of industries by integrating renewable energy, automation, and innovation into every engineered solution.</p><div class="actions"><a class="btn p" href="/connect">CONTACT US</a></div></section></div>
-<div class="footer-bottom"><span>© 2026 Black Saber Industries All Rights Reserved</span><span><a href="/cookies">Cookies</a> · <a href="/terms">Terms of Use</a> · <a href="/privacy">Privacy</a></span></div></div></footer>`;
-  $("#site-nav").innerHTML = navHTML;
+<div class="footer-bottom"><span>© 2026 Black Saber Industries All Rights Reserved</span><span class="footer-legal"><span class="footer-social">
+<a href="https://www.instagram.com/bsi.group_/" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+<a href="https://x.com/bsigroup_" aria-label="X" target="_blank" rel="noopener noreferrer"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+<a href="https://www.linkedin.com/company/bsi-group-gcc/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+</span><span><a href="/cookies">Cookies</a> · <a href="/terms">Terms of Use</a> · <a href="/privacy">Privacy</a></span></span></div></div></footer>`;  $("#site-nav").innerHTML = navHTML;
   $("#site-footer").innerHTML = footHTML;
 
   const languageToggle = $("#language-toggle");

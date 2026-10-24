@@ -586,6 +586,7 @@
             "name": "Equipment & Vehicle Rental",
             "image": "/assets/logistics-equipment-service.png",
             "points": [
+              "Cranes (All-Terrain, Rough-Terrain, Crawler, and Boom Trucks) up to 1,200 tons, operated by certified Aramco and TÜV operators.",
               "Flatbed and multi-axle low-bed trailer rental, SPMT rental, earthmoving equipment rental, generators.",
               "Compressors and lighting towers, water and sewage tankers, dump trucks and tippers.",
               "Buses and staff transportation, pickups and light vehicles, porta-cabin and container rental."
@@ -738,15 +739,6 @@
               "Topographic and setting-out surveys.",
               "Geotechnical investigation (accredited labs).",
               "Utility detection — GPR and locators."
-            ]
-          },
-          {
-            "name": "Materials Testing & QA/QC",
-            "image": "/assets/engineering-materials-service.png",
-            "points": [
-              "Construction materials testing, concrete cube and core testing.",
-              "Field density and compaction testing, QA/QC management and ITPs.",
-              "Third-party inspection coordination."
             ]
           },
           {
