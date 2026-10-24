@@ -1045,7 +1045,7 @@ window.BSI_AR_TRANSLATIONS = {
   "Camp maintenance — MEP and civil, recreation and welfare facilities.": "صيانة المعسكرات – الهندسة الكهربائية والميكانيكية والمرافق المدنية والترفيهية والرعاية الاجتماعية.",
   "Camp security and access control.": "أمن المخيم والتحكم في الوصول.",
   "Camp Infrastructure": "البنية التحتية للمخيم",
-  "Labour camp setup — modular and porta-cabins, camp utilities — water.": "إعداد معسكر العمل - كبائن معيارية ومتنقلة، ومرافق المعسكر - المياه.",
+  "Labour camp setup — modular and porta-cabins, camp utilities.": "إعداد معسكر العمل - كبائن معيارية ومتنقلة، ومرافق المعسكر.",
   "Sewage and power, kitchen and dining-hall fit-out.": "تجهيزات الصرف الصحي والكهرباء والمطبخ وقاعة الطعام.",
   "Temporary site offices and welfare facilities.": "مكاتب الموقع المؤقتة ومرافق الرعاية الاجتماعية.",
   "Fit-out, Interiors \u0026 Landscape": "التجهيز والديكور الداخلي والمناظر الطبيعية",

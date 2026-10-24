@@ -684,7 +684,7 @@
             "name": "Camp Infrastructure",
             "image": "/assets/camp-infrastructure-service.png",
             "points": [
-              "Labour camp setup — modular and porta-cabins, camp utilities — water.",
+              "Labour camp setup — modular and porta-cabins, camp utilities.",
               "Sewage and power, kitchen and dining-hall fit-out.",
               "Temporary site offices and welfare facilities."
             ]
