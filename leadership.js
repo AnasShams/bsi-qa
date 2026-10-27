@@ -62,8 +62,13 @@
   document.title = `${profile.name} | Leadership | Black Sands Industries`;
   name.textContent = profile.name;
   role.textContent = profile.role;
-  portfolioButton.href = profile.portfolio;
-  portfolioButton.textContent = "View Portfolio"; 
+  if (profile.portfolio) {
+    portfolioButton.href = profile.portfolio;
+    portfolioButton.textContent = "View Portfolio";
+    portfolioButton.style.display = "inline-flex";
+  } else {
+    portfolioButton.style.display = "none";
+  }
   portrait.dataset.photo = profile.photo;
   portrait.setAttribute("aria-label", `${profile.name} portrait`);
   const portraitImage = portrait.querySelector(".photo-placeholder");
