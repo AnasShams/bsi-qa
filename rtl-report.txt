@@ -1,0 +1,44 @@
+=== CSS ===
+./styles.css:210:  left: 0;
+./styles.css:278:  left: 0;
+./styles.css:281:  transform: scaleX(0);
+./styles.css:291:  transform: scaleX(1);
+./styles.css:296:  left: 0;
+./styles.css:322:  transform: translateX(3px);
+./styles.css:631:  left: 0;
+./styles.css:638:  text-align: left;
+./styles.css:799:  text-align: right;
+./styles.css:802:  text-align: right;
+./styles.css:837:    transform: translateX(var(--mq-end));
+./styles.css:1264:  transform: rotate(135deg);
+./styles.css:1302:  border-left: 2px solid var(--line);
+./styles.css:1303:  padding-left: clamp(24px, 3vw, 42px);
+./styles.css:1447:  left: 20px;
+./styles.css:1482:  margin-left: 68px;
+./styles.css:1484:    margin-left 0.45s cubic-bezier(0.2, 0.7, 0.2, 1),
+./styles.css:1495:    left: 0;
+./styles.css:1505:    margin-left: 0;
+./styles.css:1556:    border-left: 0;
+./styles.css:1662:  transform: translateY(7px) rotate(45deg);
+./styles.css:1668:  transform: translateY(-7px) rotate(-45deg);
+./styles.css:1706:  padding-left: 16px;
+./styles.css:1752:  left: auto;
+./styles.css:1755:  border-left: 0;
+./styles.css:1757:  padding-left: 0;
+./styles.css:1786:    transform: translateY(80px) scale(0.88) rotate(2.5deg);
+./styles.css:1862:  left: auto;
+./styles.css:1874:  text-align: right;
+./styles.css:1883:  transform: scaleX(-1);
+./pages.css:314:  left: 4px;
+
+=== Arrow characters ===
+./pre-loader-animation.html:34:→
+./pre-loader-animation.html:35:→
+./pre-loader-animation.html:125:→
+./pre-loader-animation.html:146:→
+./pre-loader-animation.html:146:→
+./pre-loader-animation.html:172:→
+./pre-loader-animation.html:280:→
+./pre-loader-animation.html:314:→
+
+=== Inline styles with left/right ===

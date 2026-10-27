@@ -1,0 +1,290 @@
+/* vision-mission-3d.css
+   3D scenes for "Our Vision" and "Our Mission" on about-us.
+   Pure CSS 3D, no libraries. Everything is scoped under .b3d. */
+
+.b3d {
+  --s: 1;                 /* scene scale, set by JS from the box width */
+  --gap: 56px;            /* spacing between mission slabs */
+  --maroon: #8A1538;
+  --neon: #ff2d6f;
+  --blush: #ffe3ea;
+  --panel-glow: linear-gradient(transparent, transparent);
+  position: relative;
+  width: 100%;
+  aspect-ratio: 5 / 4;
+  min-height: 320px;
+  isolation: isolate;
+  touch-action: pan-y;
+}
+
+/* The rounded panel is drawn on a pseudo-element instead of clipping the
+   3D scene with overflow:hidden + border-radius. Clipping a live 3D scene
+   forces the browser to re-composite it and can cause one-frame flicker. */
+.b3d::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: var(--b3d-radius, 18px);
+  border: 1px solid rgba(255, 255, 255, .08);
+  background:
+    var(--panel-glow),
+    radial-gradient(110% 80% at 50% 40%, rgba(138, 21, 56, .30), transparent 62%),
+    linear-gradient(160deg, #1c1b1d, #0a0a0b);
+}
+/* Floor glow under the mission stack: flat, so it never enters the 3D sort */
+.b3d[data-bsi3d="mission"] {
+  --panel-glow: radial-gradient(34% 12% at 50% 78%, rgba(255, 45, 111, .42), transparent 72%);
+}
+
+/* Vision has a large floor grid, so crop it to the frame. clip-path is used
+   instead of overflow:hidden because Safari ignores rounded overflow clips
+   on 3D content. The mission scene stays unclipped on purpose. */
+.b3d[data-bsi3d="vision"] {
+  clip-path: inset(0 round var(--b3d-radius, 18px));
+}
+
+.b3d-scene {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;   /* only the frame itself reacts to the pointer */
+  perspective: 1000px;
+  perspective-origin: 50% 45%;
+  opacity: 0;
+  transition: opacity .9s ease;
+}
+.b3d.has-entered .b3d-scene { opacity: 1; }
+
+.b3d-intro,
+.b3d-world {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+}
+.b3d-intro {
+  transform: scale(.86);
+  transition: transform 1.2s cubic-bezier(.2, .8, .2, 1);
+}
+.b3d.has-entered .b3d-intro { transform: none; }
+
+@keyframes b3d-rx { to { transform: rotateX(360deg); } }
+@keyframes b3d-ry { to { transform: rotateY(360deg); } }
+@keyframes b3d-grid { to { background-position: 0 42px; } }
+@keyframes b3d-pulse {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.09); }
+}
+
+/* ---------- Vision: gyroscope rings around a glowing core ---------- */
+
+.v-floor {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 440px;
+  height: 440px;
+  margin: -220px 0 0 -220px;
+  transform: translateY(176px) rotateX(90deg);
+  background-image:
+    linear-gradient(rgba(255, 45, 111, .38) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 45, 111, .38) 1px, transparent 1px);
+  background-size: 42px 42px;
+  -webkit-mask-image: radial-gradient(closest-side, #000 15%, transparent 100%);
+          mask-image: radial-gradient(closest-side, #000 15%, transparent 100%);
+  animation: b3d-grid 5s linear infinite;
+}
+
+.v-ring {
+  position: absolute;
+  inset: 11%;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, .3);
+  transform-style: preserve-3d;
+}
+.v-ring::after {
+  content: "";
+  position: absolute;
+  top: -6px;
+  left: calc(50% - 6px);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--dot, var(--neon));
+  box-shadow: 0 0 16px 3px var(--glow, rgba(255, 45, 111, .8));
+}
+.v-ring.r1 {
+  inset: auto;
+  left: 50%;
+  top: 50%;
+  width: 330px;
+  height: 330px;
+  margin: -165px 0 0 -165px;
+  border-color: rgba(255, 45, 111, .7);
+  animation: b3d-ry 18s linear infinite;
+}
+.v-ring.r2 {
+  border-style: dashed;
+  --dot: #fff;
+  --glow: rgba(255, 255, 255, .6);
+  animation: b3d-rx 13s linear infinite reverse;
+}
+.v-ring.r3 {
+  border-width: 3px;
+  border-color: rgba(138, 21, 56, .95);
+  --dot: var(--blush);
+  --glow: rgba(255, 227, 234, .7);
+  animation: b3d-ry 9s linear infinite;
+}
+
+.v-core {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 64px;
+  height: 64px;
+  margin: -32px 0 0 -32px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, var(--blush) 0, var(--neon) 34%, var(--maroon) 74%, #3a0b19);
+  box-shadow: 0 0 44px 8px rgba(255, 45, 111, .45);
+  animation: b3d-pulse 3.2s ease-in-out infinite;
+}
+
+/* ---------- Mission: a stack of slabs, widest at the base ---------- */
+
+.m-stack {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  animation: b3d-ry 26s linear infinite;
+}
+
+.m-slab {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 220px;
+  height: 220px;
+  margin: -110px 0 0 -110px;
+  transform-style: preserve-3d;
+  transform:
+    translateY(calc((var(--i) - 1.5) * var(--gap)))
+    rotateX(90deg)
+    scale(calc(.72 + var(--i) * .09));
+  transition: transform .7s cubic-bezier(.2, .8, .2, 1);
+}
+.m-slab.s0 { --c1: #ff2d6f; --c2: #8A1538; }
+.m-slab.s1 { --c1: #a3194a; --c2: #5e0f27; }
+.m-slab.s2 { --c1: #6b1230; --c2: #3a0b19; }
+.m-slab.s3 { --c1: #3a3a3d; --c2: #1d1d1f; }
+
+/* Each face points outward and hides itself when it faces away from the
+   viewer, so the browser only draws the 3 faces of each slab you can see
+   and never has to depth-sort a slab's front faces against its back faces. */
+.m-face {
+  position: absolute;
+  left: 0;
+  top: 0;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+}
+.m-top,
+.m-bot { width: 220px; height: 220px; }
+.m-top {
+  transform: translateZ(10px);
+  background:
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, .10) 0 1px, transparent 1px 22px),
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, .10) 0 1px, transparent 1px 22px),
+    linear-gradient(135deg, var(--c1), var(--c2));
+  box-shadow: inset 0 0 0 1px rgba(255, 227, 234, .45);
+}
+.m-bot {
+  transform: rotateY(180deg) translateZ(10px);
+  background: var(--c2);
+}
+.m-side {
+  width: 220px;
+  height: 20px;
+  top: 100px;
+  background: var(--c2);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .12);
+  transform: rotateZ(var(--a)) translateY(-110px) rotateX(90deg);
+}
+
+@media (hover: hover) {
+  .b3d:hover { --gap: 84px; }
+}
+
+/* ---------- Performance and accessibility ---------- */
+
+/* Pause everything while the scene is off screen */
+.b3d:not(.is-live) *,
+.b3d:not(.is-live) *::before,
+.b3d:not(.is-live) *::after {
+  animation-play-state: paused !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .b3d *,
+  .b3d *::before,
+  .b3d *::after { animation: none !important; }
+  .b3d-scene,
+  .b3d-intro,
+  .m-slab { transition: none; }
+}
+
+/* ---------- Full-width layout: the scene sits behind the copy ---------- */
+
+.b3d-hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: clamp(440px, 44vw, 560px);
+}
+.b3d-hero--mission { justify-content: flex-end; }
+
+/* The frame fills the whole row and the copy is painted on top of it */
+.b3d-hero > .b3d {
+  position: absolute;
+  inset: 0;
+  width: auto;
+  aspect-ratio: auto;
+  min-height: 0;
+}
+
+/* The 3D object lives in the half opposite the copy, so it never sits
+   behind the text. Logical properties flip it automatically in Arabic (RTL). */
+.b3d-hero > .b3d .b3d-scene { width: 58%; }
+.b3d-hero > .b3d[data-bsi3d="vision"] .b3d-scene { inset-inline: auto 0; }
+.b3d-hero > .b3d[data-bsi3d="mission"] .b3d-scene { inset-inline: 0 auto; }
+
+.b3d-copy {
+  position: relative;
+  z-index: 1;
+  max-width: min(560px, 50%);
+  padding: clamp(28px, 4vw, 64px);
+}
+/* The frame is dark, so the copy switches to light text */
+.b3d-hero .b3d-copy h2 { color: #fff; }
+.b3d-hero .b3d-copy .lead { color: rgba(255, 255, 255, .78); }
+
+@media (hover: hover) {
+  .b3d-hero:hover > .b3d { --gap: 84px; }
+}
+
+/* Tablet and phone: copy on top, scene underneath */
+@media (max-width: 991.98px) {
+  .b3d-hero,
+  .b3d-hero--mission {
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    min-height: 0;
+    padding-bottom: 300px;
+  }
+  .b3d-copy { max-width: none; }
+  .b3d-hero > .b3d[data-bsi3d] .b3d-scene {
+    inset: auto 0 0 0;
+    width: auto;
+    height: 300px;
+  }
+}
