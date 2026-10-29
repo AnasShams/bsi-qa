@@ -361,8 +361,8 @@ footer .fine{margin-top:40px;padding-top:20px;border-top:1px solid #7a3a4d;font-
 #bar{position:fixed;top:0;left:0;right:0;height:3px;background:var(--primary);transform:scaleX(0);transform-origin:left;z-index:30}
 header{transition:box-shadow .3s}
 header.on{box-shadow:0 6px 24px rgba(16,16,16,.08)}
-nav a:not(.btn)::after{content:'';position:absolute;left:0;bottom:-6px;height:2px;width:100%;background:var(--primary);transform:scaleX(0);transform-origin:left;transition:transform .3s}
-nav a:not(.btn):hover::after{transform:scaleX(1)}
+.pill > div > a::after{content:'';position:absolute;left:0;bottom:-6px;height:2px;width:100%;background:var(--primary);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.pill > div > a:hover::after{transform:scaleX(1)}
 .hero::before{content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(83,19,38,.94) 0%,rgba(83,19,38,.65) 55%,rgba(16,16,16,.35) 100%),var(--img-hero) center/cover;animation:zoom 24s ease-out forwards}
 .hero .wrap{position:relative}
 .waves{z-index:1}
