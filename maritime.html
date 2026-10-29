@@ -518,10 +518,71 @@ input:focus,textarea:focus{outline:0;border-color:var(--primary);box-shadow:0 0 
   }
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+/* Custom maroon cursor */
+@media (hover: hover) and (pointer: fine) {
+  body {
+    cursor: none;
+  }
+
+  body a,
+  body button,
+  body input,
+  body select,
+  body textarea,
+  body summary {
+    cursor: none;
+  }
+
+  #cur {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 14px;
+    height: 14px;
+    background: #761B35;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 99999;
+    transform: translate(-50%, -50%);
+    transition: width 0.2s ease, height 0.2s ease,
+                opacity 0.2s ease;
+    opacity: 0;
+  }
+
+  #cur.visible {
+    opacity: 1;
+  }
+
+  #cur.big {
+    width: 32px;
+    height: 32px;
+  }
+
+  body.native-cursor,
+  body.native-cursor a,
+  body.native-cursor button,
+  body.native-cursor input,
+  body.native-cursor select,
+  body.native-cursor textarea,
+  body.native-cursor summary {
+    cursor: auto;
+  }
+
+  body.native-cursor #cur {
+    opacity: 0;
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+  #cur {
+    display: none;
+  }
+}
 </style>
 </head>
 <body>
 <div id="bar"></div>
+<div id="cur" aria-hidden="true"></div>
 
 <nav aria-label="Main navigation">
   <div class="wrap">
@@ -844,6 +905,35 @@ window.addEventListener("resize", () => {
   observer.observe(document.getElementById("panel"), {
     childList: true,
     subtree: true
+  });
+})();
+(() => {
+  const cur = document.getElementById("cur");
+  if (!cur || matchMedia("(hover: none), (pointer: coarse)").matches) return;
+
+  const nativeCursorTargets =
+    'a[href],button:not(:disabled),[role="button"],' +
+    'input:not(:disabled),select:not(:disabled),' +
+    'textarea:not(:disabled),summary,iframe.reach-map-frame';
+
+  document.addEventListener("pointermove", (e) => {
+    cur.style.left = e.clientX + "px";
+    cur.style.top = e.clientY + "px";
+    cur.classList.add("visible");
+  });
+
+  document.addEventListener("pointerover", (e) => {
+    const target = e.target.closest?.(nativeCursorTargets);
+    document.body.classList.toggle("native-cursor", !!target);
+    cur.classList.toggle("big", !!target);
+  });
+
+  document.addEventListener("pointerleave", () => {
+    cur.classList.remove("visible");
+  });
+
+  document.addEventListener("pointerenter", () => {
+    cur.classList.add("visible");
   });
 })();
 
