@@ -1457,5 +1457,381 @@ window.BSI_AR_TRANSLATIONS = {
   "Building industries with precision, responsibility, and purpose. Reach out to us across energy, infrastructure, logistics, and support services to discuss how we can contribute.": "نعمل على بناء القطاعات الصناعية بدقة ومسؤولية وهدف واضح. تواصلوا معنا في مجالات الطاقة، والبنية التحتية، والخدمات اللوجستية، والخدمات المساندة، لنناقش كيف يمكننا تقديم مساهمتنا في هذا الشأن.",
   "Cranes (All-Terrain, Rough-Terrain, Crawler, and Boom Trucks) up to 1,200 tons, operated by certified Aramco and TÜV operators.": "رافعات (متعددة التضاريس، ومخصصة للمناطق الوعرة، ومجنزرة، ومثبتة على شاحنات) تصل قدرتها إلى 1200 طن، يشغلها مشغلون معتمدون من \"أرامكو\" و\"تي يو في\" (TÜV).",
   "Director": "المدير",
-  "Mustafa Ebrahim Al Salman": "مصطفى إبراهيم السلمان"
+  "Mustafa Ebrahim Al Salman": "مصطفى إبراهيم السلمان",
+    // BSI Maritime & Shipping — Arabic translations
+
+  "Maritime & Shipping": "الخدمات البحرية والشحن",
+  "BSI Maritime home": "الرئيسية - بي إس آي للخدمات البحرية",
+  "Switch to Arabic": "التبديل إلى العربية",
+  "Switch to English": "التبديل إلى الإنجليزية",
+  "Open menu": "فتح القائمة",
+  "Home": "الرئيسية",
+  "About": "من نحن",
+  "About us": "من نحن",
+  "Services": "الخدمات",
+  "Our services": "خدماتنا",
+  "Insights": "رؤى ومقالات",
+  "Contact": "اتصل بنا",
+  "Request a quote": "اطلب عرض سعر",
+  "See our services": "استكشف خدماتنا",
+
+  "A BSI company": "إحدى شركات BSI",
+  "We meet your expectations.": "نرتقي إلى مستوى توقعاتكم.",
+  "Reliable maritime and shipping solutions. Streamline your cargo needs with efficient, trusted services. From timely deliveries to seamless logistics, we make sure your goods reach their destination safely and on time.":
+    "حلول بحرية وخدمات شحن موثوقة. نسهّل احتياجاتكم المتعلقة بالبضائع من خلال خدمات فعّالة وجديرة بالثقة. ومن التسليم في الوقت المحدد إلى الخدمات اللوجستية المتكاملة، نضمن وصول بضائعكم إلى وجهتها بأمان وفي الموعد المحدد.",
+
+  "BSI Maritime & Shipping is a shipping and logistics provider specializing in seamless sea freight solutions, including customs clearance, chartering, break bulk movement and ship management. Our commitment to reliability, efficiency and customer satisfaction drives us to deliver excellence across local and international trade.":
+    "تُعدّ BSI Maritime & Shipping شركة متخصصة في الشحن والخدمات اللوجستية، وتقدم حلولاً متكاملة للشحن البحري، تشمل التخليص الجمركي وتأجير السفن ونقل البضائع السائبة وإدارة السفن. ويدفعنا التزامنا بالموثوقية والكفاءة ورضا العملاء إلى تقديم خدمات متميزة في التجارة المحلية والدولية.",
+
+  "Placeholder image": "صورة توضيحية",
+  "With a customer-focused approach, advanced technology and a global network, we strive to make shipping simple, fast and dependable.":
+    "نسعى إلى جعل الشحن أكثر سهولة وسرعة وموثوقية، من خلال التركيز على العملاء واستخدام التقنيات المتقدمة والاستفادة من شبكتنا العالمية.",
+
+  "Our vision": "رؤيتنا",
+  "To be the most trusted and innovative logistics partner, connecting businesses and communities worldwide with excellence.":
+    "أن نكون الشريك اللوجستي الأكثر موثوقية وابتكاراً، وأن نربط الشركات والمجتمعات حول العالم من خلال التميز.",
+
+  "Our mission": "رسالتنا",
+  "To provide top-tier logistics solutions that prioritize customer satisfaction, efficiency and sustainability, ensuring seamless delivery experiences every time.":
+    "تقديم حلول لوجستية رفيعة المستوى تضع رضا العملاء والكفاءة والاستدامة في مقدمة أولوياتها، لضمان تجربة تسليم سلسة في كل مرة.",
+
+  "Transparency": "الشفافية",
+  "We maintain open and honest communication with our clients, ensuring trust and clarity in every transaction.":
+    "نحرص على التواصل الصريح والواضح مع عملائنا، بما يعزز الثقة والوضوح في جميع المعاملات.",
+
+  "Reliability": "الموثوقية",
+  "Our commitment to dependable service ensures your cargo is delivered safely and on time, every time.":
+    "يضمن التزامنا بتقديم خدمات موثوقة وصول بضائعكم بأمان وفي الموعد المحدد في كل مرة.",
+
+  "Efficiency": "الكفاءة",
+  "We continually optimize our processes to provide the best solutions, saving you time and resources.":
+    "نعمل باستمرار على تحسين عملياتنا لتقديم أفضل الحلول وتوفير وقتكم ومواردكم.",
+
+  "Reliable sea freight, customs clearance, chartering and ship management, ensuring efficient and timely delivery locally and internationally.":
+    "خدمات موثوقة للشحن البحري والتخليص الجمركي وتأجير السفن وإدارتها، لضمان التسليم بكفاءة وفي الوقت المحدد محلياً ودولياً.",
+
+  "Why choose us?": "لماذا تختارنا؟",
+  "We strive to be your trusted logistics partner by delivering unmatched quality and service. Here’s why customers choose us.":
+    "نسعى إلى أن نكون شريككم اللوجستي الموثوق من خلال تقديم جودة وخدمات متميزة. إليكم الأسباب التي تجعل عملاءنا يختاروننا.",
+
+  "Reliable": "الموثوقية",
+  "Timely delivery and safe handling are at the core of our services.":
+    "يشكّل التسليم في الوقت المحدد والتعامل الآمن مع البضائع جوهر خدماتنا.",
+
+  "Timely delivery": "التسليم في الوقت المحدد",
+  "Flexible scheduling and routing built around your deadlines.":
+    "جداول زمنية ومسارات مرنة مصممة بما يتناسب مع مواعيدكم النهائية.",
+
+  "Extensive network": "شبكة واسعة",
+  "A robust network of carriers and partners for global reach and local expertise.":
+    "شبكة قوية من شركات النقل والشركاء تتيح لنا الوصول إلى الأسواق العالمية والاستفادة من الخبرات المحلية.",
+
+  "Customized solutions": "حلول مخصصة",
+  "Plans tailored to your cargo, goals and timeline.":
+    "حلول مصممة وفقاً لطبيعة بضائعكم وأهدافكم والجدول الزمني المطلوب.",
+
+  "Expert team": "فريق من الخبراء",
+  "Experienced professionals who guide every step of the process.":
+    "متخصصون ذوو خبرة يرافقونكم ويوجهونكم في كل خطوة من خطوات العملية.",
+
+  "Competitive pricing": "أسعار تنافسية",
+  "Clear and fair pricing with no hidden fees.":
+    "أسعار واضحة وعادلة دون أي رسوم خفية.",
+
+  "Let us navigate the waters while you focus on growing your business.":
+    "دعنا نتولى الإبحار بينما تركزون على تنمية أعمالكم.",
+
+  "Latest posts": "أحدث المقالات",
+  "Notes on technology, customs and global shipping.":
+    "مقالات حول التكنولوجيا والتخليص الجمركي والشحن العالمي.",
+
+  "The impact of technology on logistics and shipping":
+    "أثر التكنولوجيا في الخدمات اللوجستية والشحن",
+  "Technology · January 15, 2025":
+    "التكنولوجيا · 15 يناير 2025",
+
+  "Saudi Arabia’s logistics and shipping sector is transforming due to rapid technological advancements and Vision 2030’s ambitious goals. This initiative aims to diversify the economy, reducing oil dependence and positioning the Kingdom as a global logistics hub.":
+    "يشهد قطاع الخدمات اللوجستية والشحن في المملكة العربية السعودية تحولاً متسارعاً بفضل التطورات التكنولوجية وأهداف رؤية 2030 الطموحة. وتهدف هذه المبادرة إلى تنويع الاقتصاد وتقليل الاعتماد على النفط وترسيخ مكانة المملكة كمركز لوجستي عالمي.",
+
+  "Key technological drivers": "أبرز محركات التطور التكنولوجي",
+  "Digital logistics platforms:": "منصات الخدمات اللوجستية الرقمية:",
+  " real-time visibility, better tracking, optimized routing and improved inventory management.":
+    " رؤية فورية للشحنات، وتتبع أفضل، وتحسين المسارات، وإدارة أكثر كفاءة للمخزون.",
+
+  "Blockchain:": "تقنية البلوك تشين:",
+  " a secure, transparent record of each step that reduces fraud and paperwork and streamlines customs.":
+    " سجل آمن وشفاف لكل مرحلة، يحد من الاحتيال والأعمال الورقية ويسهّل الإجراءات الجمركية.",
+
+  "Internet of Things:": "إنترنت الأشياء:",
+  " sensors and GPS trackers report the location and condition of goods in transit.":
+    " مستشعرات وأجهزة تتبع GPS ترصد موقع البضائع وحالتها أثناء النقل.",
+
+  "Automation:": "الأتمتة:",
+  " robotics, AGVs and automated storage speed up warehouse operations and port handling.":
+    " تسهم الروبوتات والمركبات الموجهة آلياً وأنظمة التخزين المؤتمتة في تسريع عمليات المستودعات ومناولة البضائع في الموانئ.",
+
+  "Conclusion": "الخلاصة",
+  "Technology is driving significant improvements in efficiency, transparency and sustainability. Advanced tools like blockchain, IoT and automation will play an increasingly critical role in establishing the Kingdom as a leading global logistics hub.":
+    "تُسهم التكنولوجيا في تحسين الكفاءة والشفافية والاستدامة بصورة ملحوظة. وستؤدي التقنيات المتقدمة، مثل البلوك تشين وإنترنت الأشياء والأتمتة، دوراً متزايد الأهمية في ترسيخ مكانة المملكة كمركز لوجستي عالمي رائد.",
+
+  "The key to seamless logistics: why BSI is your ideal partner":
+    "مفتاح الخدمات اللوجستية السلسة: لماذا تُعد BSI شريككم المثالي",
+  "Shipping solutions · January 14, 2025":
+    "حلول الشحن · 14 يناير 2025",
+
+  "Efficient logistics is the backbone of every successful business. Whether you’re a small enterprise or a large corporation, a reliable logistics partner makes the difference.":
+    "تُعد الخدمات اللوجستية الفعّالة ركيزة أساسية لكل شركة ناجحة. وسواء كنتم شركة صغيرة أو مؤسسة كبيرة، فإن وجود شريك لوجستي موثوق يُحدث فرقاً حقيقياً.",
+
+  "Simplified customs clearance": "تخليص جمركي مبسّط",
+  "Our customs clearance experts handle the documentation and compliance requirements, so your goods clear customs quickly and without hassle.":
+    "يتولى خبراؤنا في التخليص الجمركي إعداد المستندات واستيفاء متطلبات الامتثال، لضمان تخليص بضائعكم بسرعة وسهولة.",
+
+  "Specialized logistics for unique needs": "خدمات لوجستية متخصصة للاحتياجات الاستثنائية",
+  "We handle unique and complex cargo, including oversized freight and heavy equipment, with customized solutions for the most challenging requirements.":
+    "نتولى نقل البضائع الخاصة والمعقدة، بما فيها الشحنات كبيرة الحجم والمعدات الثقيلة، من خلال حلول مخصصة تلبي أكثر المتطلبات تحدياً.",
+
+  "Why choose us": "لماذا تختارنا",
+  "Extensive network:": "شبكة واسعة:",
+  " global reach and local expertise.": " انتشار عالمي وخبرة محلية.",
+  "Reliability:": "الموثوقية:",
+  " timely delivery and safe handling.": " تسليم في الوقت المحدد ومناولة آمنة.",
+  "Technology-driven:": "مدعومون بالتكنولوجيا:",
+  " real-time shipment updates.": " تحديثات فورية لحالة الشحنات.",
+  "Customer-centric:": "التركيز على العملاء:",
+  " personalized support and tailored solutions.": " دعم شخصي وحلول مصممة وفقاً لاحتياجاتكم.",
+
+  "Global shipping solutions: streamlining your international shipping needs":
+    "حلول الشحن العالمي: تبسيط احتياجاتكم للشحن الدولي",
+
+  "Businesses increasingly rely on international shipping to expand their reach. Global shipping solutions combine three services:":
+    "تعتمد الشركات بشكل متزايد على الشحن الدولي لتوسيع نطاق أعمالها. وتجمع حلول الشحن العالمي بين ثلاث خدمات:",
+
+  "International freight forwarding:": "خدمات الشحن الدولي:",
+  " choosing the right mode, optimizing routes, selecting carriers and managing documentation.":
+    " اختيار وسيلة النقل المناسبة، وتحسين المسارات، واختيار شركات النقل، وإدارة المستندات.",
+
+  "Customs brokerage:": "الوساطة الجمركية:",
+  " classifying goods, paying duties and taxes, preparing declarations and keeping up with changing regulations.":
+    " تصنيف البضائع، وسداد الرسوم والضرائب، وإعداد الإقرارات، ومواكبة اللوائح المتغيرة.",
+
+  "End-to-end logistics:": "الخدمات اللوجستية المتكاملة:",
+  " sourcing, warehousing, inventory management, delivery and returns in one place.":
+    " التوريد والتخزين وإدارة المخزون والتوصيل والمرتجعات ضمن خدمة متكاملة.",
+
+  "How we streamline your shipping": "كيف نُبسّط عمليات الشحن",
+  "Customized solutions for small packages or large freight.":
+    "حلول مخصصة للطرود الصغيرة والشحنات الكبيرة.",
+  "A global network of trusted partners.":
+    "شبكة عالمية من الشركاء الموثوقين.",
+  "Real-time tracking for transparency and control.":
+    "تتبع فوري لتعزيز الشفافية والتحكم.",
+  "Accurate customs documentation and open communication.":
+    "مستندات جمركية دقيقة وتواصل واضح.",
+
+  // Quote section
+  "Get a customized logistics solution": "احصلوا على حل لوجستي مخصص",
+  "Every shipment is unique. Tell us about yours and we’ll put together a solution for your needs, whether that’s sea freight, chartering, customs clearance or project cargo.":
+    "لكل شحنة متطلباتها الخاصة. أخبرونا بتفاصيل شحنتكم لنقدم لكم حلاً يناسب احتياجاتكم، سواء تعلق الأمر بالشحن البحري أو تأجير السفن أو التخليص الجمركي أو شحنات المشاريع.",
+  "How it works": "كيف نعمل",
+
+  // Numbered instructions
+  "Fill out the form.": "املؤوا النموذج.",
+  "Share the type, size, origin and destination of your shipment.":
+    "اذكروا نوع الشحنة وحجمها ومكان انطلاقها ووجهتها.",
+  "Get a tailored quote.": "احصلوا على عرض سعر مخصص.",
+  "Our experts review your requirements and send a competitive, transparent quote.":
+    "يراجع خبراؤنا متطلباتكم ويرسلون عرض سعر تنافسياً وشفافاً.",
+  "Confirm your shipment.": "أكدوا شحنتكم.",
+  "Once you’re satisfied, we take care of the rest.":
+    "بعد موافقتكم، نتولى بقية الإجراءات.",
+
+  // Benefits
+  "Transparent pricing:": "أسعار شفافة:",
+  "no hidden fees.": "دون رسوم خفية.",
+  "Expert guidance:": "إرشاد الخبراء:",
+  "help at every step.": "دعم في كل خطوة.",
+  "End-to-end support:": "دعم متكامل:",
+  "from planning to delivery.": "من التخطيط حتى التسليم.",
+
+  "Name": "الاسم",
+  "Phone number": "رقم الهاتف",
+  "Email": "البريد الإلكتروني",
+  "Subject": "الموضوع",
+  "Destination": "الوجهة",
+  "City": "المدينة",
+  "Zip code": "الرمز البريدي",
+  "Shipment date": "تاريخ الشحن",
+  "Shipment details": "تفاصيل الشحنة",
+  "Dimensions (H x L x W in cm), weight (kg), departure and delivery address, pick-up date, delivery date, type of goods":
+    "الأبعاد (الارتفاع × الطول × العرض بالسنتيمتر)، الوزن (كجم)، عنوان الانطلاق والتسليم، تاريخ الاستلام، تاريخ التسليم، نوع البضائع",
+  "Send request": "إرسال الطلب",
+  "Thanks. We’ve received your request and will reply with a quote.":
+    "شكراً لكم. لقد استلمنا طلبكم وسنرد عليكم بعرض سعر.",
+
+  "A trusted shipping partner offering reliable and efficient sea freight, chartering, customs clearance and ship management tailored to your business needs.":
+    "شريك موثوق في مجال الشحن، يقدم خدمات فعّالة وموثوقة للشحن البحري وتأجير السفن والتخليص الجمركي وإدارة السفن، بما يتناسب مع احتياجات أعمالكم.",
+
+  "Useful links": "روابط مفيدة",
+  "Blogs": "المقالات",
+  "[Office address]": "[عنوان المكتب]",
+  "[email address]": "[عنوان البريد الإلكتروني]",
+  "[phone number]": "[رقم الهاتف]",
+  "© 2026 BSI Maritime & Shipping. All rights reserved.":
+    "© 2026 BSI Maritime & Shipping. جميع الحقوق محفوظة.",
+
+  // Dynamically generated service tabs and panels
+
+  "Sea freight": "الشحن البحري",
+  "Reliable and cost-effective sea freight solutions, connecting businesses to global markets across international waters. Whether you’re shipping full-container loads (FCL) or less-than-container loads (LCL), our services are tailored to your requirements.":
+    "حلول شحن بحري موثوقة وفعّالة من حيث التكلفة، تربط الشركات بالأسواق العالمية عبر المياه الدولية. سواء كنتم تشحنون حاويات كاملة (FCL) أو شحنات جزئية (LCL)، فإن خدماتنا مصممة لتلبية متطلباتكم.",
+
+  "Full-container load (FCL): dedicated containers for your exclusive use, ensuring the security and privacy of your cargo.":
+    "حمولة حاوية كاملة (FCL): حاويات مخصصة لاستخدامكم حصرياً، لضمان أمن بضائعكم وخصوصيتها.",
+  "Less-than-container load (LCL): cost-effective options for smaller shipments by sharing container space.":
+    "حمولة أقل من حاوية كاملة (LCL): خيارات اقتصادية للشحنات الصغيرة من خلال مشاركة مساحة الحاوية.",
+  "Specialized cargo: oversized, hazardous and temperature-sensitive goods handled with precision.":
+    "الشحنات المتخصصة: التعامل بدقة مع البضائع كبيرة الحجم والخطرة والحساسة لدرجة الحرارة.",
+  "Door-to-door service: pickup and delivery from your location to the final destination.":
+    "خدمة من الباب إلى الباب: استلام الشحنة من موقعكم وتسليمها إلى وجهتها النهائية.",
+  "Our partnerships with leading ocean carriers allow flexible and dependable schedules, with coverage across major seaports. We offer competitive pricing, transparent communication, real-time shipment updates and environmentally conscious shipping. Let us navigate the waters while you focus on growing your business.":
+    "تتيح لنا شراكاتنا مع كبرى شركات النقل البحري توفير جداول مرنة وموثوقة وتغطية تشمل الموانئ البحرية الرئيسية. ونقدم أسعاراً تنافسية وتواصلاً شفافاً وتحديثات فورية للشحنات وخدمات شحن تراعي البيئة. دعنا نتولى الإبحار بينما تركزون على تنمية أعمالكم.",
+
+  "Customs clearance": "التخليص الجمركي",
+  "Our expert team ensures your shipments clear customs quickly, efficiently and in full compliance with regulatory requirements.":
+    "يضمن فريقنا المتخصص تخليص شحناتكم جمركياً بسرعة وكفاءة وبما يتوافق تماماً مع المتطلبات التنظيمية.",
+  "Documentation preparation: bills of lading, commercial invoices and customs declarations.":
+    "إعداد المستندات: بوالص الشحن والفواتير التجارية والإقرارات الجمركية.",
+  "Regulatory compliance: the latest customs rules and import/export regulations.":
+    "الامتثال التنظيمي: الالتزام بأحدث القواعد الجمركية ولوائح الاستيراد والتصدير.",
+  "Duty and tax calculations: precise estimates and managed payments.":
+    "حساب الرسوم والضرائب: تقديرات دقيقة وإدارة عمليات السداد.",
+  "Cargo classification: proper classification to avoid delays and optimize duties.":
+    "تصنيف البضائع: تصنيف صحيح لتجنب التأخير وتحسين الرسوم المستحقة.",
+  "Real-time status updates, a lower risk of penalties and a streamlined import/export process, with expert advice on international trade rules.":
+    "تحديثات فورية للحالة، وتقليل مخاطر الغرامات، وتبسيط إجراءات الاستيراد والتصدير، إلى جانب إرشادات الخبراء بشأن قواعد التجارة الدولية.",
+
+  "Project logistics": "الخدمات اللوجستية للمشاريع",
+  "End-to-end solutions for complex, large-scale construction, energy, infrastructure and industrial projects, with seamless coordination of every logistical detail.":
+    "حلول متكاملة للمشاريع المعقدة والكبيرة في قطاعات الإنشاءات والطاقة والبنية التحتية والصناعة، مع تنسيق سلس لجميع التفاصيل اللوجستية.",
+  "Logistics planning: route optimization and risk assessment.":
+    "التخطيط اللوجستي: تحسين المسارات وتقييم المخاطر.",
+  "Specialized transport: heavy-duty equipment for oversized and heavy cargo.":
+    "النقل المتخصص: معدات قوية لنقل الشحنات الضخمة والثقيلة.",
+  "Multimodal solutions: integrated freight for cost-effective, timely delivery.":
+    "حلول النقل متعدد الوسائط: خدمات شحن متكاملة لضمان التسليم في الوقت المحدد وبتكلفة مناسبة.",
+  "On-site coordination: experienced personnel overseeing operations.":
+    "التنسيق الميداني: كوادر ذات خبرة تشرف على العمليات.",
+  "We serve construction, energy and power, oil and gas, infrastructure development and mining, with dedicated project managers for clear communication.":
+    "نخدم قطاعات الإنشاءات والطاقة والكهرباء والنفط والغاز وتطوير البنية التحتية والتعدين، مع تخصيص مديري مشاريع لضمان التواصل الواضح.",
+
+  "Cross trade": "التجارة العابرة بين الدول",
+  "Seamless international shipments between two countries without the cargo passing through the country of the trading company.":
+    "شحنات دولية سلسة بين دولتين دون مرور البضائع عبر الدولة التي تتخذ منها الشركة التجارية مقراً لها.",
+  "Global network of partners and agents in key trade hubs.":
+    "شبكة عالمية من الشركاء والوكلاء في مراكز التجارة الرئيسية.",
+  "Multimodal shipping for cost-effective, timely delivery.":
+    "شحن متعدد الوسائط لتحقيق تسليم سريع وفعّال من حيث التكلفة.",
+  "Documentation management: bills of lading, customs paperwork and certificates of origin.":
+    "إدارة المستندات: بوالص الشحن والأوراق الجمركية وشهادات المنشأ.",
+  "Real-time tracking and end-to-end coordination from pickup to delivery.":
+    "التتبع الفوري والتنسيق المتكامل من استلام الشحنة حتى تسليمها.",
+  "We serve retail and e-commerce, manufacturing, energy and resources, and pharmaceuticals, with efficient routing, secure handling and regulatory compliance.":
+    "نخدم قطاعات البيع بالتجزئة والتجارة الإلكترونية والتصنيع والطاقة والموارد والصناعات الدوائية، مع توفير مسارات فعّالة ومناولة آمنة والامتثال للوائح التنظيمية.",
+
+  "Sea chartering": "تأجير السفن",
+  "Speed, flexibility and efficiency for large-scale and specialized shipments, from oversized equipment to high-volume cargo.":
+    "السرعة والمرونة والكفاءة للشحنات الكبيرة والمتخصصة، بدءاً من المعدات الضخمة وصولاً إلى البضائع ذات الأحجام الكبيرة.",
+  "Full charter services: dedicated vessels for high-volume cargo.":
+    "خدمات التأجير الكامل: سفن مخصصة لشحن كميات كبيرة من البضائع.",
+  "Project cargo: heavy and oversized equipment for infrastructure and energy projects.":
+    "شحنات المشاريع: معدات ثقيلة وضخمة لمشاريع البنية التحتية والطاقة.",
+  "Breakbulk shipping: non-containerized goods moved safely and efficiently.":
+    "شحن البضائع غير المعبأة في حاويات: نقل البضائع بأمان وكفاءة.",
+  "Route optimization: planning to minimize transit times and cost.":
+    "تحسين المسارات: تخطيط يهدف إلى تقليل وقت النقل والتكاليف.",
+  "Charter plans are tailored to your cargo, with an experienced team and clear updates from planning to final delivery. We support energy and infrastructure, pharmaceuticals, retail and consumer goods, and automotive.":
+    "تُصمم خطط التأجير وفقاً لطبيعة شحناتكم، مع فريق ذي خبرة وتحديثات واضحة من مرحلة التخطيط حتى التسليم النهائي. ونخدم قطاعات الطاقة والبنية التحتية والصناعات الدوائية وتجارة التجزئة والسلع الاستهلاكية والسيارات.",
+
+  "Break bulk": "نقل البضائع السائبة وغير المعبأة في حاويات",
+  "Transport of oversized, heavy or irregularly shaped cargo that cannot fit into standard containers, such as machinery, construction materials and industrial equipment.":
+    "نقل البضائع الضخمة أو الثقيلة أو غير المنتظمة الشكل التي لا تتسع لها الحاويات القياسية، مثل الآلات ومواد البناء والمعدات الصناعية.",
+  "Custom handling: strategies for loading, unloading and securing non-standard cargo.":
+    "مناولة مخصصة: أساليب لتحميل البضائع غير القياسية وتفريغها وتأمينها.",
+  "Specialized equipment: advanced lifting tools, flatbeds and open-deck carriers.":
+    "معدات متخصصة: أدوات رفع متقدمة وشاحنات ذات منصات مسطحة ووسائل نقل ذات أسطح مفتوحة.",
+  "Port-to-destination services: coordination from port handling to delivery.":
+    "خدمات من الميناء إلى الوجهة: التنسيق من مناولة البضائع في الميناء حتى تسليمها.",
+  "Compliance with international shipping standards and local customs requirements.":
+    "الامتثال لمعايير الشحن الدولية والمتطلبات الجمركية المحلية.",
+  "Our experienced professionals minimize risk and keep your cargo safe, with efficient, cost-effective solutions tailored to your needs.":
+    "يعمل متخصصونا ذوو الخبرة على تقليل المخاطر والحفاظ على سلامة بضائعكم من خلال حلول فعّالة واقتصادية مصممة وفقاً لاحتياجاتكم.",
+
+  "Warehousing": "التخزين في المستودعات",
+  "Secure, strategically located warehousing for short-term or long-term storage of a variety of cargo types.":
+    "مستودعات آمنة في مواقع استراتيجية لتخزين مختلف أنواع البضائع لفترات قصيرة أو طويلة.",
+  "Secure storage: 24/7 surveillance and advanced security measures.":
+    "تخزين آمن: مراقبة على مدار الساعة وتدابير أمنية متقدمة.",
+  "Temperature-controlled facilities for perishables and pharmaceuticals.":
+    "مرافق مضبوطة الحرارة للمواد القابلة للتلف والمنتجات الدوائية.",
+  "Inventory management: accurate tracking and real-time visibility.":
+    "إدارة المخزون: تتبع دقيق ورؤية فورية لحركة المخزون.",
+  "Order fulfillment, cross-docking, packaging and labeling, kitting and assembly.":
+    "تجهيز الطلبات، والنقل المباشر بين وسائل النقل، والتعبئة ووضع الملصقات، وتجميع المكونات والتركيب.",
+  "Let us take care of your inventory while you focus on growing your business.":
+    "دعنا نتولى إدارة مخزونكم بينما تركزون على تنمية أعمالكم.",
+
+  "Ship management": "إدارة السفن",
+  "A global provider of ship management services, working closely with shipowners out of a deep passion for ships and the maritime industry.":
+    "مزود عالمي لخدمات إدارة السفن، يعمل عن كثب مع مالكي السفن انطلاقاً من شغف عميق بالسفن والقطاع البحري.",
+  "Ship management, crew management and technical services.":
+    "إدارة السفن وإدارة الأطقم والخدمات الفنية.",
+  "Expertise across all types and sizes of vessels.":
+    "خبرة في التعامل مع مختلف أنواع السفن وأحجامها.",
+  "An approach built on transparency, open communication and trust.":
+    "نهج يقوم على الشفافية والتواصل المفتوح والثقة.",
+  "We set the benchmark for ship management and never compromise on quality, which is what defines our partnerships with clients worldwide.":
+    "نضع معايير رائدة في إدارة السفن ولا نتنازل أبداً عن الجودة، وهو ما يميز شراكاتنا مع العملاء في جميع أنحاء العالم.",
+
+  "What we offer": "ما نقدمه",
+    // Footer branding
+  "BSI Maritime & Shipping": "BSI للخدمات البحرية والشحن",
+  "© 2026 BSI Maritime & Shipping. All rights reserved.":
+    "© 2026 BSI للخدمات البحرية والشحن. جميع الحقوق محفوظة.",
+
+  // Quote form instructions — split HTML text nodes
+  "Share the type, size, origin and destination.":
+    "اذكروا نوع الشحنة وحجمها ومكان انطلاقها ووجهتها.",
+  "of your shipment":
+    "للشحنة.",
+  "Our experts review your":
+    "يراجع خبراؤنا",
+  "requirements and send a competitive, transparent":
+    "متطلباتكم ويرسلون عرض سعر تنافسياً وشفافاً",
+  "quote.":
+    "مفصلاً وواضحاً.",
+  "Once you’re satisfied, we take care of the":
+    "بعد موافقتكم، نتولى",
+  "rest.":
+    "بقية الإجراءات.",
+
+  // Benefits below the instructions
+  "Transparent pricing:":
+    "أسعار شفافة:",
+  "no hidden fees:":
+    "دون رسوم خفية.",
+  "Expert guidance:":
+    "إرشاد الخبراء:",
+  "help at every step:":
+    "دعم في كل خطوة.",
+  "End-to-end support:":
+    "دعم متكامل:",
+  "from planning to delivery:":
+    "من التخطيط حتى التسليم.",
+
+  // Footer navigation
+  "About us": "من نحن",
+  "Our services": "خدماتنا",
+  "Blogs": "المقالات",
+  "Useful links": "روابط مفيدة",
+  "Contact": "اتصل بنا"
 };
