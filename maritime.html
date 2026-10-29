@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BSI Maritime &amp; Shipping</title>
+<meta name="description" content="Sea freight, customs clearance, chartering, break bulk and ship management from BSI Maritime & Shipping.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--primary:#761B35;--deep:#531326;--ink:#101010;--bg:#fff;--tint:#f6eef0;--line:#e4d5d9;--muted:#5b5256;--r:12px;--b:8px;--img-hero:url(assets/horse-background.jpg);--img-about:url(assets/horse-background.jpg);--img-service:url(assets/horse-background.jpg);--img-band:url(assets/horse-background.jpg)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{font:16px/1.65 Inter,sans-serif;color:var(--ink);background:var(--bg)}
+h1,h2,h3,h4{font-family:'Space Grotesk',sans-serif;line-height:1.12;letter-spacing:-.02em}
+a{color:var(--deep)}
+:focus-visible{outline:3px solid var(--primary);outline-offset:3px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+section{padding:88px 0}
+header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:68px}
+.brand{font:700 18px 'Space Grotesk',sans-serif;text-decoration:none;color:var(--ink)}
+.brand span{color:var(--primary)}
+nav{display:flex;gap:26px;align-items:center}
+nav a{position:relative;text-decoration:none;color:var(--ink);font-weight:500;font-size:15px}
+nav a:hover{color:var(--primary)}
+.btn{display:inline-block;padding:12px 22px;border-radius:var(--b);background:var(--primary);color:#fff!important;text-decoration:none;font-weight:600;border:0;cursor:pointer;font:600 15px Inter,sans-serif}
+.btn{transition:background .25s,transform .25s,box-shadow .25s}
+.btn:hover{background:var(--deep);transform:translateY(-2px);box-shadow:0 10px 22px rgba(83,19,38,.28)}
+.btn.dark{background:var(--ink)}
+.btn.light{background:#fff;color:var(--deep)!important}
+.hero{background:var(--deep);isolation:isolate;color:#fff;padding:120px 0 150px;position:relative;overflow:hidden}
+.hero h1{font-size:clamp(40px,7vw,72px);max-width:13ch;font-weight:700}
+.hero p{max-width:54ch;margin:26px 0 34px;font-size:18px;color:#ecd9df}
+.hero .tag{font:500 15px 'Space Grotesk',sans-serif;color:#d9aab9;margin-bottom:18px}
+.waves{position:absolute;left:0;right:0;bottom:-2px;width:100%;height:110px}
+.hero .btn+.btn{margin-left:10px}
+h2{font-size:clamp(30px,4.4vw,44px);margin-bottom:18px}
+.lead{max-width:62ch;color:var(--muted);font-size:18px}
+.ph{border-radius:var(--r);background-size:cover;background-position:center;background-color:var(--deep)}
+.band{min-height:340px;background:linear-gradient(rgba(16,16,16,.6),rgba(16,16,16,.6)),var(--img-band) center/cover var(--ink);color:#fff;display:grid;place-items:center;text-align:center;padding:48px 24px}
+.band h2{max-width:22ch;margin:0 auto}
+.about{display:grid;grid-template-columns:1.1fr 1fr;gap:56px;align-items:start}
+.vm{display:grid;gap:18px}
+.vm div{background:var(--tint);border-radius:var(--r);padding:26px}
+.vm h3{font-size:22px;margin-bottom:8px;color:var(--primary)}
+.values{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:56px;border-top:2px solid var(--ink)}
+.values div{padding:26px 26px 0 0}
+.values h3{font-size:20px;margin-bottom:8px}
+.values p{color:var(--muted);font-size:15px}
+#services{background:var(--tint)}
+.svc{display:grid;grid-template-columns:260px 1fr;gap:40px;margin-top:40px}
+.tabs{display:flex;flex-direction:column;gap:4px}
+.tabs button{text-align:left;padding:12px 16px;border:0;border-left:3px solid transparent;background:none;font:500 16px Inter,sans-serif;color:var(--ink);cursor:pointer;border-radius:0 var(--b) var(--b) 0}
+.tabs button:hover{background:#fff}
+.tabs button[aria-selected=true]{background:#fff;border-left-color:var(--primary);color:var(--primary);font-weight:600}
+.panel{background:#fff;border-radius:var(--r);padding:38px}
+.panel h3{font-size:30px;margin-bottom:14px}
+.panel h4{font-size:18px;margin:24px 0 8px}
+.panel ul{padding-left:20px;display:grid;gap:8px}
+.panel li::marker{color:var(--primary)}
+.panel .close{margin-top:22px;font-weight:500}
+.why{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:40px}
+.why div{border:1px solid var(--line);border-radius:var(--r);padding:24px}
+.why h3{font-size:20px;margin-bottom:6px}
+.why p{font-size:15px;color:var(--muted)}
+#insights{background:var(--ink);color:#fff}
+#insights .lead{color:#cbbfc3}
+.posts{display:grid;gap:14px;margin-top:36px}
+details{background:#1b1b1b;border-radius:var(--r);padding:22px 26px}
+summary{cursor:pointer;font:600 20px 'Space Grotesk',sans-serif;list-style:none;display:flex;justify-content:space-between;gap:18px}
+summary::after{content:'+';color:#d9aab9;font-size:26px;line-height:1}
+summary::after{transition:transform .3s;display:inline-block}
+details[open] summary::after{transform:rotate(45deg)}
+summary small{display:block;font:400 13px Inter,sans-serif;color:#b7a9ae;margin-top:4px}
+details .body{margin-top:18px;color:#e5dade;display:grid;gap:12px;max-width:74ch}
+details h4{font-size:17px;color:#fff;margin-top:6px}
+details ul{padding-left:20px;display:grid;gap:6px}
+.quote{display:grid;grid-template-columns:1fr 1.15fr;gap:56px}
+.steps{margin-top:26px;display:grid;gap:14px;counter-reset:s}
+.steps li{list-style:none;counter-increment:s;padding-left:46px;position:relative}
+.steps li::before{content:counter(s);position:absolute;left:0;top:0;width:32px;height:32px;border-radius:50%;background:var(--primary);color:#fff;display:grid;place-items:center;font:600 15px 'Space Grotesk',sans-serif}
+form{display:grid;grid-template-columns:1fr 1fr;gap:14px;background:var(--tint);padding:30px;border-radius:var(--r)}
+form label{display:grid;gap:5px;font-size:14px;font-weight:600}
+form .full{grid-column:1/-1}
+input,textarea{font:400 15px Inter,sans-serif;padding:11px 12px;border:1px solid var(--line);border-radius:var(--b);background:#fff;width:100%}
+textarea{min-height:120px;resize:vertical}
+#ok{display:none;grid-column:1/-1;font-weight:600;color:var(--deep)}
+footer{background:var(--deep);color:#ecd9df;padding:56px 0 28px}
+footer .cols{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px}
+footer h4{color:#fff;margin-bottom:12px;font-size:17px}
+footer a{color:#ecd9df;display:block;margin-bottom:6px;text-decoration:none}
+footer a:hover{color:#fff}
+footer .fine{margin-top:40px;padding-top:20px;border-top:1px solid #7a3a4d;font-size:14px}
+
+/* motion + polish */
+#bar{position:fixed;top:0;left:0;right:0;height:3px;background:var(--primary);transform:scaleX(0);transform-origin:left;z-index:30}
+header{transition:box-shadow .3s}
+header.on{box-shadow:0 6px 24px rgba(16,16,16,.08)}
+nav a:not(.btn)::after{content:'';position:absolute;left:0;bottom:-6px;height:2px;width:100%;background:var(--primary);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+nav a:not(.btn):hover::after{transform:scaleX(1)}
+.hero::before{content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(83,19,38,.94) 0%,rgba(83,19,38,.65) 55%,rgba(16,16,16,.35) 100%),var(--img-hero) center/cover;animation:zoom 24s ease-out forwards}
+.hero .wrap{position:relative}
+.waves{z-index:1}
+.waves path:first-child{transform-origin:center;animation:drift 8s ease-in-out infinite alternate}
+.hero .wrap>*{animation:rise .9s cubic-bezier(.2,.7,.2,1) both}
+.hero .wrap>*:nth-child(2){animation-delay:.12s}
+.hero .wrap>*:nth-child(3){animation-delay:.26s}
+.hero .wrap>*:nth-child(4){animation-delay:.4s}
+.hero .wrap>*:nth-child(5){animation-delay:.5s}
+@keyframes zoom{from{transform:scale(1.12)}to{transform:scale(1)}}
+@keyframes drift{from{transform:scaleX(1.08) translateX(-24px)}to{transform:scaleX(1.08) translateX(24px)}}
+@keyframes rise{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.js .rv{opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
+.js .rv.in{opacity:1;transform:none}
+.ph{box-shadow:0 18px 40px rgba(83,19,38,.22)}
+.vm div{transition:transform .3s,box-shadow .3s;border-left:4px solid var(--primary)}
+.vm div:hover{transform:translateX(6px);box-shadow:0 10px 26px rgba(83,19,38,.12)}
+.values div{transition:color .3s}
+.values div:hover h3{color:var(--primary)}
+.tabs button{transition:background .25s,color .25s,padding .25s}
+.tabs button:hover{padding-left:22px}
+.panel{box-shadow:0 20px 50px rgba(83,19,38,.1)}
+.panel.swap>*{animation:fade .5s both}
+.panel.swap>*:nth-child(2){animation-delay:.05s}.panel.swap>*:nth-child(3){animation-delay:.1s}.panel.swap>*:nth-child(n+4){animation-delay:.15s}
+.why div{transition:transform .3s,border-color .3s,box-shadow .3s}
+.why div:hover{transform:translateY(-6px);border-color:var(--primary);box-shadow:0 16px 34px rgba(83,19,38,.14)}
+.band{background-attachment:fixed}
+details{transition:background .3s}
+details:hover{background:#242020}
+details[open] .body{animation:fade .45s both}
+input,textarea{transition:border-color .2s,box-shadow .2s}
+input:focus,textarea:focus{outline:0;border-color:var(--primary);box-shadow:0 0 0 3px rgba(118,27,53,.18)}
+#ok{animation:fade .5s both}
+@media(max-width:860px){.band{background-attachment:scroll}}
+@media(prefers-reduced-motion:reduce){*,*::before{animation:none!important;transition:none!important}.js .rv{opacity:1;transform:none}.band{background-attachment:scroll}}
+@media(max-width:860px){
+nav a:not(.btn){display:none}
+.about,.svc,.quote,footer .cols{grid-template-columns:1fr}
+.values,.why{grid-template-columns:1fr}
+.tabs{flex-direction:row;flex-wrap:wrap}
+.tabs button{border-left:0;border-bottom:3px solid transparent;border-radius:var(--b)}
+.tabs button[aria-selected=true]{border-bottom-color:var(--primary)}
+form{grid-template-columns:1fr}
+section{padding:64px 0}
+.panel{padding:26px}
+.hero .btn+.btn{margin:12px 0 0}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div id="bar"></div>
+<header><div class="wrap">
+<a class="brand" href="#top">BSI <span>Maritime &amp; Shipping</span></a>
+<nav aria-label="Main">
+<a href="#about">About</a><a href="#services">Services</a><a href="#insights">Insights</a><a href="#contact">Contact</a>
+<a class="btn" href="#quote">Request a quote</a>
+</nav></div></header>
+
+<main id="top">
+<section class="hero" style="padding-top:120px">
+<div class="wrap">
+<p class="tag">A BSI company</p>
+<h1>We meet your expectations.</h1>
+<p>Reliable maritime and shipping solutions. Streamline your cargo needs with efficient, trusted services. From timely deliveries to seamless logistics, we make sure your goods reach their destination safely and on time.</p>
+<a class="btn light" href="#quote">Request a quote</a><a class="btn" style="background:transparent;border:1px solid #d9aab9" href="#services">See our services</a>
+</div>
+<svg class="waves" viewBox="0 0 1440 110" preserveAspectRatio="none" aria-hidden="true"><path d="M0 60 C180 20 300 100 480 62 S800 20 960 60 1260 100 1440 50 V110 H0Z" fill="#761B35" opacity=".55"/><path d="M0 82 C200 50 320 110 520 84 S860 50 1040 82 1300 104 1440 76 V110 H0Z" fill="#fff"/></svg>
+</section>
+
+<section id="about"><div class="wrap">
+<div class="about">
+<div>
+<h2>About us</h2>
+<p class="lead">BSI Maritime &amp; Shipping is a shipping and logistics provider specializing in seamless sea freight solutions, including customs clearance, chartering, break bulk movement and ship management. Our commitment to reliability, efficiency and customer satisfaction drives us to deliver excellence across local and international trade.</p>
+<div class="ph" role="img" aria-label="Placeholder image" style="background-image:var(--img-about);height:280px;margin-top:30px"></div>
+<p class="lead" style="margin-top:16px">With a customer-focused approach, advanced technology and a global network, we strive to make shipping simple, fast and dependable.</p>
+</div>
+<div class="vm">
+<div><h3>Our vision</h3><p>To be the most trusted and innovative logistics partner, connecting businesses and communities worldwide with excellence.</p></div>
+<div><h3>Our mission</h3><p>To provide top-tier logistics solutions that prioritize customer satisfaction, efficiency and sustainability, ensuring seamless delivery experiences every time.</p></div>
+</div></div>
+<div class="values">
+<div><h3>Transparency</h3><p>We maintain open and honest communication with our clients, ensuring trust and clarity in every transaction.</p></div>
+<div><h3>Reliability</h3><p>Our commitment to dependable service ensures your cargo is delivered safely and on time, every time.</p></div>
+<div><h3>Efficiency</h3><p>We continually optimize our processes to provide the best solutions, saving you time and resources.</p></div>
+</div></div></section>
+
+<section id="services"><div class="wrap">
+<h2>Our services</h2>
+<p class="lead">Reliable sea freight, customs clearance, chartering and ship management, ensuring efficient and timely delivery locally and internationally.</p>
+<div class="svc">
+<div class="tabs" role="tablist" aria-label="Services" id="tabs"></div>
+<div class="panel" id="panel" role="tabpanel" aria-live="polite"></div>
+</div></div></section>
+
+<section id="why"><div class="wrap">
+<h2>Why choose us?</h2>
+<p class="lead">We strive to be your trusted logistics partner by delivering unmatched quality and service. Here’s why customers choose us.</p>
+<div class="why">
+<div><h3>Reliable</h3><p>Timely delivery and safe handling are at the core of our services.</p></div>
+<div><h3>Timely delivery</h3><p>Flexible scheduling and routing built around your deadlines.</p></div>
+<div><h3>Extensive network</h3><p>A robust network of carriers and partners for global reach and local expertise.</p></div>
+<div><h3>Customized solutions</h3><p>Plans tailored to your cargo, goals and timeline.</p></div>
+<div><h3>Expert team</h3><p>Experienced professionals who guide every step of the process.</p></div>
+<div><h3>Competitive pricing</h3><p>Clear and fair pricing with no hidden fees.</p></div>
+</div></div></section>
+
+<div class="band"><h2>Let us navigate the waters while you focus on growing your business.</h2></div>
+
+<section id="insights"><div class="wrap">
+<h2>Latest posts</h2>
+<p class="lead">Notes on technology, customs and global shipping.</p>
+<div class="posts">
+<details><summary><span>The impact of technology on logistics and shipping<small>Technology · January 15, 2025</small></span></summary><div class="body">
+<p>Saudi Arabia’s logistics and shipping sector is transforming due to rapid technological advancements and Vision 2030’s ambitious goals. This initiative aims to diversify the economy, reducing oil dependence and positioning the Kingdom as a global logistics hub.</p>
+<h4>Key technological drivers</h4>
+<ul><li><b>Digital logistics platforms:</b> real-time visibility, better tracking, optimized routing and improved inventory management.</li>
+<li><b>Blockchain:</b> a secure, transparent record of each step that reduces fraud and paperwork and streamlines customs.</li>
+<li><b>Internet of Things:</b> sensors and GPS trackers report the location and condition of goods in transit.</li>
+<li><b>Automation:</b> robotics, AGVs and automated storage speed up warehouse operations and port handling.</li></ul>
+<h4>Conclusion</h4>
+<p>Technology is driving significant improvements in efficiency, transparency and sustainability. Advanced tools like blockchain, IoT and automation will play an increasingly critical role in establishing the Kingdom as a leading global logistics hub.</p></div></details>
+
+<details><summary><span>The key to seamless logistics: why BSI is your ideal partner<small>Shipping solutions · January 14, 2025</small></span></summary><div class="body">
+<p>Efficient logistics is the backbone of every successful business. Whether you’re a small enterprise or a large corporation, a reliable logistics partner makes the difference.</p>
+<h4>Simplified customs clearance</h4>
+<p>Our customs clearance experts handle the documentation and compliance requirements, so your goods clear customs quickly and without hassle.</p>
+<h4>Specialized logistics for unique needs</h4>
+<p>We handle unique and complex cargo, including oversized freight and heavy equipment, with customized solutions for the most challenging requirements.</p>
+<h4>Why choose us</h4>
+<ul><li><b>Extensive network:</b> global reach and local expertise.</li><li><b>Reliability:</b> timely delivery and safe handling.</li><li><b>Technology-driven:</b> real-time shipment updates.</li><li><b>Customer-centric:</b> personalized support and tailored solutions.</li></ul></div></details>
+
+<details><summary><span>Global shipping solutions: streamlining your international shipping needs<small>Shipping solutions · January 14, 2025</small></span></summary><div class="body">
+<p>Businesses increasingly rely on international shipping to expand their reach. Global shipping solutions combine three services:</p>
+<ul><li><b>International freight forwarding:</b> choosing the right mode, optimizing routes, selecting carriers and managing documentation.</li>
+<li><b>Customs brokerage:</b> classifying goods, paying duties and taxes, preparing declarations and keeping up with changing regulations.</li>
+<li><b>End-to-end logistics:</b> sourcing, warehousing, inventory management, delivery and returns in one place.</li></ul>
+<h4>How we streamline your shipping</h4>
+<ul><li>Customized solutions for small packages or large freight.</li><li>A global network of trusted partners.</li><li>Real-time tracking for transparency and control.</li><li>Accurate customs documentation and open communication.</li></ul></div></details>
+</div></div></section>
+
+<section id="quote"><div class="wrap quote">
+<div>
+<h2>Get a customized logistics solution</h2>
+<p class="lead">Every shipment is unique. Tell us about yours and we’ll put together a solution for your needs, whether that’s sea freight, chartering, customs clearance or project cargo.</p>
+<h3 style="margin-top:30px;font-size:22px">How it works</h3>
+<ol class="steps">
+<li><b>Fill out the form.</b> Share the type, size, origin and destination of your shipment.</li>
+<li><b>Get a tailored quote.</b> Our experts review your requirements and send a competitive, transparent quote.</li>
+<li><b>Confirm your shipment.</b> Once you’re satisfied, we take care of the rest.</li></ol>
+<ul style="margin-top:26px;padding-left:20px;display:grid;gap:6px"><li><b>Transparent pricing:</b> no hidden fees.</li><li><b>Expert guidance:</b> help at every step.</li><li><b>End-to-end support:</b> from planning to delivery.</li></ul>
+</div>
+<form id="qf">
+<label>Name<input name="name" required></label>
+<label>Phone number<input name="phone" type="tel"></label>
+<label>Email<input name="email" type="email" required></label>
+<label>Subject<input name="subject"></label>
+<label>Destination<input name="dest"></label>
+<label>City<input name="city"></label>
+<label>Zip code<input name="zip"></label>
+<label>Shipment date<input name="date" type="date"></label>
+<label class="full">Shipment details<textarea name="details" placeholder="Dimensions (H x L x W in cm), weight (kg), departure and delivery address, pick-up date, delivery date, type of goods"></textarea></label>
+<div class="full"><button class="btn" type="submit">Send request</button></div>
+<p id="ok" role="status">Thanks. We’ve received your request and will reply with a quote.</p>
+</form></div></section>
+</main>
+
+<footer id="contact"><div class="wrap">
+<div class="cols">
+<div><a class="brand" style="color:#fff;font-size:20px" href="#top">BSI Maritime &amp; Shipping</a>
+<p style="margin-top:12px;max-width:44ch">A trusted shipping partner offering reliable and efficient sea freight, chartering, customs clearance and ship management tailored to your business needs.</p></div>
+<div><h4>Useful links</h4><a href="#about">About us</a><a href="#services">Our services</a><a href="#insights">Blogs</a><a href="#quote">Request a quote</a></div>
+<div><h4>Contact</h4><a href="#">[Office address]</a><a href="mailto:info@example.com">[email address]</a><a href="tel:+000000000">[phone number]</a></div>
+</div>
+<p class="fine">© 2026 BSI Maritime &amp; Shipping. All rights reserved.</p>
+</div></footer>
+
+<script>
+const S=[
+["Sea freight","Reliable and cost-effective sea freight solutions, connecting businesses to global markets across international waters. Whether you’re shipping full-container loads (FCL) or less-than-container loads (LCL), our services are tailored to your requirements.",
+["Full-container load (FCL): dedicated containers for your exclusive use, ensuring the security and privacy of your cargo.","Less-than-container load (LCL): cost-effective options for smaller shipments by sharing container space.","Specialized cargo: oversized, hazardous and temperature-sensitive goods handled with precision.","Door-to-door service: pickup and delivery from your location to the final destination."],
+"Our partnerships with leading ocean carriers allow flexible and dependable schedules, with coverage across major seaports. We offer competitive pricing, transparent communication, real-time shipment updates and environmentally conscious shipping. Let us navigate the waters while you focus on growing your business."],
+["Customs clearance","Our expert team ensures your shipments clear customs quickly, efficiently and in full compliance with regulatory requirements.",
+["Documentation preparation: bills of lading, commercial invoices and customs declarations.","Regulatory compliance: the latest customs rules and import/export regulations.","Duty and tax calculations: precise estimates and managed payments.","Cargo classification: proper classification to avoid delays and optimize duties."],
+"Real-time status updates, a lower risk of penalties and a streamlined import/export process, with expert advice on international trade rules."],
+["Project logistics","End-to-end solutions for complex, large-scale construction, energy, infrastructure and industrial projects, with seamless coordination of every logistical detail.",
+["Logistics planning: route optimization and risk assessment.","Specialized transport: heavy-duty equipment for oversized and heavy cargo.","Multimodal solutions: integrated freight for cost-effective, timely delivery.","On-site coordination: experienced personnel overseeing operations."],
+"We serve construction, energy and power, oil and gas, infrastructure development and mining, with dedicated project managers for clear communication."],
+["Cross trade","Seamless international shipments between two countries without the cargo passing through the country of the trading company.",
+["Global network of partners and agents in key trade hubs.","Multimodal shipping for cost-effective, timely delivery.","Documentation management: bills of lading, customs paperwork and certificates of origin.","Real-time tracking and end-to-end coordination from pickup to delivery."],
+"We serve retail and e-commerce, manufacturing, energy and resources, and pharmaceuticals, with efficient routing, secure handling and regulatory compliance."],
+["Sea chartering","Speed, flexibility and efficiency for large-scale and specialized shipments, from oversized equipment to high-volume cargo.",
+["Full charter services: dedicated vessels for high-volume cargo.","Project cargo: heavy and oversized equipment for infrastructure and energy projects.","Breakbulk shipping: non-containerized goods moved safely and efficiently.","Route optimization: planning to minimize transit times and cost."],
+"Charter plans are tailored to your cargo, with an experienced team and clear updates from planning to final delivery. We support energy and infrastructure, pharmaceuticals, retail and consumer goods, and automotive."],
+["Break bulk","Transport of oversized, heavy or irregularly shaped cargo that cannot fit into standard containers, such as machinery, construction materials and industrial equipment.",
+["Custom handling: strategies for loading, unloading and securing non-standard cargo.","Specialized equipment: advanced lifting tools, flatbeds and open-deck carriers.","Port-to-destination services: coordination from port handling to delivery.","Compliance with international shipping standards and local customs requirements."],
+"Our experienced professionals minimize risk and keep your cargo safe, with efficient, cost-effective solutions tailored to your needs."],
+["Warehousing","Secure, strategically located warehousing for short-term or long-term storage of a variety of cargo types.",
+["Secure storage: 24/7 surveillance and advanced security measures.","Temperature-controlled facilities for perishables and pharmaceuticals.","Inventory management: accurate tracking and real-time visibility.","Order fulfillment, cross-docking, packaging and labeling, kitting and assembly."],
+"Let us take care of your inventory while you focus on growing your business."],
+["Ship management","A global provider of ship management services, working closely with shipowners out of a deep passion for ships and the maritime industry.",
+["Ship management, crew management and technical services.","Expertise across all types and sizes of vessels.","An approach built on transparency, open communication and trust."],
+"We set the benchmark for ship management and never compromise on quality, which is what defines our partnerships with clients worldwide."]
+];
+const tabs=document.getElementById('tabs'),panel=document.getElementById('panel');
+function show(i){
+ [...tabs.children].forEach((b,j)=>b.setAttribute('aria-selected',j===i));
+ const s=S[i];
+ swap();panel.innerHTML='<div class="ph" role="img" aria-label="Placeholder image" style="background-image:var(--img-service);height:210px;margin-bottom:26px"></div><h3>'+s[0]+'</h3><p>'+s[1]+'</p><h4>What we offer</h4><ul>'+s[2].map(x=>'<li>'+x+'</li>').join('')+'</ul><p class="close">'+s[3]+'</p><p style="margin-top:22px"><a class="btn" href="#quote">Request a quote</a></p>';
+}
+S.forEach((s,i)=>{const b=document.createElement('button');b.type='button';b.role='tab';b.textContent=s[0];b.onclick=()=>show(i);tabs.appendChild(b)});
+function swap(){panel.classList.remove('swap');void panel.offsetWidth;panel.classList.add('swap')}
+show(0);
+document.getElementById('qf').addEventListener('submit',e=>{e.preventDefault();document.getElementById('ok').style.display='block';e.target.reset()});
+document.documentElement.classList.add('js');
+const hdr=document.querySelector('header'),bar=document.getElementById('bar');
+function sc(){const h=document.documentElement;hdr.classList.toggle('on',scrollY>10);bar.style.transform='scaleX('+(scrollY/(h.scrollHeight-innerHeight||1))+')'}
+addEventListener('scroll',sc,{passive:true});sc();
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
+document.querySelectorAll('.about>div,.values>div,.why>div,.posts details,.quote>*,.svc>*,.band h2,section>.wrap>h2,.lead').forEach((el,i)=>{el.classList.add('rv');el.style.transitionDelay=(i%4)*90+'ms';io.observe(el)});
+</script>
+</body>
+</html>
