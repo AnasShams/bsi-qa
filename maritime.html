@@ -18,13 +18,198 @@ a{color:var(--deep)}
 :focus-visible{outline:3px solid var(--primary);outline-offset:3px}
 .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
 section{padding:88px 0}
-header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
-header .wrap{display:flex;align-items:center;justify-content:space-between;height:68px}
-.brand{font:700 18px 'Space Grotesk',sans-serif;text-decoration:none;color:var(--ink)}
-.brand span{color:var(--primary)}
-nav{display:flex;gap:26px;align-items:center}
-nav a{position:relative;text-decoration:none;color:var(--ink);font-weight:500;font-size:15px}
-nav a:hover{color:var(--primary)}
+
+/* Main website navbar */
+nav[aria-label="Main navigation"] {
+  position: fixed;
+  top: 16px;
+  left: 0;
+  right: 0;
+  z-index: 50;
+}
+
+nav[aria-label="Main navigation"] > .wrap {
+  width: calc(100% - 40px);
+  max-width: 1180px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(10px, 1.4vw, 20px);
+  padding: 12px 16px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  box-shadow: 0 12px 30px -18px rgba(16, 16, 16, .22);
+}
+
+.logo {
+  display: block;
+  flex: none;
+}
+
+.logo img {
+  display: block;
+  width: 104px;
+  max-width: 22vw;
+  height: auto;
+}
+
+.pill {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  justify-content: center;
+  gap: 0;
+}
+
+.pill > div {
+  position: relative;
+}
+
+.pill > div > a {
+  position: relative;
+  display: block;
+  padding: 8px clamp(6px, .9vw, 12px);
+  font-size: 14px;
+  white-space: nowrap;
+  border-radius: 8px;
+  text-decoration: none;
+  color: var(--ink);
+  transition: background .25s;
+}
+
+.pill > div:hover > a {
+  background: var(--tint);
+  color: var(--primary);
+}
+
+.nr {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.burger {
+  display: none;
+  width: 42px;
+  height: 42px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fff;
+  cursor: pointer;
+}
+
+.burger i {
+  display: block;
+  width: 18px;
+  height: 2px;
+  background: var(--ink);
+  border-radius: 2px;
+  transition: transform .35s, opacity .25s;
+}
+
+.burger.open i:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.burger.open i:nth-child(2) {
+  opacity: 0;
+}
+
+.burger.open i:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+#mm {
+  flex: 0 0 100%;
+  min-width: 0;
+  max-height: 0;
+  overflow: hidden;
+  padding: 0 12px;
+  border-top: 1px solid transparent;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-4px);
+  transition: max-height .3s ease, margin-top .3s ease,
+    padding .3s ease, opacity .2s ease,
+    transform .3s ease, visibility .3s;
+}
+
+#mm.open {
+  max-height: min(70vh, 540px);
+  overflow-y: auto;
+  margin-top: 8px;
+  padding: 10px 12px 4px;
+  border-top-color: var(--line);
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+
+#mm a {
+  display: block;
+  padding: 12px 0;
+  font-size: 15px;
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--line);
+}
+
+#mm a:last-child {
+  border: 0;
+}
+
+@media (min-width: 1101px) {
+  #mm {
+    display: none;
+  }
+}
+
+@media (max-width: 1100px) {
+  nav[aria-label="Main navigation"] > .wrap {
+    flex-wrap: wrap;
+    row-gap: 0;
+  }
+
+  .pill {
+    display: none;
+  }
+
+  .burger {
+    display: flex;
+  }
+}
+
+@media (max-width: 575.98px) {
+  nav[aria-label="Main navigation"] > .wrap {
+    width: calc(100% - 24px);
+    padding: 10px 12px;
+  }
+
+  .logo img {
+    width: 88px;
+  }
+
+  .nr {
+    gap: 6px;
+  }
+
+  .nr > .btn {
+    padding: 10px 12px;
+    font-size: 12px;
+  }
+
+  .burger {
+    width: 38px;
+    height: 38px;
+  }
+}
+
 .btn{display:inline-block;padding:12px 22px;border-radius:var(--b);background:var(--primary);color:#fff!important;text-decoration:none;font-weight:600;border:0;cursor:pointer;font:600 15px Inter,sans-serif}
 .btn{transition:background .25s,transform .25s,box-shadow .25s}
 .btn:hover{background:var(--deep);transform:translateY(-2px);box-shadow:0 10px 22px rgba(83,19,38,.28)}
@@ -136,32 +321,167 @@ input:focus,textarea:focus{outline:0;border-color:var(--primary);box-shadow:0 0 
 #ok{animation:fade .5s both}
 @media(max-width:860px){.band{background-attachment:scroll}}
 @media(prefers-reduced-motion:reduce){*,*::before{animation:none!important;transition:none!important}.js .rv{opacity:1;transform:none}.band{background-attachment:scroll}}
-@media(max-width:860px){
-nav a:not(.btn){display:none}
-.about,.svc,.quote,footer .cols{grid-template-columns:1fr}
-.values,.why{grid-template-columns:1fr}
-.tabs{flex-direction:row;flex-wrap:wrap}
-.tabs button{border-left:0;border-bottom:3px solid transparent;border-radius:var(--b)}
-.tabs button[aria-selected=true]{border-bottom-color:var(--primary)}
-form{grid-template-columns:1fr}
-section{padding:64px 0}
-.panel{padding:26px}
-.hero .btn+.btn{margin:12px 0 0}
+@media (max-width: 860px) {
+  header .wrap {
+    height: auto;
+    min-height: 64px;
+    gap: 10px;
+    flex-wrap: wrap;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  .brand {
+    font-size: 15px;
+    line-height: 1.3;
+    max-width: 185px;
+  }
+
+  .menu-toggle {
+    display: block;
+    margin-left: auto;
+    padding: 6px 10px;
+    font-size: 24px;
+    line-height: 1;
+    color: var(--deep);
+    background: transparent;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    cursor: pointer;
+  }
+
+  .main-nav {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding-top: 10px;
+  }
+
+  .main-nav.open {
+    display: flex;
+  }
+
+  .main-nav > a:not(.btn) {
+    display: block;
+    padding: 10px 4px;
+  }
+
+  .main-nav .quote-btn {
+    align-self: flex-start;
+    width: auto;
+    max-width: 150px;
+    margin-top: 8px;
+    padding: 9px 12px;
+    font-size: 12px;
+    line-height: 1.3;
+    text-align: center;
+  }
+
+  .about,
+  .svc,
+  .quote,
+  footer .cols {
+    grid-template-columns: 1fr;
+  }
+
+  .values,
+  .why {
+    grid-template-columns: 1fr;
+  }
+
+  .tabs {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .tabs button {
+    border-left: 0;
+    border-bottom: 3px solid transparent;
+    border-radius: var(--b);
+  }
+
+  .tabs button[aria-selected="true"] {
+    border-bottom-color: var(--primary);
+  }
+
+  form {
+    grid-template-columns: 1fr;
+  }
+
+  section {
+    padding: 48px 0;
+  }
+
+  .hero {
+    padding: 64px 0 90px;
+  }
+
+  .hero h1 {
+    font-size: clamp(34px, 9vw, 44px);
+  }
+
+  .hero p {
+    margin: 18px 0 24px;
+    font-size: 16px;
+  }
+
+  .waves {
+    height: 65px;
+  }
+
+  .hero .btn+.btn {
+    margin: 10px 0 0;
+  }
+
+  .panel {
+    padding: 26px;
+  }
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>
 </head>
 <body>
 <div id="bar"></div>
-<header><div class="wrap">
-<a class="brand" href="#top">BSI <span>Maritime &amp; Shipping</span></a>
-<nav aria-label="Main">
-<a href="#about">About</a><a href="#services">Services</a><a href="#insights">Insights</a><a href="#contact">Contact</a>
-<a class="btn" href="#quote">Request a quote</a>
-</nav></div></header>
+
+<nav aria-label="Main navigation">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="BSI Maritime home">
+      <img src="/assets/bsi-logo.png" alt="BSI Maritime">
+    </a>
+
+    <div class="pill">
+      <div><a href="#top">Home</a></div>
+      <div><a href="#about">About</a></div>
+      <div><a href="#services">Services</a></div>
+      <div><a href="#insights">Insights</a></div>
+      <div><a href="#contact">Contact</a></div>
+    </div>
+
+    <div class="nr">
+      <a class="btn d" href="#quote">Request a quote</a>
+      <button class="burger" id="bg"
+        type="button" aria-label="Open menu"
+        aria-expanded="false">
+        <i></i><i></i><i></i>
+      </button>
+    </div>
+
+    <div id="mm">
+      <a href="#top">Home</a>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#insights">Insights</a>
+      <a href="#contact">Contact</a>
+      <a href="#quote">Request a quote</a>
+    </div>
+  </div>
+</nav>
+
 
 <main id="top">
-<section class="hero" style="padding-top:120px">
+<section class="hero">
 <div class="wrap">
 <p class="tag">A BSI company</p>
 <h1>We meet your expectations.</h1>
@@ -317,11 +637,41 @@ function swap(){panel.classList.remove('swap');void panel.offsetWidth;panel.clas
 show(0);
 document.getElementById('qf').addEventListener('submit',e=>{e.preventDefault();document.getElementById('ok').style.display='block';e.target.reset()});
 document.documentElement.classList.add('js');
-const hdr=document.querySelector('header'),bar=document.getElementById('bar');
-function sc(){const h=document.documentElement;hdr.classList.toggle('on',scrollY>10);bar.style.transform='scaleX('+(scrollY/(h.scrollHeight-innerHeight||1))+')'}
+const hdr = document.querySelector('nav[aria-label="Main navigation"]');
+const bar = document.getElementById('bar');
+
+function sc() {
+  const h = document.documentElement;
+  if (hdr) hdr.classList.toggle('on', scrollY > 10);
+  if (bar) {
+    bar.style.transform = 'scaleX(' + (scrollY / (h.scrollHeight - innerHeight || 1)) + ')';
+  }
+}
 addEventListener('scroll',sc,{passive:true});sc();
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
 document.querySelectorAll('.about>div,.values>div,.why>div,.posts details,.quote>*,.svc>*,.band h2,section>.wrap>h2,.lead').forEach((el,i)=>{el.classList.add('rv');el.style.transitionDelay=(i%4)*90+'ms';io.observe(el)});
+
+const menuButton = document.querySelector("#bg");
+const mobileMenu = document.querySelector("#mm");
+
+function toggleMenu(open) {
+  mobileMenu.classList.toggle("open", open);
+  menuButton.classList.toggle("open", open);
+  menuButton.setAttribute("aria-expanded", String(open));
+}
+
+menuButton.addEventListener("click", () => {
+  toggleMenu(!mobileMenu.classList.contains("open"));
+});
+
+mobileMenu.querySelectorAll("a").forEach((link) => {
+  link.addEventListener("click", () => toggleMenu(false));
+});
+
+window.addEventListener("resize", () => {
+  if (window.innerWidth > 1100) toggleMenu(false);
+});
+
 </script>
 </body>
 </html>
