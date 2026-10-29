@@ -197,10 +197,10 @@
  <div>${L("/", "Home")}</div>
  <div><a class="${whoIsActive ? "act" : ""}" href="#" onclick="return false">Who We Are</a>${dd(who)}</div>
  <div><a class="${whatIsActive ? "act" : ""}" href="#" onclick="return false">What We Do</a>${dd(what)}</div>
- <div>${L("/technologies", "Technologies")}</div><div>${L("/our-facility", "Our Facility")}</div><div>${L("/our-people", "Our People")}</div><div>${L("/careers", "Careers")}</div>
+ <div>${L("/technologies", "Technologies")}</div><div>${L("/our-facility", "Our Facility")}</div><div>${L("/our-people", "Our People")}</div><div>${L("/careers", "Careers")}</div><div><a href="#">Maritime</a></div>
 </div>
 <div class="nr"><button class="language-toggle" id="language-toggle" type="button" aria-label="Switch to Arabic">العربية</button><a class="btn d" href="/connect">Connect</a><button class="burger" id="bg" aria-label="Menu" aria-expanded="false"><i></i><i></i><i></i></button></div>
-<div id="mm">${L("/", "Home")}<div class="g${whoIsActive ? " act" : ""}">Who We Are</div>${who.map((x) => `<a class="s${path === x[0] ? " act" : ""}" href="${x[0]}">${x[1]}</a>`).join("")}<div class="g${whatIsActive ? " act" : ""}">What We Do</div>${what.map((x) => `<a class="s${path === x[0] ? " act" : ""}" href="${x[0]}">${x[1]}</a>`).join("")}${L("/technologies", "Technologies")}${L("/our-facility", "Our Facility")}${L("/our-people", "Our People")}${L("/careers", "Careers")}</div>
+<div id="mm">${L("/", "Home")}<div class="g${whoIsActive ? " act" : ""}">Who We Are</div>${who.map((x) => `<a class="s${path === x[0] ? " act" : ""}" href="${x[0]}">${x[1]}</a>`).join("")}<div class="g${whatIsActive ? " act" : ""}">What We Do</div>${what.map((x) => `<a class="s${path === x[0] ? " act" : ""}" href="${x[0]}">${x[1]}</a>`).join("")}${L("/technologies", "Technologies")}${L("/our-facility", "Our Facility")}${L("/our-people", "Our People")}${L("/careers", "Careers")}<a href="#">Maritime</a></div>
 </div></nav>
 `;
   const footHTML = `<footer><div class="wrap">
@@ -208,7 +208,7 @@
 <div><h3>Helpful Links</h3>Black Sands Industries<br>Advanced Industrial Solutions</div>
 <div><h3>Who We Are</h3>${who.map((x) => `<a href="${x[0]}">${x[1]}</a>`).join("")}</div>
 <div><h3>What We Do</h3>${what.map((x) => `<a href="${x[0]}">${x[1]}</a>`).join("")}</div>
-<div><h3>More</h3><a href="/technologies">Technologies</a><a href="/our-facility">Our Facility</a><a href="/our-people">Our People</a><a href="/careers">Careers</a><a href="/connect">Contact Us</a></div></div></div>
+<div><h3>More</h3><a href="/technologies">Technologies</a><a href="/our-facility">Our Facility</a><a href="/our-people">Our People</a><a href="/careers">Careers</a><a href="/connect">Contact Us</a><a href="#">Maritime</a></div></div></div>
 <section class="footer-cta" id="cta"><div class="mono">Connect</div><h2 data-split-view>Building a Sustainable Future Through Engineering Excellence</h2><p>BSI leads the transformation of industries by integrating renewable energy, automation, and innovation into every engineered solution.</p><div class="actions"><a class="btn p" href="/connect">CONTACT US</a></div></section></div>
 <div class="footer-bottom"><span>© 2026 Black Sands Industries All Rights Reserved</span><span class="footer-legal"><span class="footer-social">
 <a href="https://www.instagram.com/bsi.group_/" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
