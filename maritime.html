@@ -43,8 +43,11 @@ nav[aria-label="Main navigation"] > .wrap {
 }
 
 .logo {
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 12px;
   flex: none;
+  text-decoration: none;
 }
 
 .logo img {
@@ -52,6 +55,14 @@ nav[aria-label="Main navigation"] > .wrap {
   width: 104px;
   max-width: 22vw;
   height: auto;
+}
+
+.logo span {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--deep);
+  white-space: nowrap;
 }
 
 .pill {
@@ -87,6 +98,36 @@ nav[aria-label="Main navigation"] > .wrap {
   display: flex;
   align-items: center;
   gap: 10px;
+}
+
+.language-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 38px;
+  height: 38px;
+  padding: 0 10px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fff;
+  color: var(--deep);
+  font: 600 14px Inter, sans-serif;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.language-toggle:hover {
+  background: var(--tint);
+  border-color: var(--primary);
+}
+
+@media (max-width: 575.98px) {
+  .language-toggle {
+    min-width: 32px;
+    height: 34px;
+    padding: 0 6px;
+    font-size: 12px;
+  }
 }
 
 .burger {
@@ -187,26 +228,62 @@ nav[aria-label="Main navigation"] > .wrap {
 
 @media (max-width: 575.98px) {
   nav[aria-label="Main navigation"] > .wrap {
-    width: calc(100% - 24px);
-    padding: 10px 12px;
+    width: calc(100% - 20px);
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    column-gap: 6px;
+    row-gap: 0;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    flex: 1 1 0;
+    min-width: 0;
   }
 
   .logo img {
-    width: 88px;
+    width: 55px;
+    max-width: none;
+    height: auto;
+    flex-shrink: 0;
+  }
+
+  .logo span {
+    font-size: 15px;
+    line-height: 1.15;
+    white-space: normal;
+    min-width: 0;
   }
 
   .nr {
-    gap: 6px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    flex: 0 0 auto;
+    margin-left: auto;
   }
 
   .nr > .btn {
-    padding: 10px 12px;
-    font-size: 12px;
+    padding: 8px 7px;
+    font-size: 10px;
+    white-space: nowrap;
   }
 
   .burger {
-    width: 38px;
-    height: 38px;
+    display: flex;
+    width: 34px;
+    height: 34px;
+    flex-shrink: 0;
+  }
+
+  #mm {
+    flex: 0 0 100%;
+    width: 100%;
   }
 }
 
@@ -448,7 +525,8 @@ input:focus,textarea:focus{outline:0;border-color:var(--primary);box-shadow:0 0 
 <nav aria-label="Main navigation">
   <div class="wrap">
     <a class="logo" href="#top" aria-label="BSI Maritime home">
-      <img src="/assets/bsi-logo.png" alt="BSI Maritime">
+        <img src="/assets/bsi-logo.png" alt="Black Sands Industries">
+        <span>Maritime &amp; Shipping</span>
     </a>
 
     <div class="pill">
@@ -458,16 +536,18 @@ input:focus,textarea:focus{outline:0;border-color:var(--primary);box-shadow:0 0 
       <div><a href="#insights">Insights</a></div>
       <div><a href="#contact">Contact</a></div>
     </div>
-
     <div class="nr">
-      <a class="btn d" href="#quote">Request a quote</a>
-      <button class="burger" id="bg"
+    <button class="language-toggle" id="language-toggle"
+        type="button" aria-label="Switch to Arabic">
+        ع
+    </button>
+    <a class="btn d" href="#quote">Request a quote</a>
+    <button class="burger" id="bg"
         type="button" aria-label="Open menu"
         aria-expanded="false">
         <i></i><i></i><i></i>
-      </button>
+    </button>
     </div>
-
     <div id="mm">
       <a href="#top">Home</a>
       <a href="#about">About</a>
@@ -599,6 +679,7 @@ input:focus,textarea:focus{outline:0;border-color:var(--primary);box-shadow:0 0 
 <p class="fine">© 2026 BSI Maritime &amp; Shipping. All rights reserved.</p>
 </div></footer>
 
+<script src="/translations.js"></script>
 <script>
 const S=[
 ["Sea freight","Reliable and cost-effective sea freight solutions, connecting businesses to global markets across international waters. Whether you’re shipping full-container loads (FCL) or less-than-container loads (LCL), our services are tailored to your requirements.",
@@ -671,6 +752,87 @@ mobileMenu.querySelectorAll("a").forEach((link) => {
 window.addEventListener("resize", () => {
   if (window.innerWidth > 1100) toggleMenu(false);
 });
+
+/* English / Arabic language toggle */
+(() => {
+  const button = document.getElementById("language-toggle");
+  if (!button) return;
+
+  const translations = window.BSI_AR_TRANSLATIONS || {};
+  const originalTexts = new WeakMap();
+  let currentLanguage = "en";
+
+  function translatePage(language) {
+    currentLanguage = language;
+
+    const walker = document.createTreeWalker(
+      document.body,
+      NodeFilter.SHOW_TEXT
+    );
+
+    let node;
+
+    while ((node = walker.nextNode())) {
+      if (
+        !node.parentElement ||
+        node.parentElement.closest(
+          "script, style, textarea, input, select, .language-toggle"
+        )
+      ) continue;
+
+      if (!originalTexts.has(node)) {
+        originalTexts.set(node, node.nodeValue);
+      }
+
+      const original = originalTexts.get(node);
+      const key = original.replace(/\s+/g, " ").trim();
+
+      if (!key) continue;
+
+      const translated =
+        language === "ar" ? (translations[key] || key) : original;
+
+      if (node.nodeValue !== translated) {
+        node.nodeValue = translated;
+      }
+    }
+
+    document.documentElement.lang = language;
+    document.documentElement.dir = language === "ar" ? "rtl" : "ltr";
+
+    button.textContent = language === "ar" ? "EN" : "ع";
+    button.setAttribute(
+      "aria-label",
+      language === "ar" ? "Switch to English" : "Switch to Arabic"
+    );
+
+    try {
+      localStorage.setItem("bsi-language", language);
+    } catch {}
+  }
+
+  button.addEventListener("click", () => {
+    translatePage(currentLanguage === "en" ? "ar" : "en");
+  });
+
+  let savedLanguage = "en";
+  try {
+    savedLanguage =
+      localStorage.getItem("bsi-language") === "ar" ? "ar" : "en";
+  } catch {}
+
+  translatePage(savedLanguage);
+
+  // Translate content generated when a service tab is selected.
+  const observer = new MutationObserver(() => {
+    if (currentLanguage === "ar") translatePage("ar");
+  });
+
+  observer.observe(document.getElementById("panel"), {
+    childList: true,
+    subtree: true
+  });
+})();
 
 </script>
 </body>
