@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--primary:#761B35;--deep:#531326;--ink:#101010;--bg:#fff;--tint:#f6eef0;--line:#e4d5d9;--muted:#5b5256;--r:12px;--b:8px;--img-hero:url(assets/horse-background.jpg);--img-about:url(assets/horse-background.jpg);--img-service:url(assets/horse-background.jpg);--img-band:url(assets/horse-background.jpg)}
+:root{--primary:#761B35;--deep:#531326;--ink:#101010;--bg:#fff;--tint:#f6eef0;--line:#e4d5d9;--muted:#5b5256;--r:12px;--b:8px;--img-hero:url(assets/Maritime-Hero.png);--img-about:url(assets/horse-background.jpg);--img-service:url(assets/horse-background.jpg);--img-band:url(assets/horse-background.jpg)}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;scroll-padding-top:76px}
 body{font:16px/1.65 Inter,sans-serif;color:var(--ink);background:var(--bg)}
@@ -684,34 +684,34 @@ input:focus,textarea:focus{outline:0;border-color:var(--primary);box-shadow:0 0 
 const S=[
 ["Sea freight","Reliable and cost-effective sea freight solutions, connecting businesses to global markets across international waters. Whether you’re shipping full-container loads (FCL) or less-than-container loads (LCL), our services are tailored to your requirements.",
 ["Full-container load (FCL): dedicated containers for your exclusive use, ensuring the security and privacy of your cargo.","Less-than-container load (LCL): cost-effective options for smaller shipments by sharing container space.","Specialized cargo: oversized, hazardous and temperature-sensitive goods handled with precision.","Door-to-door service: pickup and delivery from your location to the final destination."],
-"Our partnerships with leading ocean carriers allow flexible and dependable schedules, with coverage across major seaports. We offer competitive pricing, transparent communication, real-time shipment updates and environmentally conscious shipping. Let us navigate the waters while you focus on growing your business."],
+"Our partnerships with leading ocean carriers allow flexible and dependable schedules, with coverage across major seaports. We offer competitive pricing, transparent communication, real-time shipment updates and environmentally conscious shipping. Let us navigate the waters while you focus on growing your business.","assets/Sea-Freight.png"],
 ["Customs clearance","Our expert team ensures your shipments clear customs quickly, efficiently and in full compliance with regulatory requirements.",
 ["Documentation preparation: bills of lading, commercial invoices and customs declarations.","Regulatory compliance: the latest customs rules and import/export regulations.","Duty and tax calculations: precise estimates and managed payments.","Cargo classification: proper classification to avoid delays and optimize duties."],
-"Real-time status updates, a lower risk of penalties and a streamlined import/export process, with expert advice on international trade rules."],
+"Real-time status updates, a lower risk of penalties and a streamlined import/export process, with expert advice on international trade rules.","assets/Customs-clearance.png"],
 ["Project logistics","End-to-end solutions for complex, large-scale construction, energy, infrastructure and industrial projects, with seamless coordination of every logistical detail.",
 ["Logistics planning: route optimization and risk assessment.","Specialized transport: heavy-duty equipment for oversized and heavy cargo.","Multimodal solutions: integrated freight for cost-effective, timely delivery.","On-site coordination: experienced personnel overseeing operations."],
-"We serve construction, energy and power, oil and gas, infrastructure development and mining, with dedicated project managers for clear communication."],
+"We serve construction, energy and power, oil and gas, infrastructure development and mining, with dedicated project managers for clear communication.","assets/Project-logistics.png"],
 ["Cross trade","Seamless international shipments between two countries without the cargo passing through the country of the trading company.",
 ["Global network of partners and agents in key trade hubs.","Multimodal shipping for cost-effective, timely delivery.","Documentation management: bills of lading, customs paperwork and certificates of origin.","Real-time tracking and end-to-end coordination from pickup to delivery."],
-"We serve retail and e-commerce, manufacturing, energy and resources, and pharmaceuticals, with efficient routing, secure handling and regulatory compliance."],
+"We serve retail and e-commerce, manufacturing, energy and resources, and pharmaceuticals, with efficient routing, secure handling and regulatory compliance.","assets/Cross-trade.png"],
 ["Sea chartering","Speed, flexibility and efficiency for large-scale and specialized shipments, from oversized equipment to high-volume cargo.",
 ["Full charter services: dedicated vessels for high-volume cargo.","Project cargo: heavy and oversized equipment for infrastructure and energy projects.","Breakbulk shipping: non-containerized goods moved safely and efficiently.","Route optimization: planning to minimize transit times and cost."],
-"Charter plans are tailored to your cargo, with an experienced team and clear updates from planning to final delivery. We support energy and infrastructure, pharmaceuticals, retail and consumer goods, and automotive."],
+"Charter plans are tailored to your cargo, with an experienced team and clear updates from planning to final delivery. We support energy and infrastructure, pharmaceuticals, retail and consumer goods, and automotive.","assets/Sea-Chartering.png"],
 ["Break bulk","Transport of oversized, heavy or irregularly shaped cargo that cannot fit into standard containers, such as machinery, construction materials and industrial equipment.",
 ["Custom handling: strategies for loading, unloading and securing non-standard cargo.","Specialized equipment: advanced lifting tools, flatbeds and open-deck carriers.","Port-to-destination services: coordination from port handling to delivery.","Compliance with international shipping standards and local customs requirements."],
-"Our experienced professionals minimize risk and keep your cargo safe, with efficient, cost-effective solutions tailored to your needs."],
+"Our experienced professionals minimize risk and keep your cargo safe, with efficient, cost-effective solutions tailored to your needs.","assets/Break-Bulk.png"],
 ["Warehousing","Secure, strategically located warehousing for short-term or long-term storage of a variety of cargo types.",
 ["Secure storage: 24/7 surveillance and advanced security measures.","Temperature-controlled facilities for perishables and pharmaceuticals.","Inventory management: accurate tracking and real-time visibility.","Order fulfillment, cross-docking, packaging and labeling, kitting and assembly."],
-"Let us take care of your inventory while you focus on growing your business."],
+"Let us take care of your inventory while you focus on growing your business.","assets/Warehousing.png"],
 ["Ship management","A global provider of ship management services, working closely with shipowners out of a deep passion for ships and the maritime industry.",
 ["Ship management, crew management and technical services.","Expertise across all types and sizes of vessels.","An approach built on transparency, open communication and trust."],
-"We set the benchmark for ship management and never compromise on quality, which is what defines our partnerships with clients worldwide."]
+"We set the benchmark for ship management and never compromise on quality, which is what defines our partnerships with clients worldwide.","assets/Ship-Management.png"]
 ];
 const tabs=document.getElementById('tabs'),panel=document.getElementById('panel');
 function show(i){
  [...tabs.children].forEach((b,j)=>b.setAttribute('aria-selected',j===i));
  const s=S[i];
- swap();panel.innerHTML='<div class="ph" role="img" aria-label="Placeholder image" style="background-image:var(--img-service);height:210px;margin-bottom:26px"></div><h3>'+s[0]+'</h3><p>'+s[1]+'</p><h4>What we offer</h4><ul>'+s[2].map(x=>'<li>'+x+'</li>').join('')+'</ul><p class="close">'+s[3]+'</p><p style="margin-top:22px"><a class="btn" href="#quote">Request a quote</a></p>';
+ swap();panel.innerHTML='<div class="ph" role="img" aria-label="'+s[0]+' image" style="background-image:url(\''+s[4]+'\');height:210px;margin-bottom:26px"></div><h3>'+s[0]+'</h3><p>'+s[1]+'</p><h4>What we offer</h4><ul>'+s[2].map(x=>'<li>'+x+'</li>').join('')+'</ul><p class="close">'+s[3]+'</p><p style="margin-top:22px"><a class="btn" href="#quote">Request a quote</a></p>';
 }
 S.forEach((s,i)=>{const b=document.createElement('button');b.type='button';b.role='tab';b.textContent=s[0];b.onclick=()=>show(i);tabs.appendChild(b)});
 function swap(){panel.classList.remove('swap');void panel.offsetWidth;panel.classList.add('swap')}
