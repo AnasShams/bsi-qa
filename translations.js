@@ -1673,11 +1673,10 @@ window.BSI_AR_TRANSLATIONS = {
 
   "Useful links": "روابط مفيدة",
   "Blogs": "المقالات",
-  "[Office address]": "[عنوان المكتب]",
-  "[email address]": "[عنوان البريد الإلكتروني]",
-  "[phone number]": "[رقم الهاتف]",
-  "© 2026 BSI Maritime & Shipping. All rights reserved.":
-    "© 2026 BSI Maritime & Shipping. جميع الحقوق محفوظة.",
+  "Office 16, 5th Floor, AJEC Tower King Saud Bin Abdulaziz Rd, Al Safa, Dammam": "المكتب 16، الطابق الخامس، برج AJEC، طريق الملك سعود بن عبدالعزيز، حي الصفا، الدمام",
+  "majaz@bsiarabia.com": "majaz@bsiarabia.com",
+  "+966580101516": "+١٥١٠١٨٥٦٦٩",
+  "© 2026 BSI Maritime & Shipping. All rights reserved.": "© 2026 BSI Maritime & Shipping. جميع الحقوق محفوظة.",
 
   // Dynamically generated service tabs and panels
 
